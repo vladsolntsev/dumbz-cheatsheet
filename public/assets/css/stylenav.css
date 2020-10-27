@@ -1,0 +1,44 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+}
+.container-fluid, input {
+    margin-left: 10px;
+}
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.0rem white;
+}
+.btn-link.focus, .btn-link:focus {
+    text-decoration: none;
+}
+.btn-link:hover {
+    color: white;
+    text-decoration: none;
+}
+.nav li a {
+    color: white;
+}
+.card-body li{
+    color: white;
+}
+.sidebar {
+    background-color: black;
+}
+.form-control {
+    width: 75%;
+}
+.navsearch {
+    float: right;
+    border-radius: 20px;
+    width: 40px;
+    height: 38px;
+    margin-right: 7px;
+}
+form.example button:hover {
+    background: black;
+}
