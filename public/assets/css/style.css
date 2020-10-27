@@ -1,0 +1,78 @@
+/* Header */
+
+.nav {
+    background-color: lightsteelblue;
+    padding: 5px 0;
+}
+
+.nav-icons {
+    margin-right: 15px;
+}
+
+/* Main page content */
+
+.research-block {
+    margin: 85px;
+}
+
+#cheat-search {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+
+.title{
+    border-bottom: solid 1px black;
+    margin: 30px 0;
+}
+
+.sheetcheat {
+    margin: 0 50px;
+    background-color: springgreen;
+    height: 100px;
+    width: 100px;
+}
+
+/* footer */
+
+.footer {
+    background-color: aliceblue;
+    padding: 5px 0;
+    margin-top:50px;
+}
+
+.footer-bold {
+    color: #8098ec;
+    font-weight: bold;
+}
+
+footer a {
+    color: #8098ec;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color:#b8c2e2;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.devs {
+    font-size: 13px;
+}
+
+.fa-github-square {
+    margin-right: 25px;
+}
+
+.fa-meetup {
+    margin-left: 25px;
+}
+
+.fa-facebook-square {
+    margin-right: 25px;
+}
+
+.fa-instagram-square {
+    margin-left: 25px;
+}

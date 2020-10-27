@@ -4,18 +4,106 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>{% block title %}{% endblock %}</title>
-
+     <title>{% block title %}My cheat sheet{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
     {% block stylesheet %}{% endblock %}
     <link rel="icon" href="/assets/images/favicon.png">
 </head>
-
 <body>
+    <nav class="nav">
+        <div class="container-fluid">
+            <div class="row no-gutters">
+                <div class="col-sm-2 offset-sm-10">
+                    <div class="d-flex flex-row-reverse">
+                        <div class="nav-icons">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="nav-icons">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="nav-icons">
+                            <i class="fas fa-home"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
 {% block content %}{% endblock %}
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row no-gutters">
+                <div class="col-sm text-center">
+                        <p class="devs"> Site déveleoppé avec <i class="far fa-heart"></i> par Benjamin, Claire, Guillaume, Marta et Vladislav</p>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-sm-3 text-center">
+                    <span class="footer-bold">Dumbz</span>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <a href="#">
+                        <span>Langues</span>
+                    </a>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <a href="#">
+                        <span>Mon compte</span>
+                    </a>
+                </div>
+                <div class="col-sm-3">
+                <div class="row justify-content-sm-center no-gutters no-gutters">
+                        <div>
+                            <a href="#">
+                                <i class="fab fa-github-square"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <i class="fab fa-meetup"></i>
+                            </a>
+                       </div>
+                    </div>
+                </div>
+             </div>
+            <div class="row no-gutters">
+                <div class="col-sm-3 text-center">
+                    <span class="footer-bold">&#169; 2020</span>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <a href="#">
+                        <span>À propos</span>
+                    </a>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <a href="#">
+                        <span>Contact</span>
+                    </a>
+                </div>
+                <div class="col-sm-3">
+                    <div class="row justify-content-sm-center no-gutters">
+                            <a href="#">
+                                <i class="fab fa-facebook-square"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-instagram-square"></i>
+                            </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
 {% block javascript %}{% endblock %}
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
 
