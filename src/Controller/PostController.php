@@ -25,7 +25,7 @@ class PostController extends AbstractController
         $categories = $categoryManager->selectCategories();
 
         foreach ($categories as $category){
-            foreach ($category as $key=>$eachlanguage) {
+            foreach ($category as $key => $eachlanguage) {
                 $catManager = new PostManager();
                 $languages = $catManager->postByLanguage("'" . $eachlanguage . "'");
                 $languagesSelection[$eachlanguage] =$languages;

@@ -17,7 +17,6 @@ class LanguageManager extends AbstractManager
         parent::__construct(self::TABLE);
     }
 
-}
 
     public function selectCategories(): array
     {
@@ -28,4 +27,5 @@ class LanguageManager extends AbstractManager
 
 
 }
+
 
