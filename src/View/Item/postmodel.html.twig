@@ -2,11 +2,34 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+    <button onclick="getElementById('demo').innerHTML = 'python'">What is the time?</button>
+    <button onclick="getElementById('demo').innerHTML = 'js'">What is the time?</button>
+    <form method="POST">
+        <button type="submit" name="html" value="html"></button>
+    </form>
 
-  <div class="row d-flex justify-content-between m-3">
+    <?php
+    if (isset($_POST['html'])) {
+        echo "html";
+    exit();
+}
+?>
 
+{{ dump(PostsbyLang['html']) }}
 
-{% for language in languages %}
+    {% block hey %}
+        {% deprecated 'The "hey" block is deprecated, use "greet" instead.' %}
+        {{ block('greet') }}
+    {% endblock %}
+
+    {% block greet %}
+        <p id="demo"></p>
+    {% endblock %}
+    {% set tableToUse = allpostsByPop %}
+
+    <div class="row d-flex justify-content-between m-3">
+
+{% for language in tableToUse|slice(0,5) %}
 
     <div data-toggle="modal" data-target="#exampleModal{{ language.id }}">
         <div class="card border border-dark rounded m-1"  style="width: 18rem;">
@@ -38,8 +61,8 @@
 
 
     <div class="modal fade" id="exampleModal{{ language.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div id="postDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="card border border-dark rounded m-1" style="width: 18rem;">
-            <div class="modal-dialog" role="document">
+
+            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                      <div class="card-body">
                          <div class="container card-header border border-dark rounded "> <div class="row d-flex justify-content-between">{{ language.title }} <div class="text-warning"><i class="far fa-star"></i></div></div></div>
@@ -62,7 +85,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
-                </div>
+
             </div>
         </div>
     </div>
