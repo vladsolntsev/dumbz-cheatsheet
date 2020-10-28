@@ -24,6 +24,8 @@ abstract class AbstractManager
      * @var string
      */
     protected $table;
+
+
     /**
      * @var string
      */
@@ -37,6 +39,7 @@ abstract class AbstractManager
     public function __construct(string $table)
     {
         $this->table = $table;
+
         $this->className = __NAMESPACE__ . '\\' . ucfirst($table);
         $this->pdo = (new Connection())->getPdoConnection();
     }
