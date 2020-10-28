@@ -5,8 +5,8 @@
     left: 0;
     z-index: 100;
     padding: 48px 0 0;
-    background-color: black;
-    width: 8%;
+    background-color: #091A37;
+    width: 10%;
     padding-top: 15%;
 }
 .sidebar {
@@ -16,8 +16,8 @@
     left: 0;
     z-index: 100;
     padding: 48px 0 0;
-    background-color: black;
-    width: 8%;
+    background-color: #091A37;
+    width: 10%;
     padding-top: 15%;
 }
 .burger-menu {
@@ -30,6 +30,12 @@
 .container-fluid, input {
     margin-left: 10px;
 }
+.container-fluid a {
+    border-radius: 50px;
+}
+.container-fluid a:hover {
+    background-color: #083C5A;
+}
 .btn.focus, .btn:focus {
     outline: 0;
     box-shadow: 0 0 0 0.0rem white;
@@ -37,7 +43,7 @@
 .btn-link.focus, .btn-link:focus {
     text-decoration: none;
 }
-.btn-link:hover {
+.btn-link:hover, .btn:hover {
     color: white;
     text-decoration: none;
 }
