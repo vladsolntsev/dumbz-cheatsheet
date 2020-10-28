@@ -43,7 +43,7 @@
 .btn-link.focus, .btn-link:focus {
     text-decoration: none;
 }
-.btn-link:hover {
+.btn-link:hover, .btn:hover {
     color: white;
     text-decoration: none;
 }
