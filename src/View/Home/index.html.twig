@@ -2,63 +2,7 @@
 
 {% block content %}
 
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="burger-menu" id="burger">
-            &#9776;
-        </div>
-        <nav id="menu-burger" class="display-block">
-
-            <div class="sidebar-sticky">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">
-
-                            Dashboard
-                        </a>
-                    </li>
-                    <hr noshade style="margin:0;width: 121px;color:white;height: 0px;border:1px solid white;">
-                    <div class="accordion" id="accordionExample">
-                        <li class="nav-item">
-                            <a class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" href="#">
-                                <span data-feather="file"></span>
-                                Langages
-                            </a>
-                        </li>
-
-                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div class="card-body">
-                                    <ul>
-                                    {% for language in languages %}
-                                    <a href="{{ language.identifier }}"><li>{{ language.name }}</li></a>
-                                    {% endfor %}
-                                </ul>
-
-                            </div>
-                            <hr noshade style="margin:0;width: 121px;color:white;height: 0px;border:1px solid white;">
-                        </div>
-                    </div>
-                    <hr noshade style="margin:0;width: 121px;color:white;height: 0px;border:1px solid white;">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="shopping-cart"></span>
-                            Products
-                        </a>
-                    </li>
-                    <hr noshade style="margin:0;width: 121px;color:white;height: 0px;border:1px solid white;">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="users"></span>
-                            Customers
-                        </a>
-                    </li>
-                    <hr noshade style="margin:0;width: 121px;color:white;height: 0px;border:1px solid white;">
-                </ul>
-            </div>
-        </nav>
-    </div>
-</div>
+    {% include 'Item/_nav.html.twig' %}
 
 <div class="container-fluid">
     <div class="row research-block">
