@@ -1,8 +1,8 @@
 {% extends 'layout.html.twig' %}
-
 {% block content %}
 
-    {% include 'Item/_nav.html.twig' %}
+{% include 'Item/_nav.html.twig' %}
+
 
 <div class="container-fluid">
     <div class="row research-block">
@@ -24,19 +24,14 @@
         <div class="col-sm-1 title">
             <span id="plus-most-popular">+</span>
         </div>
+
     </div>
 </div>
 <div class="container-fluid">
     <div class="row justify-content-sm-center">
-        <div class="col-xs-4 sheetcheat">
-            <button class="like">LIKE</button>
-            <span class="nb-like">15</span>
-        </div>
-        <div class="col-xs-4 sheetcheat">
-            <button class="dislike">DISLIKE</button>
-            <span class="nb-dislike">10</span>
-        </div>
-        <div class="col-xs-4 sheetcheat">Column 3</div>
+        {% set tableToUse = allpostsByPop %}
+        {% include '/Item/postmodel.html.twig' %}
+
     </div>
 </div>
 <div class="container-fluid">
@@ -51,9 +46,8 @@
 </div>
 <div class="container-fluid">
     <div class="row justify-content-sm-center">
-        <div class="col-xs-4 sheetcheat">Column 3</div>
-        <div class="col-xs-4 sheetcheat">Column 3</div>
-        <div class="col-xs-4 sheetcheat">Column 3</div>
+        {% set tableToUse = allpostsByDate %}
+        {% include '/Item/postmodel.html.twig' %}
     </div>
 </div>
 

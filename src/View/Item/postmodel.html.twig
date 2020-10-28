@@ -1,35 +1,7 @@
-
-{% extends 'layout.html.twig' %}
-
-{% block content %}
-    <button onclick="getElementById('demo').innerHTML = 'python'">What is the time?</button>
-    <button onclick="getElementById('demo').innerHTML = 'js'">What is the time?</button>
-    <form method="POST">
-        <button type="submit" name="html" value="html"></button>
-    </form>
-
-    <?php
-    if (isset($_POST['html'])) {
-        echo "html";
-    exit();
-}
-?>
-
-{{ dump(PostsbyLang['html']) }}
-
-    {% block hey %}
-        {% deprecated 'The "hey" block is deprecated, use "greet" instead.' %}
-        {{ block('greet') }}
-    {% endblock %}
-
-    {% block greet %}
-        <p id="demo"></p>
-    {% endblock %}
-    {% set tableToUse = allpostsByPop %}
+{% block postContent %}
 
     <div class="row d-flex justify-content-between m-3">
-
-{% for language in tableToUse|slice(0,5) %}
+{% for language in tableToUse|slice(0,6) %}
 
     <div data-toggle="modal" data-target="#exampleModal{{ language.id }}">
         <div class="card border border-dark rounded m-1"  style="width: 18rem;">
@@ -90,10 +62,7 @@
         </div>
     </div>
 
-
 {% endfor %}
-
-
  <!-- end of card container -->
   </div>
 
