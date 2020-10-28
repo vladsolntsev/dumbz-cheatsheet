@@ -2,6 +2,7 @@
 
 {% block content %}
 
+
 <div class="container-fluid">
     <div class="row">
         <div class="burger-menu" id="burger">
@@ -58,5 +59,59 @@
         </nav>
     </div>
 </div>
+
+<div class="container-fluid">
+    <div class="row research-block">
+        <div class="col-sm-6 offset-3">
+            <form action="" method="get">
+                <label for="cheat-search"></label>
+                <input type="search" id="cheat-search" name="cheat-search" placeholder="-">
+             </form>
+        </div>
+            <button class="btn"><i class="fas fa-search"></i></button>
+    </div>
+</div>
+<hr>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 title">
+            Les plus populaires
+        </div>
+        <div class="col-sm-1 title">
+            <span id="plus-most-popular">+</span>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row justify-content-sm-center">
+        <div class="col-xs-4 sheetcheat">
+            <button class="like">LIKE</button>
+            <span class="nb-like">15</span>
+        </div>
+        <div class="col-xs-4 sheetcheat">
+            <button class="dislike">DISLIKE</button>
+            <span class="nb-dislike">10</span>
+        </div>
+        <div class="col-xs-4 sheetcheat">Column 3</div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 title">
+            Les derniers
+        </div>
+        <div class="col-sm-1 title">
+            <span id="plus-most-popular">+</span>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row justify-content-sm-center">
+        <div class="col-xs-4 sheetcheat">Column 3</div>
+        <div class="col-xs-4 sheetcheat">Column 3</div>
+        <div class="col-xs-4 sheetcheat">Column 3</div>
+    </div>
+</div>
+
 {% endblock %}
 
