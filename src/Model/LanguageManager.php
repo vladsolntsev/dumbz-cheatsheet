@@ -15,7 +15,10 @@ class LanguageManager extends AbstractManager
     {
         parent::__construct(self::TABLE);
     }
-
+    public function selectCategories(): array
+    {
+        return $this->pdo->query('SELECT identifier FROM ' . $this->table)->fetchAll();
+    }
 
 
 

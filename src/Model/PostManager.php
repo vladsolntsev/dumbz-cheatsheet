@@ -18,7 +18,22 @@ class PostManager extends AbstractManager
 
     public function combinedSelectAll(): array
     {
-        return $this->pdo->query('SELECT *, (post.like + post. dislike) as popularity FROM ' . $this->table . ' LEFT JOIN language ON post.language_identifier = language.identifier;')->fetchAll();
+        return $this->pdo->query('SELECT *, (post.like - post. dislike) as popularity FROM ' . $this->table . ' LEFT JOIN language ON post.language_identifier = language.identifier;')->fetchAll();
+    }
+
+    public function selectAllByDate(): array
+    {
+        return $this->pdo->query('SELECT *, (post.like - post. dislike) as popularity FROM ' . $this->table . ' LEFT JOIN language ON post.language_identifier = language.identifier ORDER BY creation_at DESC;')->fetchAll();
+    }
+
+    public function selectAllByPopularity(): array
+    {
+        return $this->pdo->query('SELECT *, (post.like - post. dislike) as popularity FROM ' . $this->table . ' LEFT JOIN language ON post.language_identifier = language.identifier ORDER BY popularity DESC;')->fetchAll();
+    }
+
+    public function postByLanguage($identifier): array
+    {
+        return $this->pdo->query('SELECT *, (post.like - post. dislike) as popularity FROM ' . $this->table . ' LEFT JOIN language ON post.language_identifier = language.identifier WHERE language.identifier=' . $identifier . ';')->fetchAll();
     }
 
 
