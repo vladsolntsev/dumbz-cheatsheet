@@ -5,7 +5,7 @@
     left: 0;
     z-index: 100;
     padding: 48px 0 0;
-    background-color: black;
+    background-color: #091A37;
     width: 8%;
     padding-top: 15%;
 }
@@ -16,7 +16,7 @@
     left: 0;
     z-index: 100;
     padding: 48px 0 0;
-    background-color: black;
+    background-color: #091A37;
     width: 8%;
     padding-top: 15%;
 }
@@ -29,6 +29,12 @@
 }
 .container-fluid, input {
     margin-left: 10px;
+}
+.container-fluid a {
+    border-radius: 50px;
+}
+.container-fluid a:hover {
+    background-color: #083C5A;
 }
 .btn.focus, .btn:focus {
     outline: 0;
