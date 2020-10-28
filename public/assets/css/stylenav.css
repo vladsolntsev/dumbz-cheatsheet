@@ -1,3 +1,14 @@
+.display-block {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    background-color: black;
+    width: 8%;
+    padding-top: 15%;
+}
 .sidebar {
     position: fixed;
     top: 0;
@@ -5,6 +16,16 @@
     left: 0;
     z-index: 100;
     padding: 48px 0 0;
+    background-color: black;
+    width: 8%;
+    padding-top: 15%;
+}
+.burger-menu {
+    position: absolute;
+    cursor: pointer;
+    font-size: 30px;
+    color: white;
+    z-index: 1000;
 }
 .container-fluid, input {
     margin-left: 10px;
@@ -26,8 +47,8 @@
 .card-body li{
     color: white;
 }
-.sidebar {
-    background-color: black;
+.card-body ul {
+    margin-left: -20px;
 }
 .form-control {
     width: 75%;
@@ -41,4 +62,47 @@
 }
 form.example button:hover {
     background: black;
+}
+.sidebar {
+    display: block;
+}
+
+@media screen and (min-width: 769px){
+    .burger-menu {
+        display: none;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .navsearch{
+        display: none;
+    }
+}
+@media screen and (max-width: 768px) {
+    .searchlang {
+        display: none;
+    }
+    .burger-menu {
+        color: black;
+    }
+    .burger-menu-white {
+        color: white;
+    }
+    .navsearch{
+        display: none;
+    }
+    .display-block {
+        display: none;
+    }
+    .sidebar {
+        width: 21%;
+    }
+    .display-block {
+        width: 21%;
+    }
+
+}
+@media screen and (min-width: 992px) and (max-width: 1128px){
+    .navsearch{
+        margin-right: 0;
+    }
 }
