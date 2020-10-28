@@ -8,6 +8,8 @@
 
 namespace App\Controller;
 
+use App\Model\LanguageManager;
+
 class HomeController extends AbstractController
 {
 
@@ -21,6 +23,8 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        return $this->twig->render('Home/index.html.twig');
+        $langManager = new LanguageManager();
+        $statement = $langManager->selectAll();
+        return $this->twig->render('Home/index.html.twig', ['languages'=> $statement]);
     }
 }
