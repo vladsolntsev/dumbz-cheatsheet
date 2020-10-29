@@ -1,7 +1,7 @@
 /* Header */
 
 .header {
-    background-color: lightsteelblue;
+    background-color: #648767;
     padding: 5px 0;
 }
 
@@ -19,11 +19,13 @@
     border-top: none;
     border-right: none;
     border-left: none;
+    width:100%;
 }
 
 .title{
     border-bottom: solid 1px black;
     margin: 30px 0;
+    width : 100%;
 }
 
 .sheetcheat {
@@ -36,18 +38,18 @@
 /* footer */
 
 .footer {
-    background-color: #e3fbfd;
+    background-color: #648767;
     padding: 5px 0;
     margin-top:50px;
 }
 
 .footer-bold {
-    color: #8098ec;
+    color: black;
     font-weight: bold;
 }
 
 footer a {
-    color: #8098ec;
+    color: black;
     text-decoration: none;
 }
 
@@ -76,3 +78,4 @@ footer a:hover {
 .fa-instagram-square {
     margin-left: 25px;
 }
+
