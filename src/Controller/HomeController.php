@@ -39,21 +39,19 @@ class HomeController extends AbstractController
         $categoryManager = new LanguageManager();
         $categories = $categoryManager->selectCategories();
 
-        foreach ($categories as $category){
+        foreach ($categories as $category) {
             foreach ($category as $key => $eachlanguage) {
                 $catManager = new PostManager();
                 $languages = $catManager->postByLanguage("'" . $eachlanguage . "'");
-                $languagesSelection[$eachlanguage] =$languages;
+                $languagesSelection[$eachlanguage] = $languages;
             }
         }
 
-
         return $this->twig->render('Home/index.html.twig', [
-            'languages'=> $statement,
+            'languages' => $statement,
             'allposts' => $allPosts,
             'allpostsByDate' => $allPostsByDate,
             'allpostsByPop' => $allPostsByPop,
             'PostsbyLang' => $languagesSelection ]);
-
     }
 }
