@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="burger-menu" id="burger">
+            &#9776;
+        </div>
+        <nav id="menu-burger" class="display-block">
+
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <div class="accordion" id="accordionExample">
+
+                        <li class="nav-item">
+
+                            <a class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" href="#">
+                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                Langages
+                            </a>
+                        </li>
+
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <ul>
+                                    {% for language in languages %}
+                                        <a href="{{ language.identifier }}"><li>{{ language.name }}</li></a>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            Inscrivez vous
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
