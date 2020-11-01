@@ -24,34 +24,18 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        $langManager = new LanguageManager();
-        $statement = $langManager->selectAll();
+        $languageManager = new LanguageManager();
+        $categories = $languageManager->selectAll();
 
         $allPostManager = new PostManager();
-        $allPosts = $allPostManager->combinedSelectAll();
-
-        $allPostByDateManager = new PostManager();
-        $allPostsByDate = $allPostByDateManager->selectAllByDate();
-
-        $allPostByPopManager = new PostManager();
-        $allPostsByPop = $allPostByPopManager->selectAllByPopularity();
-
-        $categoryManager = new LanguageManager();
-        $categories = $categoryManager->selectCategories();
-
-        foreach ($categories as $category) {
-            foreach ($category as $key => $eachlanguage) {
-                $catManager = new PostManager();
-                $languages = $catManager->postByLanguage("'" . $eachlanguage . "'");
-                $languagesSelection[$eachlanguage] = $languages;
-            }
-        }
+        $allPostsWithLanguages = $allPostManager->selectAllWithLanguage();
+        $allPostsOrderedByDate = $allPostManager->selectPostsOrderedBy('creation_at');
+        $allPostsOrderedByPopularity = $allPostManager->selectPostsOrderedBy('popularity');
 
         return $this->twig->render('Home/index.html.twig', [
-            'languages' => $statement,
-            'allposts' => $allPosts,
-            'allpostsByDate' => $allPostsByDate,
-            'allpostsByPop' => $allPostsByPop,
-            'PostsbyLang' => $languagesSelection ]);
+            'languages' => $categories,
+            'all_posts_by_date' => $allPostsOrderedByDate,
+            'all_posts_by_pop' => $allPostsOrderedByPopularity
+        ]);
     }
 }
