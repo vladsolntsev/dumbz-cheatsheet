@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\LanguageManager;
 use App\Model\PostManager;
+use App\Model\UserManager;
 
 class MySpaceController extends AbstractController
 {
@@ -17,18 +18,21 @@ class MySpaceController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function index($user)
+    public function main($user)
     {
+        $theUser = new UserManager();
+        $theUser = $theUser->userInfos($user);
         $languageManager = new LanguageManager();
         $languageManager = $languageManager->selectAll();
-        $allMyFavoris = new PostManager();
-        $allMyFavoris = $allMyFavoris->selectAllMyFavoris($user);
+        $allMyFavorites = new PostManager();
+        $allMyFavorites = $allMyFavorites->selectAllMyFavorites($user);
         $allMyPosts = new PostManager();
         $allMyPosts = $allMyPosts->selectAllMyPosts($user);
         return $this->twig->render('MySpace/myspacepage.html.twig', [
             'languages' => $languageManager,
-            'favoris' => $allMyFavoris,
+            'favorites' => $allMyFavorites,
             'myposts' => $allMyPosts,
+            'user' => $theUser
         ]);
     }
 }

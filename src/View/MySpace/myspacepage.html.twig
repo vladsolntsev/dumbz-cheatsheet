@@ -6,10 +6,18 @@
 {% include 'Item/_nav.html.twig' %}
 
 <div class="welcome-text text-center font-weight-bold font-italic">
-    Bonjour '{{ user.name }}',<br>heureux de te retrouver !
+    Bonjour {{ user.name }},<br>heureux de te retrouver !
 </div>
 <hr>
-<div class="container-fluid">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col align-self-center">
+                {% include '/Item/_addPostForm.html.twig' %}
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
     <div class="row">
         <div class="col-sm-6 title">
             Mes favoris
@@ -21,7 +29,7 @@
 </div>
 <div class="container-fluid">
     <div class="row justify-content-sm-center">
-        {% set tableToUse = allMyFavoris %}
+        {% set tableToUse = favorites %}
         {% include '/Item/postmodel.html.twig' %}
     </div>
 </div>
@@ -37,7 +45,7 @@
 </div>
     <div class="container-fluid">
         <div class="row justify-content-sm-center">
-            {% set tableToUse = allMyPosts %}
+            {% set tableToUse = myposts %}
             {% include '/Item/postmodel.html.twig' %}
         </div>
     </div>
