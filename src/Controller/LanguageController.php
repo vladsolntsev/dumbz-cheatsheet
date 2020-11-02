@@ -5,14 +5,23 @@ namespace App\Controller;
 
 
 use App\Model\LanguageManager;
+use App\Model\PostManager;
 
 class LanguageController extends AbstractController
 {
-    public function language(int $id)
+    public function language($id)
     {
-        $languageid = new LanguageManager();
-        $language = $languageid->selectCategoriesById($id);
+        $languageManager = new LanguageManager();
+        $categories = $languageManager->selectAll();
 
-        return $this->twig->render('Item/_nav.html.twig', ['id' => $language]);
+        $languageById = new LanguageManager();
+        $allPostsOrderedByDate = $languageById->selectPostsByLanguageOrderedBy($id, 'creation_at');
+        $allPostsOrderedByPopularity = $languageById->selectPostsByLanguageOrderedBy($id, 'popularity');
+
+        return $this->twig->render('Home/index.html.twig', [
+            'languages' => $categories,
+            'all_posts_by_date' => $allPostsOrderedByDate,
+            'all_posts_by_pop' => $allPostsOrderedByPopularity
+        ]);
     }
 }

@@ -19,7 +19,7 @@
 
                                 <ul>
                                     {% for language in languages|slice(0, 5) %}
-                                        <a href="/language/{{ language.id }}"><li>{{ language.name  }}</li></a>
+                                        <a href="/language/language/{{ language.id }}"><li>{{ language.name  }}</li></a>
                                     {% endfor %}
                                 </ul>
 
@@ -36,7 +36,7 @@
                             <div class="card-body">
                                 <ul>
                                     {% for language in languages|slice(5, 10000) %}
-                                        <a href="/language/{{ language.id }}"><li>{{ language.name  }}</li></a>
+                                        <a href="/language/language/{{ language.id }}"><li>{{ language.name  }}</li></a>
                                     {% endfor %}
                                 </ul>
                             </div>
