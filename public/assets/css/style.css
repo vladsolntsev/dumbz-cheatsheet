@@ -1,11 +1,18 @@
+/* Variable */
+:root {
+    --primary-color: #141b15;
+    --secondary-color: #648767;
+    --link-color: white;
+
+}
 /* Header */
 
 .header {
-    background-color: #648767;
+    background-color: var(--secondary-color);
     padding: 5px 0;
 }
 
-.nav-icons {
+.header-icons {
     margin-right: 15px;
 }
 
@@ -22,23 +29,16 @@
     width:100%;
 }
 
-.title{
+.result-title{
     border-bottom: solid 1px black;
     margin: 30px 0;
     width : 100%;
 }
 
-.sheetcheat {
-    margin: 0 50px;
-    background-color: springgreen;
-    height: 100px;
-    width: 100px;
-}
-
 /* footer */
 
 .footer {
-    background-color: #648767;
+    background-color: var(--secondary-color);
     padding: 5px 0;
     margin-top:50px;
 }
@@ -54,12 +54,12 @@ footer a {
 }
 
 footer a:hover {
-    color:#b8c2e2;
+    color: var(--link-color);
     text-decoration:none;
     cursor:pointer;
 }
 
-.devs {
+.name-devs {
     font-size: 13px;
 }
 

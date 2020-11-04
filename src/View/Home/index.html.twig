@@ -3,12 +3,10 @@
 {% block content %}
 
 
-
-
 <div class="container-fluid">
     <div class="row research-block">
         <div class="col-sm-6 offset-3">
-            <form action="" method="get">
+            <form action="" method="post">
                 <label for="cheat-search"></label>
                 <input type="search" id="cheat-search" name="cheat-search" placeholder="-">
              </form>
@@ -17,16 +15,19 @@
     </div>
 </div>
 <hr>
+
+{% if search is empty %}
+
+
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-6 title">
+        <div class="col-sm-6 result-title">
             Les plus populaires
         </div>
-        <div class="col-sm-1 title">
-            <span class="font-weight-bold" id="plus plus-most-popular">+</span>
-        </div>
 
-    </div>
+        <div class="col-sm-1 result-title">
+            <span class="font-weight-bold" id="plus-most-popular">+</span>
+        </div>
 </div>
 <div class="container-fluid">
     <div class="row justify-content-sm-center">
@@ -38,12 +39,13 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-6 title">
+        <div class="col-sm-6 result-title">
             Les derniers
         </div>
-        <div class="col-sm-1 title">
-            <span class="font-weight-bold" id="plus plus-most-popular">+</span>
-        </div>
+
+        <div class="col-sm-1 result-title">
+            <span class="font-weight-bold" id="plus-most-popular">+</span>
+
     </div>
 </div>
 <div class="container-fluid">
@@ -52,7 +54,32 @@
         {% include '/Item/postmodel.html.twig' %}
     </div>
 </div>
+    {% endif %}
 
+    {% if search is not empty %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 result-title">
+               Résultat de ta recherche : "{{ keyword }}"
+            </div>
+
+            <div class="col-sm-1 result-title">
+                <span class="font-weight-bold" id="plus-most-popular">+</span>
+
+
+
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row justify-content-sm-center">
+
+                {% set tableToUse = search %}
+
+                {% include '/Item/postmodel.html.twig' %}
+            </div>
+        </div>
+
+    {% endif %}
 
 {% endblock %}
 

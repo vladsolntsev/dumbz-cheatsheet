@@ -3,11 +3,11 @@
         <div class="burger-menu" id="burger">
             &#9776;
         </div>
-        <nav id="menu-burger" class="display-block">
+        <nav id="menu-burger" class="display-block-nav">
 
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
-                    <div class="accordion" id="accordionExample">
+                    <div class="accordion accordion-nav" id="accordionExample">
 
                         <li class="nav-item text-nav-langage">
 
@@ -24,7 +24,7 @@
                                 </ul>
 
                     </div>
-                    <div class="accordion" id="accordionExample">
+                    <div class="accordion accordion-nav" id="accordionExample">
 
                         <li class="nav-item text-nav">
 
@@ -35,7 +35,7 @@
                         </li>
 
                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div class="card-body">
+                            <div class="card-body language-main-list">
                                 <ul>
                                     {% for language in languages|slice(5, 10000) %}
                                         <a href="/language/language/{{ language.id }}"><li>{{ language.name  }}</li></a>
