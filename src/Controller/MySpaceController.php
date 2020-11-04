@@ -28,6 +28,14 @@ class MySpaceController extends AbstractController
         $allMyFavorites = $allMyFavorites->selectAllMyFavorites($user);
         $allMyPosts = new PostManager();
         $allMyPosts = $allMyPosts->selectAllMyPosts($user);
+        if (($_SERVER["REQUEST_METHOD"] === "POST")) {
+            $thePost = new PostManager();
+            $user = $theUser['id'];
+            $title = $_POST['newPostTitle'];
+            $content = $_POST['newPostContent'];
+            $language = $_POST['newPostLanguage'];
+            $thePost->createPost($user, $title, $content, $language);
+        }
         return $this->twig->render('MySpace/myspacepage.html.twig', [
             'languages' => $languageManager,
             'favorites' => $allMyFavorites,
