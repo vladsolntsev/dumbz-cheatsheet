@@ -32,10 +32,21 @@ class HomeController extends AbstractController
         $allPostsOrderedByDate = $allPostManager->selectPostsOrderedBy('creation_at');
         $allPostsOrderedByPopularity = $allPostManager->selectPostsOrderedBy('popularity');
 
+        $wordToSearch='';
+        if ($_SERVER["REQUEST_METHOD"] === "POST")
+        {
+
+            if (isset($_POST['cheat-search'])) {
+                $wordToSearch = $_POST['cheat-search'];
+            }
+        }
+        $allPostByKeyword = $allPostManager->postByKeyword($wordToSearch);
+
         return $this->twig->render('Home/index.html.twig', [
             'languages' => $categories,
             'all_posts_by_date' => $allPostsOrderedByDate,
-            'all_posts_by_pop' => $allPostsOrderedByPopularity
+            'all_posts_by_pop' => $allPostsOrderedByPopularity,
+            'search' => $allPostByKeyword
         ]);
     }
 

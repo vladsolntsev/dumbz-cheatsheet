@@ -52,14 +52,12 @@ class PostManager extends AbstractManager
             $statement->execute();
     }
 
-public function test($name, $email, $password, $admin): array
-   {
-       $statement = $this->pdo->prepare("INSERT INTO user (name, email, password, admin) VALUES (:name, :email, :password, :admin)");
-           $statement->bindValue('user', $name, \PDO::PARAM_INT);
-           $statement->bindValue('content', $email, \PDO::PARAM_STR);
-           $statement->bindValue('content', $password, \PDO::PARAM_STR);
-           $statement->bindValue('language', $admin, \PDO::PARAM_BOOL);
-           $statement->execute();
-           return (int)$this->pdo->lastInsertId();
-   }
+    public function postByKeyword($keyword): array
+    {
+        $statement= $this->pdo->prepare('SELECT * FROM ' . self::TABLE . ' WHERE title = :keyword;');;
+        $statement->bindValue(':keyword', $keyword, \PDO::PARAM_STR);
+        $statement->execute();
+        return $statement->fetchAll();
+    }
+
 }
