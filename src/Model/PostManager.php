@@ -42,4 +42,13 @@ class PostManager extends AbstractManager
         return $this->pdo->query('SELECT *, (post.like - post. dislike) as popularity FROM ' . $this->table . ' WHERE post.user_id=' . $user . ';')->fetchAll();
     }
 
+    public function postByKeyword($keyword): array
+    {
+        $statement= $this->pdo->prepare('SELECT * FROM ' . self::TABLE . ' WHERE title = :keyword;');;
+        $statement->bindValue(':keyword', $keyword, \PDO::PARAM_STR);
+        $statement->execute();
+        return $statement->fetchAll();
+
+    }
+
 }
