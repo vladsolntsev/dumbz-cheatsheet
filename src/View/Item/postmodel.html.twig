@@ -14,8 +14,8 @@
 
             {# <i class="far fa-star"></i> #}
 
-                <div class="card-text border border-dark rounded text-white bg-dark">
-        <pre><code>{{ one_post.content|length > 50 ? one_post.content|slice(0, 51)|split(' ')|slice(0, -1)|join(' ') ~ '…' : one_post.content }}</code></pre>
+                <div class="card-text border border-dark rounded">
+                    {{ one_post.content|raw }}
                 </div>
 
                 <div class="container m-3 7 ">
@@ -39,7 +39,7 @@
                      <div class="card-body">
                          <div class="container card-header border border-dark rounded "> <div class="row d-flex justify-content-between">{{ one_post.title }} <div class="text-warning"><i class="far fa-star"></i></div></div></div>
                          <div class="card-text border border-dark rounded text-white bg-dark">
-                             <pre><code>{{ one_post.content }}</code></pre>
+                             {{ one_post.content|raw }}
                          </div>
                          <div class="container m-3 7 ">
                             <div class="row d-flex justify-content-between">
