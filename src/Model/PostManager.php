@@ -33,7 +33,7 @@ class PostManager extends AbstractManager
 
     public function selectAllMyFavorites($user): array
     {
-       return $this->pdo->query('SELECT *, (post.like - post. dislike) as popularity FROM ' . $this->table . ' LEFT JOIN favorite ON post.id = favorite.post_id WHERE favorite.user_id=' . $user . ';')->fetchAll();
+        return $this->pdo->query('SELECT *, (post.like - post. dislike) as popularity FROM ' . $this->table . ' LEFT JOIN favorite ON post.id = favorite.post_id WHERE favorite.user_id=' . $user . ';')->fetchAll();
 
     }
 
@@ -42,13 +42,22 @@ class PostManager extends AbstractManager
         return $this->pdo->query('SELECT *, (post.like - post. dislike) as popularity FROM ' . $this->table . ' WHERE post.user_id=' . $user . ';')->fetchAll();
     }
 
+    public function createPost($user, $title, $content, $language): void
+    {
+        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (user_id, title, content, language_id, creation_at) VALUES (:user, :title, :content, :language, now())");
+            $statement->bindValue('user', $user, \PDO::PARAM_INT);
+            $statement->bindValue('title', $title, \PDO::PARAM_STR);
+            $statement->bindValue('content', $content, \PDO::PARAM_STR);
+            $statement->bindValue('language', $language, \PDO::PARAM_INT);
+            $statement->execute();
+    }
+
     public function postByKeyword($keyword): array
     {
         $statement= $this->pdo->prepare('SELECT * FROM ' . self::TABLE . ' WHERE title = :keyword;');;
         $statement->bindValue(':keyword', $keyword, \PDO::PARAM_STR);
         $statement->execute();
         return $statement->fetchAll();
-
     }
 
 }
