@@ -1,77 +1,71 @@
-.display-block {
+.display-block-nav {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     z-index: 100;
     padding: 48px 0 0;
-    background-color: #141b15;
+    background-color: var(--primary-color);
     padding-top: 15%;
 }
-.sidebar {
+.sidebar-nav {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     z-index: 100;
     padding: 48px 0 0;
-    background-color: #141b15;
+    background-color: var(--primary-color);
     padding-top: 15%;
 }
 .burger-menu {
     position: absolute;
     cursor: pointer;
     font-size: 30px;
-    color: white;
+    color: var(--link-color);
     z-index: 1000;
 }
 
 .btn.focus, .btn:focus {
     outline: 0;
-    box-shadow: 0 0 0 0.0rem white;
+    box-shadow: 0 0 0 0.0rem var(--link-color);
 }
 .btn-link.focus, .btn-link:focus {
     text-decoration: none;
 }
 .btn-link:hover, .btn:hover {
-    color: white;
+    color: var(--link-color);
     text-decoration: none;
 }
 .text-nav {
-    color: white;
+    color: var(--link-color);
 
 }
 .text-nav-langage{
     margin-left: 15px;
-    color: white;
+    color: var(--link-color);
 }
 .text-nav a, .text-nav-langage a {
-    color: white;
+    color: var(--link-color);
     border-radius: 50px;
 }
 .text-nav a:hover {
     background-color: #083C5A;
 }
-.accordion ul a li {
-    color: white;
+.accordion-nav ul a li {
+    color: var(--link-color);
 }
-.accordion ul a:hover {
+.accordion-nav ul a:hover {
     text-decoration: none;
 }
 .card-body .text-nav li{
-    color: white;
+    color: var(--link-color);
 }
-.card-body ul {
+.language-main-list ul {
     margin-left: -20px;
 }
-.form-control {
-    width: 75%;
-}
 
-form.example button:hover {
-    background: black;
-}
-.sidebar {
+.sidebar-nav {
     display: block;
 }
 
@@ -88,13 +82,13 @@ form.example button:hover {
         color: black;
     }
     .burger-menu-white {
-        color: white;
+        color: var(--link-color);
     }
-    .display-block {
+    .display-block-nav {
         display: none;
         width: 21%;
     }
-    .sidebar {
+    .sidebar-nav {
         width: 21%;
     }
 }
