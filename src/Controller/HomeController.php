@@ -38,4 +38,5 @@ class HomeController extends AbstractController
             'all_posts_by_pop' => $allPostsOrderedByPopularity
         ]);
     }
+
 }

@@ -6,7 +6,6 @@
     z-index: 100;
     padding: 48px 0 0;
     background-color: #141b15;
-    width: 11%;
     padding-top: 15%;
 }
 .sidebar {
@@ -17,7 +16,6 @@
     z-index: 100;
     padding: 48px 0 0;
     background-color: #141b15;
-    width: 11%;
     padding-top: 15%;
 }
 .burger-menu {
@@ -41,13 +39,24 @@
 }
 .text-nav {
     color: white;
+
 }
-.text-nav a {
+.text-nav-langage{
+    margin-left: 15px;
+    color: white;
+}
+.text-nav a, .text-nav-langage a {
     color: white;
     border-radius: 50px;
 }
 .text-nav a:hover {
     background-color: #083C5A;
+}
+.accordion ul a li {
+    color: white;
+}
+.accordion ul a:hover {
+    text-decoration: none;
 }
 .card-body .text-nav li{
     color: white;
@@ -71,11 +80,6 @@ form.example button:hover {
         display: none;
     }
 }
-@media screen and (min-width: 768px) and (max-width: 991px) {
-    .navsearch{
-        display: none;
-    }
-}
 @media screen and (max-width: 768px) {
     .searchlang {
         display: none;
@@ -86,22 +90,11 @@ form.example button:hover {
     .burger-menu-white {
         color: white;
     }
-    .navsearch{
-        display: none;
-    }
     .display-block {
         display: none;
+        width: 21%;
     }
     .sidebar {
         width: 21%;
-    }
-    .display-block {
-        width: 21%;
-    }
-
-}
-@media screen and (min-width: 992px) and (max-width: 1128px){
-    .navsearch{
-        margin-right: 0;
     }
 }
