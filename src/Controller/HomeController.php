@@ -40,13 +40,19 @@ class HomeController extends AbstractController
                 $wordToSearch = $_POST['cheat-search'];
             }
         }
-        $allPostByKeyword = $allPostManager->postByKeyword($wordToSearch);
+        if($wordToSearch === ''){
+            $allPostByKeyword = '';
+        }else{
+            $allPostByKeyword = $allPostManager->postByKeyword($wordToSearch);
+        }
+
 
         return $this->twig->render('Home/index.html.twig', [
             'languages' => $categories,
             'all_posts_by_date' => $allPostsOrderedByDate,
             'all_posts_by_pop' => $allPostsOrderedByPopularity,
-            'search' => $allPostByKeyword
+            'search' => $allPostByKeyword,
+            'keyword' => $wordToSearch
         ]);
     }
 
