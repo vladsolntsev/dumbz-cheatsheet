@@ -18,28 +18,28 @@ class PostManager extends AbstractManager
 
     public function selectAllWithLanguage(): array
     {
-        return $this->pdo->query('SELECT *, post.id as post_unique_id, (post.like - post. dislike) as popularity FROM ' . $this->table . ' LEFT JOIN language ON post.language_id = language.id;')->fetchAll();
+        return $this->pdo->query('SELECT *, post.id as post_unique_id, (post.nbOfLikes - post.nbOfDislikes) as popularity FROM ' . $this->table . ' LEFT JOIN language ON post.language_id = language.id;')->fetchAll();
     }
 
     public function selectPostsOrderedBy($orderedBy): array
     {
-        return $this->pdo->query('SELECT *, post.id as post_unique_id, (post.like - post. dislike) as popularity FROM ' . $this->table . ' LEFT JOIN language ON post.language_id = language.id ORDER BY ' . $orderedBy . ' DESC;')->fetchAll();
+        return $this->pdo->query('SELECT *, post.id as post_unique_id, (post.nbOfLikes - post.nbOfDislikes) as popularity FROM ' . $this->table . ' LEFT JOIN language ON post.language_id = language.id ORDER BY ' . $orderedBy . ' DESC;')->fetchAll();
     }
 
     public function postByLanguage($id): array
     {
-        return $this->pdo->query('SELECT *, post.id as post_unique_id,(post.like - post. dislike) as popularity FROM ' . $this->table . ' LEFT JOIN language ON post.language_id = language.id WHERE language.id=' . $id . ';')->fetchAll();
+        return $this->pdo->query('SELECT *, post.id as post_unique_id,(post.nbOfLikes - post.nbOfDislikes) as popularity FROM ' . $this->table . ' LEFT JOIN language ON post.language_id = language.id WHERE language.id=' . $id . ';')->fetchAll();
     }
 
     public function selectAllMyFavorites($user): array
     {
-        return $this->pdo->query('SELECT *, (post.like - post. dislike) as popularity FROM ' . $this->table . ' LEFT JOIN favorite ON post.id = favorite.post_id WHERE favorite.user_id=' . $user . ';')->fetchAll();
+        return $this->pdo->query('SELECT *, (post.nbOfLikes - post.nbOfDislikes) as popularity FROM ' . $this->table . ' LEFT JOIN favorite ON post.id = favorite.post_id WHERE favorite.user_id=' . $user . ';')->fetchAll();
 
     }
 
     public function selectAllMyPosts($user): array
     {
-        return $this->pdo->query('SELECT *, (post.like - post. dislike) as popularity FROM ' . $this->table . ' WHERE post.user_id=' . $user . ';')->fetchAll();
+        return $this->pdo->query('SELECT *, (post.nbOflikes - post. nbOfdislikes) as popularity FROM ' . $this->table . ' WHERE post.user_id=' . $user . ';')->fetchAll();
     }
 
     public function createPost($user, $title, $content, $language): void
