@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Mon espace Dumbz{% endblock %}
+{% block title %}Mon espace{% endblock %}
 {% block stylesheet %}<link rel="stylesheet" href="/assets/css/stylemypage.css">{% endblock %}
 {% block content %}
 {% include 'Item/_nav.html.twig' %}
@@ -9,15 +9,8 @@
     Bonjour {{ user.name }},<br>heureux de te retrouver !
 </div>
 <hr>
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col align-self-center">
-                {% include '/Item/_addPostForm.html.twig' %}
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
+{% include '/Item/_addPostForm.html.twig' %}
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-6 title">
             Mes favoris
