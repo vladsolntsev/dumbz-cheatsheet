@@ -62,14 +62,13 @@ class MySpaceController extends AbstractController
     public function check() {
        $userManager = new UserManager();
        $userData = $userManager->selectOneByName($_POST['name']);
+       var_dump($userData);
        if (password_verify($_POST['password'], $userData['password'])) {
-           header('Location: /MySpace/hellotest');
+           //$id = $userManager->selectOneByNameAndPassword($_POST['name'], );
+           header('Location: /MySpace/main/' . $userData['id']);
        } else {
            header('Location: /');
        }
+    }
 
-    }
-    public function hellotest() {
-        return $this->twig->render('/Item/hellotest.html.twig');
-    }
 }
