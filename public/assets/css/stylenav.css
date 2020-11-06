@@ -1,85 +1,76 @@
-.display-block {
+.display-block-nav {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     z-index: 100;
     padding: 48px 0 0;
-    background-color: #141b15;
-    width: 11%;
+    background-color: var(--primary-color);
     padding-top: 15%;
 }
-.sidebar {
+.sidebar-nav {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     z-index: 100;
     padding: 48px 0 0;
-    background-color: #141b15;
-    width: 11%;
+    background-color: var(--primary-color);
     padding-top: 15%;
 }
 .burger-menu {
     position: absolute;
     cursor: pointer;
     font-size: 30px;
-    color: white;
+    color: var(--link-color);
     z-index: 1000;
 }
-.container-fluid, input {
-    margin-left: 10px;
-}
-.container-fluid a {
-    border-radius: 50px;
-}
-.container-fluid a:hover {
-    background-color: #083C5A;
-}
+
 .btn.focus, .btn:focus {
     outline: 0;
-    box-shadow: 0 0 0 0.0rem white;
+    box-shadow: 0 0 0 0.0rem var(--link-color);
 }
 .btn-link.focus, .btn-link:focus {
     text-decoration: none;
 }
 .btn-link:hover, .btn:hover {
-    color: white;
+    color: var(--link-color);
     text-decoration: none;
 }
-.nav li a {
-    color: white;
+.text-nav {
+    color: var(--link-color);
+
 }
-.card-body li{
-    color: white;
+.text-nav-langage{
+    margin-left: 15px;
+    color: var(--link-color);
 }
-.card-body ul {
+.text-nav a, .text-nav-langage a {
+    color: var(--link-color);
+    border-radius: 50px;
+}
+.text-nav a:hover {
+    background-color: #083C5A;
+}
+.accordion-nav ul a li {
+    color: var(--link-color);
+}
+.accordion-nav ul a:hover {
+    text-decoration: none;
+}
+.card-body .text-nav li{
+    color: var(--link-color);
+}
+.language-main-list ul {
     margin-left: -20px;
 }
-.form-control {
-    width: 75%;
-}
-.navsearch {
-    float: right;
-    border-radius: 20px;
-    width: 40px;
-    height: 38px;
-    margin-right: 7px;
-}
-form.example button:hover {
-    background: black;
-}
-.sidebar {
+
+.sidebar-nav {
     display: block;
 }
 
 @media screen and (min-width: 769px){
     .burger-menu {
-        display: none;
-    }
-}
-@media screen and (min-width: 768px) and (max-width: 991px) {
-    .navsearch{
         display: none;
     }
 }
@@ -91,24 +82,13 @@ form.example button:hover {
         color: black;
     }
     .burger-menu-white {
-        color: white;
+        color: var(--link-color);
     }
-    .navsearch{
+    .display-block-nav {
         display: none;
-    }
-    .display-block {
-        display: none;
-    }
-    .sidebar {
         width: 21%;
     }
-    .display-block {
+    .sidebar-nav {
         width: 21%;
-    }
-
-}
-@media screen and (min-width: 992px) and (max-width: 1128px){
-    .navsearch{
-        margin-right: 0;
     }
 }

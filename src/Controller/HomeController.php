@@ -24,34 +24,36 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        $langManager = new LanguageManager();
-        $statement = $langManager->selectAll();
+        $languageManager = new LanguageManager();
+        $categories = $languageManager->selectAll();
 
         $allPostManager = new PostManager();
-        $allPosts = $allPostManager->combinedSelectAll();
+        $allPostsWithLanguages = $allPostManager->selectAllWithLanguage();
+        $allPostsOrderedByDate = $allPostManager->selectPostsOrderedBy('creation_at');
+        $allPostsOrderedByPopularity = $allPostManager->selectPostsOrderedBy('popularity');
 
-        $allPostByDateManager = new PostManager();
-        $allPostsByDate = $allPostByDateManager->selectAllByDate();
+        $wordToSearch='';
+        if ($_SERVER["REQUEST_METHOD"] === "POST")
+        {
 
-        $allPostByPopManager = new PostManager();
-        $allPostsByPop = $allPostByPopManager->selectAllByPopularity();
-
-        $categoryManager = new LanguageManager();
-        $categories = $categoryManager->selectCategories();
-
-        foreach ($categories as $category) {
-            foreach ($category as $key => $eachlanguage) {
-                $catManager = new PostManager();
-                $languages = $catManager->postByLanguage("'" . $eachlanguage . "'");
-                $languagesSelection[$eachlanguage] = $languages;
+            if (isset($_POST['cheat-search'])) {
+                $wordToSearch = $_POST['cheat-search'];
             }
         }
+        if($wordToSearch === ''){
+            $allPostByKeyword = '';
+        }else{
+            $allPostByKeyword = $allPostManager->postByKeyword($wordToSearch);
+        }
+
 
         return $this->twig->render('Home/index.html.twig', [
-            'languages' => $statement,
-            'allposts' => $allPosts,
-            'allpostsByDate' => $allPostsByDate,
-            'allpostsByPop' => $allPostsByPop,
-            'PostsbyLang' => $languagesSelection ]);
+            'languages' => $categories,
+            'all_posts_by_date' => $allPostsOrderedByDate,
+            'all_posts_by_pop' => $allPostsOrderedByPopularity,
+            'search' => $allPostByKeyword,
+            'keyword' => $wordToSearch
+        ]);
     }
+
 }
