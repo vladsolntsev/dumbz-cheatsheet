@@ -5,14 +5,16 @@
     --link-color: white;
 
 }
+
 /* Header */
 
 .header {
     background-color: var(--secondary-color);
     padding: 5px 0;
 }
+
 .header a {
-    color:inherit;
+    color: inherit;
 }
 
 
@@ -31,13 +33,13 @@
     border-top: none;
     border-right: none;
     border-left: none;
-    width:100%;
+    width: 100%;
 }
 
-.result-title{
+.result-title {
     border-bottom: solid 1px black;
     margin: 30px 0;
-    width : 100%;
+    width: 100%;
 }
 
 /* footer */
@@ -45,7 +47,7 @@
 .footer {
     background-color: var(--secondary-color);
     padding: 5px 0;
-    margin-top:50px;
+    margin-top: 50px;
 }
 
 .footer-bold {
@@ -60,8 +62,8 @@ footer a {
 
 footer a:hover {
     color: var(--link-color);
-    text-decoration:none;
-    cursor:pointer;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .name-devs {

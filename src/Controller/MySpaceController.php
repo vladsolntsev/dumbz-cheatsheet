@@ -44,7 +44,8 @@ class MySpaceController extends AbstractController
         ]);
     }
 
-    public function add() {
+    public function add()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userManager = new UserManager();
             $userData = [];
@@ -59,15 +60,17 @@ class MySpaceController extends AbstractController
         }
 
     }
-    public function check() {
-       $userManager = new UserManager();
-       $userData = $userManager->selectOneByName($_POST['name']);
-       if (password_verify($_POST['password'], $userData['password'])) {
-           //$id = $userManager->selectOneByNameAndPassword($_POST['name'], );
-           header('Location: /MySpace/main/' . $userData['id']);
-       } else {
-           header('Location: /');
-       }
+
+    public function check()
+    {
+        $userManager = new UserManager();
+        $userData = $userManager->selectOneByName($_POST['name']);
+        if (password_verify($_POST['password'], $userData['password'])) {
+            //$id = $userManager->selectOneByNameAndPassword($_POST['name'], );
+            header('Location: /MySpace/main/' . $userData['id']);
+        } else {
+            header('Location: /');
+        }
     }
 
 }
