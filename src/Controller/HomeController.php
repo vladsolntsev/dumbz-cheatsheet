@@ -32,17 +32,16 @@ class HomeController extends AbstractController
         $allPostsOrderedByDate = $allPostManager->selectPostsOrderedBy('creation_at');
         $allPostsOrderedByPopularity = $allPostManager->selectPostsOrderedBy('popularity');
 
-        $wordToSearch='';
-        if ($_SERVER["REQUEST_METHOD"] === "POST")
-        {
+        $wordToSearch = '';
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             if (isset($_POST['cheat-search'])) {
                 $wordToSearch = $_POST['cheat-search'];
             }
         }
-        if($wordToSearch === ''){
+        if ($wordToSearch === '') {
             $allPostByKeyword = '';
-        }else{
+        } else {
             $allPostByKeyword = $allPostManager->postByKeyword($wordToSearch);
         }
 
