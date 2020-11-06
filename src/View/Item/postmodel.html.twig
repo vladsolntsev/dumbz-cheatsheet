@@ -3,7 +3,7 @@
     <div class="row d-flex justify-content-between m-3">
 {% for one_post in tableToUse|slice(0,6) %}
 
-    <div data-toggle="modal" data-target="#exampleModal{{ one_post.post_unique_id }}">
+    <div>
         <div class="card border border-dark rounded m-1"  style="width: 18rem;">
             <div class="card-body">
                 <div class="container card-header border border-dark rounded ">
@@ -14,14 +14,22 @@
 
             {# <i class="far fa-star"></i> #}
 
-                <div class="card-text border border-dark rounded">
+                <div class="card-text border border-dark rounded"  data-toggle="modal" data-target="#exampleModal{{ one_post.post_unique_id }}">
                     {{ one_post.content|raw }}
                 </div>
 
                 <div class="container m-3 7 ">
                     <div class="row d-flex justify-content-between">
                         <div class="border rounded-circle p-1 bg-info"><i class="{{ one_post.icon }}"></i></div>
-                        <div><i class="fas fa-angle-down text-danger"></i><i class="fas fa-angle-up text-success"></i><span class="badge badge-warning">{{ one_post.popularity }}</span></div>
+                        <div>
+                            <i class="fas fa-thumbs-up"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-thumbs-down"></i>
+                        </div>
+                        <div>
+                            <span class="badge badge-warning">{{ one_post.popularity }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
