@@ -72,7 +72,8 @@ class PostManager extends AbstractManager
         $statement= $this->pdo->prepare( 'SELECT *, post.id as post_unique_id, (post.nbOfLikes - post.nbOfDislikes) as popularity FROM ' . $this->table . ' LEFT JOIN language ON post.language_id = language.id WHERE title LIKE :keyword ;');
         $statement->bindValue(':keyword', '%'. $keyword .'%', \PDO::PARAM_STR);
         $statement->execute();
-        return $statement->fetchAll();
+        $posts =  $statement->fetchAll();
+        return $this->cleanPosts($posts);
     }
 
 }
