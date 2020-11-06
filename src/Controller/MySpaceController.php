@@ -43,4 +43,31 @@ class MySpaceController extends AbstractController
             'user' => $theUser
         ]);
     }
+
+    public function add() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $userManager = new UserManager();
+            $userData = [];
+            $userData['name'] = $_POST['name'];
+            $userData['email'] = $_POST['email'];
+            $userData['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $userID = $userManager->createUser($userData);
+            header('Location:/');
+
+        } else {
+            echo '404';
+        }
+
+    }
+    public function check() {
+       $userManager = new UserManager();
+       $userData = $userManager->selectOneByName($_POST['name']);
+       if (password_verify($_POST['password'], $userData['password'])) {
+           //$id = $userManager->selectOneByNameAndPassword($_POST['name'], );
+           header('Location: /MySpace/main/' . $userData['id']);
+       } else {
+           header('Location: /');
+       }
+    }
+
 }

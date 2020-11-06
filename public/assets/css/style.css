@@ -11,9 +11,14 @@
     background-color: var(--secondary-color);
     padding: 5px 0;
 }
+.header a {
+    color:inherit;
+}
+
 
 .header-icons {
     margin-right: 15px;
+
 }
 
 /* Main page content */
