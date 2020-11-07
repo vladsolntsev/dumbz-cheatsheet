@@ -24,6 +24,7 @@ class HomeController extends AbstractController
      */
     public function index()
     {
+
         $languageManager = new LanguageManager();
         $categories = $languageManager->selectAll();
 
@@ -51,7 +52,8 @@ class HomeController extends AbstractController
             'all_posts_by_date' => $allPostsOrderedByDate,
             'all_posts_by_pop' => $allPostsOrderedByPopularity,
             'search' => $allPostByKeyword,
-            'keyword' => $wordToSearch
+            'keyword' => $wordToSearch,
+
         ]);
     }
 

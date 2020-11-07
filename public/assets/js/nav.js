@@ -8,3 +8,23 @@ burger.addEventListener('click', event => {
 })
 
 /* End JS Navigation */
+
+const stars = document.getElementsByClassName('fa-star');
+for (let i = 0 ; i <stars.length; i++) {
+    stars[i].addEventListener('click', (event)=>    {
+        event.target.classList.add('fas')
+        fetch('/favorite/add', {
+            method: 'POST',
+            headers: {
+                'Accept' : 'application/json',
+                'Content-type' : 'application/json'
+            },
+            body: JSON.stringify({
+                'cheatsheet': event.target.dataset.postid,
+                'userid' :event.target.dataset.userid
+            })
+        })
+            .then(response => response.json())
+
+    })
+}

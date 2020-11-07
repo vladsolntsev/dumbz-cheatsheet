@@ -76,5 +76,19 @@ class PostManager extends AbstractManager
         $posts = $statement->fetchAll();
         return $this->cleanPosts($posts);
     }
-
+    public function addFavorite($postid, $userid)
+    {
+        $statement = $this->pdo->prepare("INSERT INTO favorite (`post_id`, `user_id`) 
+        SELECT * FROM (SELECT :postid, :userid) as tmp 
+    WHERE NOT EXISTS (
+       SELECT * 
+       FROM favorite 
+       WHERE post_id = :postid
+         AND user_id = :userid
+    ) LIMIT 1");
+        $statement->bindValue('postid', $postid, \PDO::PARAM_INT);
+        $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
+        $statement->execute();
+        return (int)$this->pdo->lastInsertId();
+    }
 }

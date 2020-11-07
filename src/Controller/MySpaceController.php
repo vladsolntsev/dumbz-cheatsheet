@@ -36,11 +36,13 @@ class MySpaceController extends AbstractController
             $language = $_POST['newPostLanguage'];
             $thePost->createPost($user, $title, $content, $language);
         }
+        $_SESSION['userid'] =  $theUser['id'];
+        $this->twig->addGlobal('session', $_SESSION);
         return $this->twig->render('MySpace/myspacepage.html.twig', [
             'languages' => $languageManager,
             'favorites' => $allMyFavorites,
             'myposts' => $allMyPosts,
-            'user' => $theUser
+            'user' => $theUser,
         ]);
     }
 
@@ -54,11 +56,9 @@ class MySpaceController extends AbstractController
             $userData['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $userID = $userManager->createUser($userData);
             header('Location:/');
-
         } else {
             echo '404';
         }
-
     }
 
     public function check()
@@ -72,5 +72,4 @@ class MySpaceController extends AbstractController
             header('Location: /');
         }
     }
-
 }
