@@ -2,6 +2,7 @@
 
 
 namespace App\Model;
+
 use Michelf\MarkdownExtra;
 
 
@@ -35,7 +36,7 @@ class PostManager extends AbstractManager
 
     public function selectPostsOrderedBy($orderedBy): array
     {
-        $posts =$this->pdo->query('SELECT *, post.id as post_unique_id, (post.nbOfLikes - post.nbOfDislikes) as popularity FROM ' . $this->table . ' LEFT JOIN language ON post.language_id = language.id ORDER BY ' . $orderedBy . ' DESC;')->fetchAll();
+        $posts = $this->pdo->query('SELECT *, post.id as post_unique_id, (post.nbOfLikes - post.nbOfDislikes) as popularity FROM ' . $this->table . ' LEFT JOIN language ON post.language_id = language.id ORDER BY ' . $orderedBy . ' DESC;')->fetchAll();
         return $this->cleanPosts($posts);
     }
 
@@ -60,19 +61,19 @@ class PostManager extends AbstractManager
     public function createPost($user, $title, $content, $language): void
     {
         $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (user_id, title, content, language_id, creation_at) VALUES (:user, :title, :content, :language, now())");
-            $statement->bindValue('user', $user, \PDO::PARAM_INT);
-            $statement->bindValue('title', $title, \PDO::PARAM_STR);
-            $statement->bindValue('content', $content, \PDO::PARAM_STR);
-            $statement->bindValue('language', $language, \PDO::PARAM_INT);
-            $statement->execute();
+        $statement->bindValue('user', $user, \PDO::PARAM_INT);
+        $statement->bindValue('title', $title, \PDO::PARAM_STR);
+        $statement->bindValue('content', $content, \PDO::PARAM_STR);
+        $statement->bindValue('language', $language, \PDO::PARAM_INT);
+        $statement->execute();
     }
 
     public function postByKeyword($keyword): array
     {
-        $statement= $this->pdo->prepare( 'SELECT *, post.id as post_unique_id, (post.nbOfLikes - post.nbOfDislikes) as popularity FROM ' . $this->table . ' LEFT JOIN language ON post.language_id = language.id WHERE title LIKE :keyword ;');
-        $statement->bindValue(':keyword', '%'. $keyword .'%', \PDO::PARAM_STR);
+        $statement = $this->pdo->prepare('SELECT *, post.id as post_unique_id, (post.nbOfLikes - post.nbOfDislikes) as popularity FROM ' . $this->table . ' LEFT JOIN language ON post.language_id = language.id WHERE title LIKE :keyword ;');
+        $statement->bindValue(':keyword', '%' . $keyword . '%', \PDO::PARAM_STR);
         $statement->execute();
-        $posts =  $statement->fetchAll();
+        $posts = $statement->fetchAll();
         return $this->cleanPosts($posts);
     }
 

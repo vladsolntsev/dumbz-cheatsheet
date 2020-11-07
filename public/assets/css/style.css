@@ -5,14 +5,16 @@
     --link-color: white;
 
 }
+
 /* Header */
 
 .header {
     background-color: var(--secondary-color);
     padding: 5px 0;
 }
+
 .header a {
-    color:inherit;
+    color: inherit;
 }
 
 
@@ -31,13 +33,13 @@
     border-top: none;
     border-right: none;
     border-left: none;
-    width:100%;
+    width: 100%;
 }
 
-.result-title{
+.result-title {
     border-bottom: solid 1px black;
     margin: 30px 0;
-    width : 100%;
+    width: 100%;
 }
 
 /* footer */
@@ -45,7 +47,7 @@
 .footer {
     background-color: var(--secondary-color);
     padding: 5px 0;
-    margin-top:50px;
+    margin-top: 50px;
 }
 
 .footer-bold {
@@ -60,8 +62,8 @@ footer a {
 
 footer a:hover {
     color: var(--link-color);
-    text-decoration:none;
-    cursor:pointer;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .name-devs {
@@ -83,4 +85,98 @@ footer a:hover {
 .fa-instagram-square {
     margin-left: 25px;
 }
+
+.animated-logo {
+    height: 50px;
+    width:170px;
+    position: absolute;
+    top:-40px;
+    right: 100px;
+    animation-name: logo;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes logo {
+    0% {
+        background-image: url('/assets/images/logo1.svg');
+    }
+    10% {
+        background-image: url('/assets/images/logo1.svg');
+    }
+    11% {
+        background-image: url('/assets/images/logo2.svg');
+    }
+    21% {
+        background-image: url('/assets/images/logo2.svg');
+    }
+    22% {
+        background-image: url('/assets/images/logo3.svg');
+    }
+    32% {
+        background-image: url('/assets/images/logo3.svg');
+    }
+    33% {
+        background-image: url('/assets/images/logo4.svg');
+    }
+    43% {
+        background-image: url('/assets/images/logo4.svg');
+    }
+    44% {
+        background-image: url('/assets/images/logo5.svg');
+    }
+    54% {
+        background-image: url('/assets/images/logo5.svg');
+    }
+    55% {
+        background-image: url('/assets/images/logo6.svg');
+    }
+    65% {
+        background-image: url('/assets/images/logo6.svg');
+    }
+    66% {
+        background-image: url('/assets/images/logo1.svg');
+    }
+    70% {
+        background-image: url('/assets/images/logo1.svg');
+    }
+    71% {
+        background-image: url('/assets/images/logo2.svg');
+    }
+    76% {
+        background-image: url('/assets/images/logo2.svg');
+    }
+    77% {background-image: url('/assets/images/logo3.svg');
+
+    }
+    82% {
+        background-image: url('/assets/images/logo3.svg');
+    }
+    77% {
+        background-image: url('/assets/images/logo3.svg');
+    }
+    82% {
+        background-image: url('/assets/images/logo3.svg');
+    }
+    83% {
+        background-image: url('/assets/images/logo4.svg');
+    }
+    89% {
+        background-image: url('/assets/images/logo4.svg');
+    }
+    90% {
+        background-image: url('/assets/images/logo5.svg');
+    }
+    95% {
+        background-image: url('/assets/images/logo5.svg');
+    }
+    96% {
+        background-image: url('/assets/images/logo6.svg');
+    }
+    100% {
+        background-image: url('/assets/images/logo6.svg');
+    }
+
+}
+
 
