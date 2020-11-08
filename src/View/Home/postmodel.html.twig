@@ -1,7 +1,7 @@
 {% block postContent %}
     <div class="row d-flex justify-content-between m-3">
         {% for one_post in tableToUse|slice(0,6) %}
-            <div data-toggle="modal" data-target="#exampleModal{{ one_post.post_unique_id }}">
+            <div>
                 <div class="card border border-dark rounded m-1" style="width: 18rem;">
                     <div class="card-body">
                         <div class="container card-header border border-dark rounded ">
@@ -10,7 +10,7 @@
                             </div>
                         </div>
                         {# <i class="far fa-star"></i> #}
-                        <div class="card-text border border-dark rounded">
+                        <div data-toggle="modal" data-target="#exampleModal{{ one_post.post_unique_id }}" class="card-text border border-dark rounded">
                             {{ one_post.content|raw }}
                         </div>
 
