@@ -1,18 +1,22 @@
 {% block postContent %}
     <div class="row d-flex justify-content-between m-3">
         {% for one_post in tableToUse|slice(0,6) %}
-            <div data-toggle="modal" data-target="#exampleModal{{ one_post.post_unique_id }}">
+            <div >
                 <div class="card border border-dark rounded m-1" style="width: 18rem;">
                     <div class="card-body">
                         <div class="container card-header border border-dark rounded ">
                             <div class="row d-flex justify-content-between">{{ one_post.title }}
-                                <div class="text-warning"><i class="far fa-star"></i></div>
+                                {%  if session.userid %}
+                                <div class="text-warning"><i class="{{ startype }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid}}"></i></div>
+                                {% endif %}
                             </div>
                         </div>
-                        {# <i class="far fa-star"></i> #}
-                        <div class="card-text border border-dark rounded">
+                  
+                        <div class="card-text border border-dark rounded post-content-short">
                             {{ one_post.content|raw }}
                         </div>
+                            <div class="btn btn-info" data-toggle="modal" data-target="#exampleModal{{ one_post.post_unique_id }}"><i class="fas fa-eye"></i></div>
+
 
                         <div class="container m-3 7 ">
                             <div class="row d-flex justify-content-between">
@@ -35,7 +39,9 @@
                         <div class="card-body">
                             <div class="container card-header border border-dark rounded ">
                                 <div class="row d-flex justify-content-between">{{ one_post.title }}
-                                    <div class="text-warning"><i class="far fa-star"></i></div>
+                                    {%  if session.userid %}
+                                    <div class="text-warning"><i class="{{ startype }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid}}"></i></div>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="card-text border border-dark rounded">

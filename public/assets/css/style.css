@@ -3,6 +3,12 @@
     --primary-color: #141b15;
     --secondary-color: #648767;
     --link-color: white;
+    --logo-image-1: url('/assets/images/logo1.svg');
+    --logo-image-2: url('/assets/images/logo2.svg');
+    --logo-image-3: url('/assets/images/logo3.svg');
+    --logo-image-4: url('/assets/images/logo4.svg');
+    --logo-image-5: url('/assets/images/logo5.svg');
+    --logo-image-6: url('/assets/images/logo6.svg');
 
 }
 
@@ -99,84 +105,85 @@ footer a:hover {
 
 @keyframes logo {
     0% {
-        background-image: url('/assets/images/logo1.svg');
+        background-image: var(--logo-image-1);
     }
     10% {
-        background-image: url('/assets/images/logo1.svg');
+        background-image: var(--logo-image-1);
     }
     11% {
-        background-image: url('/assets/images/logo2.svg');
+        background-image: var(--logo-image-2);
     }
     21% {
-        background-image: url('/assets/images/logo2.svg');
+        background-image: var(--logo-image-2);
     }
     22% {
-        background-image: url('/assets/images/logo3.svg');
+        background-image: var(--logo-image-3);
     }
     32% {
-        background-image: url('/assets/images/logo3.svg');
+        background-image: var(--logo-image-3);
     }
     33% {
-        background-image: url('/assets/images/logo4.svg');
+        background-image: var(--logo-image-4);
     }
     43% {
-        background-image: url('/assets/images/logo4.svg');
+        background-image: var(--logo-image-4);
     }
     44% {
-        background-image: url('/assets/images/logo5.svg');
+        background-image: var(--logo-image-5);
     }
     54% {
-        background-image: url('/assets/images/logo5.svg');
+        background-image: var(--logo-image-5);
     }
     55% {
-        background-image: url('/assets/images/logo6.svg');
+        background-image: var(--logo-image-6);
     }
     65% {
-        background-image: url('/assets/images/logo6.svg');
+        background-image: var(--logo-image-6);
     }
     66% {
-        background-image: url('/assets/images/logo1.svg');
+        background-image: var(--logo-image-1);
     }
     70% {
-        background-image: url('/assets/images/logo1.svg');
+        background-image: var(--logo-image-1);
     }
     71% {
-        background-image: url('/assets/images/logo2.svg');
+        background-image: var(--logo-image-2);
     }
     76% {
-        background-image: url('/assets/images/logo2.svg');
-    }
-    77% {background-image: url('/assets/images/logo3.svg');
-
-    }
-    82% {
-        background-image: url('/assets/images/logo3.svg');
+        background-image: var(--logo-image-2);
     }
     77% {
-        background-image: url('/assets/images/logo3.svg');
+        background-image: var(--logo-image-3);
     }
     82% {
-        background-image: url('/assets/images/logo3.svg');
+        background-image: var(--logo-image-3);
     }
     83% {
-        background-image: url('/assets/images/logo4.svg');
+        background-image: var(--logo-image-4);
     }
     89% {
-        background-image: url('/assets/images/logo4.svg');
+        background-image: var(--logo-image-4);
     }
     90% {
-        background-image: url('/assets/images/logo5.svg');
+        background-image: var(--logo-image-5);
     }
     95% {
-        background-image: url('/assets/images/logo5.svg');
+        background-image: var(--logo-image-5);
     }
     96% {
-        background-image: url('/assets/images/logo6.svg');
+        background-image: var(--logo-image-6);
     }
     100% {
-        background-image: url('/assets/images/logo6.svg');
+        background-image: var(--logo-image-6);
     }
 
+}
+
+
+.post-content-short  {
+    height: 50px;
+    width: 245px;
+    overflow: hidden;
 }
 
 

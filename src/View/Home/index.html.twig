@@ -1,5 +1,6 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
+    {% set startype = "far fa-star"%}
 <div class="container-fluid">
     <div class="row research-block">
         <div class="col-sm-6 offset-3">
@@ -12,7 +13,10 @@
     </div>
 </div>
 <hr>
-{% if search is empty %}
+
+
+
+    {% if search is empty %}
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-6 result-title">
@@ -59,6 +63,9 @@
                     {% set tableToUse = search %}
                     {% include '/Home/postmodel.html.twig' %}
                 </div>
+            </div>
+        </div>
+    </div>
             </div>
             {% endif %}
             {% endblock %}
