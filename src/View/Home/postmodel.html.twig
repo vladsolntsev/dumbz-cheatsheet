@@ -7,7 +7,7 @@
                         <div class="container card-header border border-dark rounded ">
                             <div class="row d-flex justify-content-between">{{ one_post.title }}
                                 {%  if session.userid %}
-                                <div class="text-warning"><i class="{{ startype }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid}}"></i></div>
+                                <div class="text-warning"><i class="{{ startype }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}"></i></div>
                                 {% endif %}
                             </div>
                         </div>
@@ -18,9 +18,9 @@
                         <div class="container m-3 7 ">
                             <div class="row d-flex justify-content-between">
                                 <div class="border rounded-circle p-1 bg-info"><i class="{{ one_post.icon }}"></i></div>
-                                <div><i class="fas fa-angle-down text-danger"></i><i
-                                            class="fas fa-angle-up text-success"></i><span
-                                            class="badge badge-warning">{{ one_post.popularity }}</span></div>
+                                <div><i class="far fa-thumbs-up text-success" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}"></i></div>
+                                <div><i class="far fa-thumbs-down text-danger" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}"></i></div>
+                                <div class="badge badge-warning">{{ one_post.popularity }}</div>
                             </div>
                         </div>
                     </div>
@@ -46,11 +46,10 @@
                             </div>
                             <div class="container m-3 7 ">
                                 <div class="row d-flex justify-content-between">
-                                    <div class="border rounded-circle p-1 bg-info"><i class="{{ one_post.icon }}"></i>
-                                    </div>
-                                    <div><i class="fas fa-angle-down text-danger"></i><i
-                                                class="fas fa-angle-up text-success"></i><span
-                                                class="badge badge-warning">{{ one_post.popularity }}</span></div>
+                                    <div class="border rounded-circle p-1 bg-info"><i class="{{ one_post.icon }}"></i></div>
+                                    <div><i class="far fa-thumbs-up text-success" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}"></i></div>
+                                    <div><i class="far fa-thumbs-down text-danger" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}"></i></div>
+                                    <div class="badge badge-warning">{{ one_post.popularity }}</div>
                                 </div>
                             </div>
                             <div class="text-info d-flex justify-content-end"><i class="far fa-comment"></i></div>
