@@ -76,6 +76,7 @@ class PostManager extends AbstractManager
         $posts = $statement->fetchAll();
         return $this->cleanPosts($posts);
     }
+
     public function addFavorite($postid, $userid)
     {
         $statement = $this->pdo->prepare("INSERT INTO favorite (`post_id`, `user_id`) 
@@ -95,8 +96,8 @@ class PostManager extends AbstractManager
     public function isInApproval($postid, $userid)
     {
         $statement = $this->pdo->prepare('SELECT * FROM approval where post_id = :postid and user_id = :userid');
-        $statement->bindValue('postid', $postid , \PDO::PARAM_INT);
-        $statement->bindValue('userid', $userid , \PDO::PARAM_INT);
+        $statement->bindValue('postid', $postid, \PDO::PARAM_INT);
+        $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
         $statement->execute();
         $currentApproval = $statement->fetchAll();
         if (empty($currentApproval)) {
@@ -182,4 +183,19 @@ class PostManager extends AbstractManager
             $statement->execute();
         }
     }
+
+    public function selectAllLikesAndDislikesPerUser($userid)
+    {
+        $statement = $this->pdo->prepare("SELECT post_id up down FROM approval WHERE user_id = :userid");
+        $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
+        $statement->execute();
+        $currentLikesAndDislikes = $statement->fetchAll();
+        $CleanCurrentLikesAndDislikes = [];
+        foreach ($currentLikesAndDislikes as $currentLikeAndDislike) {
+            $CleanCurrentLikesAndDislikes[$currentLikeAndDislike[0]] =
+            [$currentLikeAndDislike[1], $currentLikeAndDislike[2]];
+        };
+        return $CleanCurrentLikesAndDislikes;
+    }
 }
+
