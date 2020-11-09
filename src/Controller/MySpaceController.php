@@ -50,14 +50,17 @@ class MySpaceController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userManager = new UserManager();
-            //TODO Chek if username exists
-            $userData = [];
-            $userData['name'] = $_POST['name'];
-            $userData['email'] = $_POST['email'];
-            $userData['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $userID = $userManager->createUser($userData);
-            //TODO login directly
-            header('Location:/');
+            if ($userData = $userManager->selectOneByName($_POST['name'])) {
+                header('Location: /#registration');
+            } else {
+                $newUserData = [];
+                $newUserData['name'] = $_POST['name'];
+                $newUserData['email'] = $_POST['email'];
+                $newUserData['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                $userID = $userManager->createUser($newUserData);
+                //TODO login directly
+                header('Location:/');
+            }
         } else {
             echo '404';
         }
@@ -66,10 +69,13 @@ class MySpaceController extends AbstractController
     public function check()
     {
         $userManager = new UserManager();
-        $userData = $userManager->selectOneByName($_POST['name']);
-        if (password_verify($_POST['password'], $userData['password'])) {
-            $_SESSION['user'] = $userData;
-            header('Location: /MySpace/main/' . $userData['id']);
+        if ($userData = $userManager->selectOneByName($_POST['name'])) {
+            if (password_verify($_POST['password'], $userData['password'])) {
+                $_SESSION['user'] = $userData;
+                header('Location: /MySpace/main/' . $userData['id']);
+            } else {
+                header('Location: /');
+            }
         } else {
             header('Location: /');
         }
