@@ -50,11 +50,13 @@ class MySpaceController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userManager = new UserManager();
+            //TODO Chek if username exists
             $userData = [];
             $userData['name'] = $_POST['name'];
             $userData['email'] = $_POST['email'];
             $userData['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $userID = $userManager->createUser($userData);
+            //TODO login directly
             header('Location:/');
         } else {
             echo '404';
@@ -66,10 +68,17 @@ class MySpaceController extends AbstractController
         $userManager = new UserManager();
         $userData = $userManager->selectOneByName($_POST['name']);
         if (password_verify($_POST['password'], $userData['password'])) {
-            //$id = $userManager->selectOneByNameAndPassword($_POST['name'], );
+            $_SESSION['user'] = $userData;
             header('Location: /MySpace/main/' . $userData['id']);
         } else {
             header('Location: /');
         }
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        session_unset();
+        header('Location: /');
     }
 }
