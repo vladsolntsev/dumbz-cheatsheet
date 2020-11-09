@@ -9,6 +9,7 @@ burger.addEventListener('click', event => {
 
 /* End JS Navigation */
 
+/* JS Favorites */
 const stars = document.getElementsByClassName('fa-star');
 for (let i = 0 ; i <stars.length; i++) {
     stars[i].addEventListener('click', (event)=>    {
@@ -26,5 +27,49 @@ for (let i = 0 ; i <stars.length; i++) {
         })
             .then(response => response.json())
 
+    })
+}
+
+/* END JS Favorites */
+
+/* JS Like and dislike */
+
+const like = document.getElementsByClassName('fa-thumbs-up');
+for (let i = 0 ; i <like.length; i++) {
+    like[i].addEventListener('click', (event)=> {
+        event.target.classList.add('fas');
+        fetch('/like/addlike', {
+            method: 'POST',
+            headers: {
+                'Accept' : 'application/json',
+                'Content-type' : 'application/json'
+            },
+            body: JSON.stringify({
+                'cheatsheet': event.target.dataset.postid,
+                'userid' :event.target.dataset.userid
+            })
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+    })
+}
+
+const dislike = document.getElementsByClassName('fa-thumbs-down');
+for (let i = 0 ; i < dislike.length; i++) {
+    dislike[i].addEventListener('click', (event)=> {
+        event.target.classList.add('fas');
+        fetch('/like/adddislike', {
+            method: 'POST',
+            headers: {
+                'Accept' : 'application/json',
+                'Content-type' : 'application/json'
+            },
+            body: JSON.stringify({
+                'cheatsheet': event.target.dataset.postid,
+                'userid' :event.target.dataset.userid
+            })
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
     })
 }
