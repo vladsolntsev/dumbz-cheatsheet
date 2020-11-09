@@ -81,6 +81,10 @@
                                                            id="nameRegistration"
                                                            placeholder="Choisis bien, tu n'as qu'une seule chance">
                                                 </div>
+                                              {#   {% if server.REQUEST_URL == '/#registration' %}
+                                                    <div>Ce nom est déjà utilisé</div>
+                                                {% endif %}
+                                              #}
                                                 <div class="form-group">
                                                     <label for="emailRegistration">E-mail</label>
                                                     <input type="email" name="email" class="form-control"

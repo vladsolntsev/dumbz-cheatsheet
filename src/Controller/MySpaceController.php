@@ -50,19 +50,22 @@ class MySpaceController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userManager = new UserManager();
-            if ($userData = $userManager->selectOneByName($_POST['name'])) {
+            if ($newUserData = $userManager->selectOneByName($_POST['name'])) {
                 header('Location: /#registration');
+                //TODO add error message "name already exists" in nav modal
             } else {
                 $newUserData = [];
                 $newUserData['name'] = $_POST['name'];
                 $newUserData['email'] = $_POST['email'];
                 $newUserData['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                $userID = $userManager->createUser($newUserData);
-                //TODO login directly
-                header('Location:/');
+                $userManager->createUser($newUserData);
+                $userData = $userManager->selectOneByName($_POST['name']);
+                $_SESSION['user'] = $userData;
+                header('Location: /MySpace/main/' . $userData['id']);
             }
         } else {
             echo '404';
+            //TODO add error messages abt password and email incorrect format
         }
     }
 
@@ -74,10 +77,10 @@ class MySpaceController extends AbstractController
                 $_SESSION['user'] = $userData;
                 header('Location: /MySpace/main/' . $userData['id']);
             } else {
-                header('Location: /');
+                header('Location: /#login');
             }
         } else {
-            header('Location: /');
+            header('Location: /#login');
         }
     }
 
