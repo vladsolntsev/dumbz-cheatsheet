@@ -38,7 +38,9 @@ const like = document.getElementsByClassName('fa-thumbs-up');
 for (let i = 0 ; i <like.length; i++) {
     like[i].addEventListener('click', (event)=> {
         event.target.classList.add('fas');
-        fetch('/like/addlike', {
+        console.log(event.target.dataset.postid);
+        console.log(event.target.dataset.userid);
+        fetch('/like/addLike', {
             method: 'POST',
             headers: {
                 'Accept' : 'application/json',
@@ -54,11 +56,13 @@ for (let i = 0 ; i <like.length; i++) {
     })
 }
 
+
+
 const dislike = document.getElementsByClassName('fa-thumbs-down');
 for (let i = 0 ; i < dislike.length; i++) {
     dislike[i].addEventListener('click', (event)=> {
         event.target.classList.add('fas');
-        fetch('/like/adddislike', {
+        fetch('/like/addDislike', {
             method: 'POST',
             headers: {
                 'Accept' : 'application/json',

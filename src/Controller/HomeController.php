@@ -50,6 +50,11 @@ class HomeController extends AbstractController
         }
 
 
+        if (isset($_SESSION['userid'])) {
+            $likesAndDislikes = $allPostManager->selectAllLikesAndDislikesPerUser($_SESSION['userid']);
+        } else {
+            $likesAndDislikes = [];
+        }
 
         return $this->twig->render('Home/index.html.twig', [
             'languages' => $categories,
@@ -58,6 +63,8 @@ class HomeController extends AbstractController
             'search' => $allPostByKeyword,
             'keyword' => $wordToSearch,
             'search_without_result' => $hasResult,
+            'likesAndDislikes' => $likesAndDislikes,
+            'likesAndDislikesTest' => [ 15 => [1,1], 6 => [1,1], 4 => [1,1]]
         ]);
     }
 

@@ -9,9 +9,7 @@ use App\Model\PostManager;
 
 class FavoriteController extends AbstractController
 {
-    public function addFavorite($postId, $userId)
-    {
-    }
+
     public function add()
     {
         $json = file_get_contents('php://input');

@@ -18,9 +18,9 @@ class LikeController extends AbstractController
         $postManager = new PostManager();
         $postManager->changeLike($postId, $userId);
         $response = [
-            'status' =>'success',
+            'status' => 'success',
             'user' => $userId,
-            'cheat' =>$postId,
+            'cheat' => $postId,
         ];
         return json_encode($response);
     }

@@ -18,7 +18,14 @@
                         <div class="container m-3 7 ">
                             <div class="row d-flex justify-content-between">
                                 <div class="border rounded-circle p-1 bg-info"><i class="{{ one_post.icon }}"></i></div>
-                                <div><i class="far fa-thumbs-up text-success" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}"></i></div>
+                                {{ dump(likesAndDislikes) }}
+                                {{ dump(one_post.post_unique_id) }}
+                                {% set postid = one_post.post_unique_id %}
+                                        <div>
+                                            <i class="far fa-thumbs-up text-success {% if likesAndDislikes.postid.up == 1 %} {{ 'fas' }} {% endif %}"
+                                                data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
+                                            </i>
+                                        </div>
                                 <div><i class="far fa-thumbs-down text-danger" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}"></i></div>
                                 <div class="badge badge-warning">{{ one_post.popularity }}</div>
                             </div>
