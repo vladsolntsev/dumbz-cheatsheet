@@ -3,8 +3,15 @@
     --primary-color: #141b15;
     --secondary-color: #648767;
     --link-color: white;
+    --logo-image-1: url('/assets/images/logo1.svg');
+    --logo-image-2: url('/assets/images/logo2.svg');
+    --logo-image-3: url('/assets/images/logo3.svg');
+    --logo-image-4: url('/assets/images/logo4.svg');
+    --logo-image-5: url('/assets/images/logo5.svg');
+    --logo-image-6: url('/assets/images/logo6.svg');
 
 }
+
 /* Header */
 
 .header {
@@ -12,8 +19,14 @@
     padding: 5px 0;
 }
 
+.header a {
+    color: inherit;
+}
+
+
 .header-icons {
     margin-right: 15px;
+
 }
 
 /* Main page content */
@@ -26,13 +39,13 @@
     border-top: none;
     border-right: none;
     border-left: none;
-    width:100%;
+    width: 100%;
 }
 
-.result-title{
+.result-title {
     border-bottom: solid 1px black;
     margin: 30px 0;
-    width : 100%;
+    width: 100%;
 }
 
 /* footer */
@@ -40,7 +53,7 @@
 .footer {
     background-color: var(--secondary-color);
     padding: 5px 0;
-    margin-top:50px;
+    margin-top: 50px;
 }
 
 .footer-bold {
@@ -55,8 +68,8 @@ footer a {
 
 footer a:hover {
     color: var(--link-color);
-    text-decoration:none;
-    cursor:pointer;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .name-devs {
@@ -78,4 +91,99 @@ footer a:hover {
 .fa-instagram-square {
     margin-left: 25px;
 }
+
+.animated-logo {
+    height: 50px;
+    width:170px;
+    position: absolute;
+    top:-40px;
+    right: 100px;
+    animation-name: logo;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes logo {
+    0% {
+        background-image: var(--logo-image-1);
+    }
+    10% {
+        background-image: var(--logo-image-1);
+    }
+    11% {
+        background-image: var(--logo-image-2);
+    }
+    21% {
+        background-image: var(--logo-image-2);
+    }
+    22% {
+        background-image: var(--logo-image-3);
+    }
+    32% {
+        background-image: var(--logo-image-3);
+    }
+    33% {
+        background-image: var(--logo-image-4);
+    }
+    43% {
+        background-image: var(--logo-image-4);
+    }
+    44% {
+        background-image: var(--logo-image-5);
+    }
+    54% {
+        background-image: var(--logo-image-5);
+    }
+    55% {
+        background-image: var(--logo-image-6);
+    }
+    65% {
+        background-image: var(--logo-image-6);
+    }
+    66% {
+        background-image: var(--logo-image-1);
+    }
+    70% {
+        background-image: var(--logo-image-1);
+    }
+    71% {
+        background-image: var(--logo-image-2);
+    }
+    76% {
+        background-image: var(--logo-image-2);
+    }
+    77% {
+        background-image: var(--logo-image-3);
+    }
+    82% {
+        background-image: var(--logo-image-3);
+    }
+    83% {
+        background-image: var(--logo-image-4);
+    }
+    89% {
+        background-image: var(--logo-image-4);
+    }
+    90% {
+        background-image: var(--logo-image-5);
+    }
+    95% {
+        background-image: var(--logo-image-5);
+    }
+    96% {
+        background-image: var(--logo-image-6);
+    }
+    100% {
+        background-image: var(--logo-image-6);
+    }
+
+}
+
+
+.post-content-short  {
+    height: 50px;
+    width: 245px;
+    overflow: hidden;
+}
+
 

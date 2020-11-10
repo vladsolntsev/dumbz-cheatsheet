@@ -1,84 +1,71 @@
 {% extends 'layout.html.twig' %}
-
 {% block content %}
-
-
+    {% set startype = "far fa-star"%}
 <div class="container-fluid">
     <div class="row research-block">
         <div class="col-sm-6 offset-3">
-            <form action="" method="post">
+            <form action="/" method="post">
                 <label for="cheat-search"></label>
                 <input type="search" id="cheat-search" name="cheat-search" placeholder="-">
-             </form>
+            </form>
         </div>
-            <button class="btn"><i class="fas fa-search"></i></button>
+        <button class="btn"><i class="fas fa-search"></i></button>
     </div>
 </div>
 <hr>
 
-{% if search is empty %}
-
-
+    {% if search is empty %}
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-6 result-title">
             Les plus populaires
         </div>
-
         <div class="col-sm-1 result-title">
             <span class="font-weight-bold" id="plus-most-popular">+</span>
         </div>
-</div>
-<div class="container-fluid">
-    <div class="row justify-content-sm-center">
-
-        {% set tableToUse = all_posts_by_pop %}
-
-        {% include '/Item/postmodel.html.twig' %}
     </div>
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-6 result-title">
-            Les derniers
+    <div class="container-fluid">
+        <div class="row justify-content-sm-center">
+            {% set tableToUse = all_posts_by_pop %}
+            {% include '/Home/postmodel.html.twig' %}
         </div>
-
-        <div class="col-sm-1 result-title">
-            <span class="font-weight-bold" id="plus-most-popular">+</span>
-
     </div>
-</div>
-<div class="container-fluid">
-    <div class="row justify-content-sm-center">
-        {% set tableToUse = all_posts_by_date %}
-        {% include '/Item/postmodel.html.twig' %}
-    </div>
-</div>
-    {% endif %}
-
-    {% if search is not empty %}
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6 result-title">
-               Résultat de ta recherche : "{{ keyword }}"
+                Les derniers
             </div>
-
             <div class="col-sm-1 result-title">
                 <span class="font-weight-bold" id="plus-most-popular">+</span>
-
-
-
             </div>
         </div>
         <div class="container-fluid">
             <div class="row justify-content-sm-center">
-
-                {% set tableToUse = search %}
-
-                {% include '/Item/postmodel.html.twig' %}
+                {% set tableToUse = all_posts_by_date %}
+                {% include '/Home/postmodel.html.twig' %}
             </div>
         </div>
+        {% endif %}
 
+    {% if search is not empty %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6 result-title">
+                    Résultat de ta recherche : "{{ keyword }}"
+                </div>
+                <div class="col-sm-1 result-title">
+                    <span class="font-weight-bold" id="plus-most-popular">+</span>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row justify-content-sm-center">
+                    {% set tableToUse = search %}
+                    {% include '/Home/postmodel.html.twig' %}
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
     {% endif %}
 
 {% endblock %}

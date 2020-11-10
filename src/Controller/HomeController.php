@@ -24,6 +24,7 @@ class HomeController extends AbstractController
      */
     public function index()
     {
+
         $languageManager = new LanguageManager();
         $categories = $languageManager->selectAll();
 
@@ -32,17 +33,16 @@ class HomeController extends AbstractController
         $allPostsOrderedByDate = $allPostManager->selectPostsOrderedBy('creation_at');
         $allPostsOrderedByPopularity = $allPostManager->selectPostsOrderedBy('popularity');
 
-        $wordToSearch='';
-        if ($_SERVER["REQUEST_METHOD"] === "POST")
-        {
+        $wordToSearch = '';
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             if (isset($_POST['cheat-search'])) {
                 $wordToSearch = $_POST['cheat-search'];
             }
         }
-        if($wordToSearch === ''){
+        if ($wordToSearch === '') {
             $allPostByKeyword = '';
-        }else{
+        } else {
             $allPostByKeyword = $allPostManager->postByKeyword($wordToSearch);
         }
 
@@ -52,7 +52,8 @@ class HomeController extends AbstractController
             'all_posts_by_date' => $allPostsOrderedByDate,
             'all_posts_by_pop' => $allPostsOrderedByPopularity,
             'search' => $allPostByKeyword,
-            'keyword' => $wordToSearch
+            'keyword' => $wordToSearch,
+
         ]);
     }
 
