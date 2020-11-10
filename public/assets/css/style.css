@@ -23,9 +23,10 @@
 
 /* Main page content */
 
-.research-block {
-    margin: 85px;
+.loupeandbarre{
+    display: flex;
 }
+
 
 #cheat-search {
     border-top: none;
