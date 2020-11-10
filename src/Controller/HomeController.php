@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use App\Model\LanguageManager;
 use App\Model\PostManager;
+use App\Model\FavoriteManager;
 
 class HomeController extends AbstractController
 {
@@ -27,6 +28,8 @@ class HomeController extends AbstractController
 
         $languageManager = new LanguageManager();
         $categories = $languageManager->selectAll();
+        $favoriteManager = new FavoriteManager();
+        $favorites = $favoriteManager->selectAll();
 
         $allPostManager = new PostManager();
         $allPostsWithLanguages = $allPostManager->selectAllWithLanguage();
@@ -57,6 +60,7 @@ class HomeController extends AbstractController
         }
 
         return $this->twig->render('Home/index.html.twig', [
+            'favorite' => $favorites,
             'languages' => $categories,
             'all_posts_by_date' => $allPostsOrderedByDate,
             'all_posts_by_pop' => $allPostsOrderedByPopularity,
