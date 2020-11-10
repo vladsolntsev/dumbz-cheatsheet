@@ -35,16 +35,20 @@ class HomeController extends AbstractController
 
         $wordToSearch = '';
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
             if (isset($_POST['cheat-search'])) {
                 $wordToSearch = $_POST['cheat-search'];
             }
         }
         if ($wordToSearch === '') {
-            $allPostByKeyword = '';
+            $allPostByKeyword = [];
         } else {
             $allPostByKeyword = $allPostManager->postByKeyword($wordToSearch);
         }
+        $hasResult = false;
+        if ($wordToSearch !== '' && empty($allPostByKeyword)) {
+            $hasResult = true;
+        }
+
 
 
         return $this->twig->render('Home/index.html.twig', [
@@ -53,7 +57,7 @@ class HomeController extends AbstractController
             'all_posts_by_pop' => $allPostsOrderedByPopularity,
             'search' => $allPostByKeyword,
             'keyword' => $wordToSearch,
-
+            'search_without_result' => $hasResult,
         ]);
     }
 
