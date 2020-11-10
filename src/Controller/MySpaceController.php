@@ -6,6 +6,7 @@ use App\Model\FavoriteManager;
 use App\Model\LanguageManager;
 use App\Model\PostManager;
 use App\Model\UserManager;
+use App\Service\FormValidator;
 
 class MySpaceController extends AbstractController
 {
@@ -54,6 +55,10 @@ class MySpaceController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userManager = new UserManager();
+           /* $formValidator = new FormValidator();
+            $formValidator->getFields($_POST);
+            $formValidator->checkFields(); */
+
             if ($newUserData = $userManager->selectOneByName($_POST['name'])) {
                 header('Location: /#registration');
                 //TODO add error message "name already exists" in nav modal
