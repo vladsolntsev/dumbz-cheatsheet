@@ -36,38 +36,58 @@ class MySpaceController extends AbstractController
             $language = $_POST['newPostLanguage'];
             $thePost->createPost($user, $title, $content, $language);
         }
+        $_SESSION['userid'] =  $theUser['id'];
+        $this->twig->addGlobal('session', $_SESSION);
         return $this->twig->render('MySpace/myspacepage.html.twig', [
             'languages' => $languageManager,
             'favorites' => $allMyFavorites,
             'myposts' => $allMyPosts,
-            'user' => $theUser
+            'user' => $theUser,
         ]);
     }
 
-    public function add() {
+    public function add()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userManager = new UserManager();
-            $userData = [];
-            $userData['name'] = $_POST['name'];
-            $userData['email'] = $_POST['email'];
-            $userData['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $userID = $userManager->createUser($userData);
-            header('Location:/');
-
+            if ($newUserData = $userManager->selectOneByName($_POST['name'])) {
+                header('Location: /#registration');
+                //TODO add error message "name already exists" in nav modal
+            } else {
+                $newUserData = [];
+                $newUserData['name'] = $_POST['name'];
+                $newUserData['email'] = $_POST['email'];
+                $newUserData['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                $userManager->createUser($newUserData);
+                $userData = $userManager->selectOneByName($_POST['name']);
+                $_SESSION['user'] = $userData;
+                header('Location: /MySpace/main/' . $userData['id']);
+            }
         } else {
             echo '404';
+            //TODO add error messages abt password and email incorrect format
         }
-
-    }
-    public function check() {
-       $userManager = new UserManager();
-       $userData = $userManager->selectOneByName($_POST['name']);
-       if (password_verify($_POST['password'], $userData['password'])) {
-           //$id = $userManager->selectOneByNameAndPassword($_POST['name'], );
-           header('Location: /MySpace/main/' . $userData['id']);
-       } else {
-           header('Location: /');
-       }
     }
 
+    public function check()
+    {
+        $userManager = new UserManager();
+        if ($userData = $userManager->selectOneByName($_POST['name'])) {
+            if (password_verify($_POST['password'], $userData['password'])) {
+                $_SESSION['user'] = $userData;
+                header('Location: /MySpace/main/' . $userData['id']);
+            } else {
+                header('Location: /#login');
+            }
+        } else {
+            header('Location: /#login');
+        }
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        session_unset();
+        header('Location: /');
+    }
 }

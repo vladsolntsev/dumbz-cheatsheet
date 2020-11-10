@@ -31,22 +31,24 @@ class UserManager extends AbstractManager
         $statement->execute();
         return (int)$this->pdo->lastInsertId();
     }
-    public function selectOneByName(string $name): array
+
+    public function selectOneByName(string $name)
     {
         $statement = $this->pdo->prepare("SELECT * FROM $this->table WHERE name=:name");
         $statement->bindValue('name', $name, \PDO::PARAM_STR);
         $statement->execute();
         return $statement->fetch();
     }
-/*
-    public function selectOneByNameAndPassword(string $name,string $password): int
-    {
-        $statement = $this->pdo->prepare("SELECT id FROM $this->table WHERE name=:name AND password=:password");
-        $statement->bindValue('name', $name, \PDO::PARAM_STR);
-        $statement->bindValue('password', $password, \PDO::PARAM_STR);
-        $statement->execute();
-        return $statement->fetch();
-    }
-*/
+
+    /*
+        public function selectOneByNameAndPassword(string $name,string $password): int
+        {
+            $statement = $this->pdo->prepare("SELECT id FROM $this->table WHERE name=:name AND password=:password");
+            $statement->bindValue('name', $name, \PDO::PARAM_STR);
+            $statement->bindValue('password', $password, \PDO::PARAM_STR);
+            $statement->execute();
+            return $statement->fetch();
+        }
+    */
 
 }

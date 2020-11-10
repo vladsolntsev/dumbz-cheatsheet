@@ -24,6 +24,7 @@ class HomeController extends AbstractController
      */
     public function index()
     {
+
         $languageManager = new LanguageManager();
         $categories = $languageManager->selectAll();
 
