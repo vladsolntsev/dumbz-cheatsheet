@@ -79,18 +79,26 @@ class PostManager extends AbstractManager
 
     public function addFavorite($postid, $userid)
     {
-        $statement = $this->pdo->prepare("INSERT INTO favorite (`post_id`, `user_id`) 
-        SELECT * FROM (SELECT :postid, :userid) as tmp 
-    WHERE NOT EXISTS (
-       SELECT * 
-       FROM favorite 
-       WHERE post_id = :postid
-         AND user_id = :userid
-    ) LIMIT 1");
-        $statement->bindValue('postid', $postid, \PDO::PARAM_INT);
-        $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
-        $statement->execute();
-        return (int)$this->pdo->lastInsertId();
+        $existOrNot = $this->pdo->prepare('SELECT * FROM favorite where post_id = :postid and user_id = :userid');
+        $existOrNot->bindValue('postid', $postid, \PDO::PARAM_INT);
+        $existOrNot->bindValue('userid', $userid, \PDO::PARAM_INT);
+        $existOrNot->execute();
+        $checkIfExist = $existOrNot->fetchAll();
+        if (empty($checkIfExist)) {
+                $statement = $this->pdo->prepare("INSERT INTO favorite (`post_id`, `user_id`) 
+                VALUES (:postid, :userid)");
+                $statement->bindValue('postid', $postid, \PDO::PARAM_INT);
+                $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
+                $statement->execute();
+                return (int)$this->pdo->lastInsertId();
+        } else {
+                $statement = $this->pdo->prepare("DELETE FROM favorite WHERE post_id = $postid AND user_id = $userid");
+                $statement->bindValue('postid', $postid, \PDO::PARAM_INT);
+                $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
+                $statement->execute();
+
+
+        }
     }
 
     public function isInApproval($postid, $userid)

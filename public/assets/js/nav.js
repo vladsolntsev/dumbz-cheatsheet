@@ -13,7 +13,13 @@ burger.addEventListener('click', event => {
 const stars = document.getElementsByClassName('fa-star');
 for (let i = 0 ; i <stars.length; i++) {
     stars[i].addEventListener('click', (event)=>    {
-        event.target.classList.add('fas')
+        if (event.target.classList.contains('fas')) {
+            event.target.classList.remove('fas');
+            event.target.classList.add('far');
+        }  else {
+            event.target.classList.add('fas');
+        }
+
         fetch('/favorite/add', {
             method: 'POST',
             headers: {

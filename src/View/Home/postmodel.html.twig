@@ -1,6 +1,27 @@
 {% block postContent %}
     <div class="row d-flex justify-content-between m-3">
+        {% set fav_array = [] %}
+        {% for fav in favorite %}
+            {% set fav_array = fav_array|merge( [fav.post_id] ) %}
+        {% endfor %}
+
+
         {% for one_post in tableToUse|slice(0,6) %}
+            {# for index tables #}
+
+            {% if one_post.post_unique_id in fav_array %}
+                {% set startype = "fas fa-star"%}
+            {% else %}
+                {% set startype = "far fa-star"%}
+            {% endif %}
+
+            {% if one_post.post_id in fav_array %}
+                {% set startype = "fas fa-star"%}
+            {% endif %}
+            {# for mayspace table #}
+
+
+
             <div>
                 <div class="card border border-dark rounded m-1" style="width: 18rem;">
                     <div class="card-body">
