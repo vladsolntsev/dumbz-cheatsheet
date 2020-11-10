@@ -70,7 +70,7 @@ class PostManager extends AbstractManager
 
     public function postByKeyword($keyword): array
     {
-        $statement = $this->pdo->prepare('SELECT *, post.id as post_unique_id, (post.nbOfLikes - post.nbOfDislikes) as popularity FROM ' . $this->table . ' LEFT JOIN language ON post.language_id = language.id WHERE title LIKE :keyword ;');
+        $statement = $this->pdo->prepare('SELECT up FROM ' . $this->table . ' LEFT JOIN language ON post.language_id = language.id WHERE title LIKE :keyword ;');
         $statement->bindValue(':keyword', '%' . $keyword . '%', \PDO::PARAM_STR);
         $statement->execute();
         $posts = $statement->fetchAll();
@@ -90,5 +90,96 @@ class PostManager extends AbstractManager
         $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
         $statement->execute();
         return (int)$this->pdo->lastInsertId();
+    }
+
+    public function isInApproval($postid, $userid)
+    {
+        $statement = $this->pdo->prepare('SELECT * FROM approval where post_id = :postid and user_id = :userid');
+        $statement->bindValue('postid', $postid , \PDO::PARAM_INT);
+        $statement->bindValue('userid', $userid , \PDO::PARAM_INT);
+        $statement->execute();
+        $currentApproval = $statement->fetchAll();
+        if (empty($currentApproval)) {
+            $currentApproval = false;
+        } else {
+            $currentApproval = true;
+        }
+        return $currentApproval;
+    }
+
+    public function isLike($postid, $userid)
+    {
+        $statement = $this->pdo->prepare('SELECT up FROM approval where post_id = :postid and user_id = :userid');
+        $statement->bindValue('postid', $postid, \PDO::PARAM_INT);
+        $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
+        $statement->execute();
+        $currentLike = $statement->fetch();
+        return $currentLike;
+    }
+
+    public function isDislike($postid, $userid)
+    {
+        $statement = $this->pdo->prepare('SELECT down FROM approval where post_id = :postid and user_id = :userid');
+        $statement->bindValue('postid', $postid, \PDO::PARAM_INT);
+        $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
+        $statement->execute();
+        $currentDislike = $statement->fetch();
+        return $currentDislike;
+    }
+
+    public function changeLike($postid, $userid)
+    {
+        if ($this->isInApproval($postid, $userid)) {
+            if (!$this->isLike($postid, $userid)) {
+                $statement = $this->pdo->prepare("UPDATE approval SET up = true WHERE user_id=:userid and post_id = :postid");
+                $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
+                $statement->bindValue('postid', $postid, \PDO::PARAM_INT);
+                $statement->execute();
+            } else {
+                $statement = $this->pdo->prepare("UPDATE approval SET up = false WHERE user_id=:userid and post_id = :postid");
+                $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
+                $statement->bindValue('postid', $postid, \PDO::PARAM_INT);
+                $statement->execute();
+            }
+            if ($this->isDislike($postid, $userid)) {
+                $statement = $this->pdo->prepare("UPDATE approval SET down = false WHERE user_id=:userid and post_id = :postid");
+                $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
+                $statement->bindValue('postid', $postid, \PDO::PARAM_INT);
+                $statement->execute();
+            }
+        } else {
+            $statement = $this->pdo->prepare("INSERT INTO approval (`user_id`, `post_id`, `up`) VALUES (:userid, :postid, true)");
+            $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
+            $statement->bindValue('postid', $postid, \PDO::PARAM_INT);
+            $statement->execute();
+        }
+    }
+
+    public function changeDislike($postid, $userid)
+    {
+        if ($this->isInApproval($postid, $userid)) {
+            if (!$this->isDislike($postid, $userid)) {
+                $statement = $this->pdo->prepare("UPDATE approval SET down = true WHERE user_id=:userid and post_id = :postid");
+                $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
+                $statement->bindValue('postid', $postid, \PDO::PARAM_INT);
+                $statement->execute();
+            } else {
+                $statement = $this->pdo->prepare("UPDATE approval SET down = false WHERE user_id=:userid and post_id = :postid");
+                $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
+                $statement->bindValue('postid', $postid, \PDO::PARAM_INT);
+                $statement->execute();
+            }
+            if ($this->isLike($postid, $userid)) {
+                $statement = $this->pdo->prepare("UPDATE approval SET up = false WHERE user_id=:userid and post_id = :postid");
+                $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
+                $statement->bindValue('postid', $postid, \PDO::PARAM_INT);
+                $statement->execute();
+            }
+        } else {
+            $statement = $this->pdo->prepare("INSERT INTO approval (`user_id`, `post_id`, `down`) VALUES (:userid, :postid, true)");
+            $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
+            $statement->bindValue('postid', $postid, \PDO::PARAM_INT);
+            $statement->execute();
+        }
     }
 }
