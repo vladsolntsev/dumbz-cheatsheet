@@ -13,7 +13,13 @@ burger.addEventListener('click', event => {
 const stars = document.getElementsByClassName('fa-star');
 for (let i = 0 ; i <stars.length; i++) {
     stars[i].addEventListener('click', (event)=>    {
-        event.target.classList.add('fas')
+        if (event.target.classList.contains('fas')) {
+            event.target.classList.remove('fas');
+            event.target.classList.add('far');
+        }  else {
+            event.target.classList.add('fas');
+        }
+
         fetch('/favorite/add', {
             method: 'POST',
             headers: {
@@ -38,7 +44,10 @@ const like = document.getElementsByClassName('fa-thumbs-up');
 for (let i = 0 ; i <like.length; i++) {
     like[i].addEventListener('click', (event)=> {
         event.target.classList.add('fas');
-        fetch('/like/addlike', {
+        console.log(event.target.dataset.postid);
+        console.log(event.target.dataset.userid);
+        fetch('/like/addLike', {
+
             method: 'POST',
             headers: {
                 'Accept' : 'application/json',
@@ -54,11 +63,14 @@ for (let i = 0 ; i <like.length; i++) {
     })
 }
 
+
 const dislike = document.getElementsByClassName('fa-thumbs-down');
 for (let i = 0 ; i < dislike.length; i++) {
     dislike[i].addEventListener('click', (event)=> {
         event.target.classList.add('fas');
-        fetch('/like/adddislike', {
+
+        fetch('/like/addDislike', {
+
             method: 'POST',
             headers: {
                 'Accept' : 'application/json',

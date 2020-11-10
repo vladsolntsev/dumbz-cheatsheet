@@ -1,15 +1,18 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
-    {% set startype = "far fa-star"%}
+
 <div class="container-fluid">
     <div class="row research-block">
         <div class="col-sm-6 offset-3">
-            <form action="/" method="post">
+            <form action="/" method="post" class="loupeandbarre">
                 <label for="cheat-search"></label>
-                <input type="search" id="cheat-search" name="cheat-search" placeholder="-">
-            </form>
+                <input type="search" id="cheat-search" name="cheat-search" placeholder="Entrez votre recherche">
+                <button class="btn"><i class="fas fa-search"></i></button>
+             </form>
+            {% if search_without_result %}
+                Aucun résultat ne correspond à votre recherche, veuillez réessayez un autre mot clé.
+            {% endif %}
         </div>
-        <button class="btn"><i class="fas fa-search"></i></button>
     </div>
 </div>
 <hr>
@@ -19,6 +22,7 @@
     <div class="row">
         <div class="col-sm-6 result-title">
             Les plus populaires
+
         </div>
         <div class="col-sm-1 result-title">
             <span class="font-weight-bold" id="plus-most-popular">+</span>

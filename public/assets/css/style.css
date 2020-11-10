@@ -6,6 +6,7 @@
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 @import url("//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/styles/default.min.css");
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
 @import "stylenav.css";
 @import "stylemypage.css";
 @import "bootstrap-overridden.css";
@@ -44,9 +45,10 @@
 
 /* Main page content */
 
-.research-block {
-    margin: 85px;
+.loupeandbarre{
+    display: flex;
 }
+
 
 #cheat-search {
     border-top: none;
