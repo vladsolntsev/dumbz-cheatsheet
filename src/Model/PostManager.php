@@ -100,7 +100,7 @@ class PostManager extends AbstractManager
         $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
         $statement->execute();
         $currentApproval = $statement->fetchAll();
-        if (empty($currentApproval['up']) || $currentApproval['up'] === true) {
+        if (empty($currentApproval)) {
             $currentApproval = false;
         } else {
             $currentApproval = true;
@@ -131,7 +131,7 @@ class PostManager extends AbstractManager
     public function changeLike($postid, $userid)
     {
         if ($this->isInApproval($postid, $userid)) {
-            if (!$this->isLike($postid, $userid)) {
+            if ($this->isLike($postid, $userid) === false || $this->isLike($postid, $userid) === NULL ) {
                 $statement = $this->pdo->prepare("UPDATE approval SET up = true WHERE user_id=:userid and post_id = :postid");
                 $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
                 $statement->bindValue('postid', $postid, \PDO::PARAM_INT);

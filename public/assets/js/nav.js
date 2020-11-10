@@ -35,11 +35,22 @@ for (let i = 0 ; i <stars.length; i++) {
 /* JS Like and dislike */
 
 const like = document.getElementsByClassName('fa-thumbs-up');
+const dislike = document.getElementsByClassName('fa-thumbs-down');
+
 for (let i = 0 ; i <like.length; i++) {
-    like[i].addEventListener('click', (event)=> {
-        event.target.classList.add('fas');
-        console.log(event.target.dataset.postid);
-        console.log(event.target.dataset.userid);
+    like[i].addEventListener('click', (event) => {
+        if (event.target.classList.contains('fas')) {
+            event.target.classList.replace('fas', 'far');
+        } else {
+            event.target.classList.add('fas');
+        }
+        for ( let i = 0; i < dislike.length; i++ ) {
+            if (dislike[i].classList.contains('fas')) {
+                dislike[i].classList.remove('fas');
+                dislike[i].classList.add('far');
+            }
+        }
+
         fetch('/like/addLike', {
             method: 'POST',
             headers: {
@@ -51,17 +62,27 @@ for (let i = 0 ; i <like.length; i++) {
                 'userid' :event.target.dataset.userid
             })
         })
-            .then(response => response.json())
-            .then(data => console.log(data))
+        .then(response => response.json())
+        .then(data => console.log(data))
     })
 }
 
 
+for ( let i = 0; i < dislike.length; i++ ) {
+    dislike[i].addEventListener('click', (event) => {
+        if (event.target.classList.contains('fas')) {
+            event.target.classList.replace('fas', 'far');
+        } else {
+            event.target.classList.add('fas');
+        }
+        const thumbUp = document.getElementsByClassName('fa-thumbs-up');
+        for ( let i = 0; i < like.length; i++ ) {
+            if (like[i].classList.contains('fas')) {
+                like[i].classList.remove('fas');
+                like[i].classList.add('far');
+            }
+        }
 
-const dislike = document.getElementsByClassName('fa-thumbs-down');
-for (let i = 0 ; i < dislike.length; i++) {
-    dislike[i].addEventListener('click', (event)=> {
-        event.target.classList.add('fas');
         fetch('/like/addDislike', {
             method: 'POST',
             headers: {
@@ -73,7 +94,7 @@ for (let i = 0 ; i < dislike.length; i++) {
                 'userid' :event.target.dataset.userid
             })
         })
-            .then(response => response.json())
-            .then(data => console.log(data))
+        .then(response => response.json())
+        .then(data => console.log(data))
     })
 }
