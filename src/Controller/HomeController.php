@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use App\Model\LanguageManager;
 use App\Model\PostManager;
+use App\Model\FavoriteManager;
 
 class HomeController extends AbstractController
 {
@@ -27,6 +28,8 @@ class HomeController extends AbstractController
 
         $languageManager = new LanguageManager();
         $categories = $languageManager->selectAll();
+        $favoriteManager = new FavoriteManager();
+        $favorites = $favoriteManager->selectAll();
 
         $allPostManager = new PostManager();
         $allPostsWithLanguages = $allPostManager->selectAllWithLanguage();
@@ -35,16 +38,20 @@ class HomeController extends AbstractController
 
         $wordToSearch = '';
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
             if (isset($_POST['cheat-search'])) {
                 $wordToSearch = $_POST['cheat-search'];
             }
         }
         if ($wordToSearch === '') {
-            $allPostByKeyword = '';
+            $allPostByKeyword = [];
         } else {
             $allPostByKeyword = $allPostManager->postByKeyword($wordToSearch);
         }
+        $hasResult = false;
+        if ($wordToSearch !== '' && empty($allPostByKeyword)) {
+            $hasResult = true;
+        }
+
 
         if (isset($_SESSION['userid'])) {
             $likesAndDislikes = $allPostManager->selectAllLikesAndDislikesPerUser($_SESSION['userid']);
@@ -53,11 +60,13 @@ class HomeController extends AbstractController
         }
 
         return $this->twig->render('Home/index.html.twig', [
+            'favorite' => $favorites,
             'languages' => $categories,
             'all_posts_by_date' => $allPostsOrderedByDate,
             'all_posts_by_pop' => $allPostsOrderedByPopularity,
             'search' => $allPostByKeyword,
             'keyword' => $wordToSearch,
+            'search_without_result' => $hasResult,
             'likesAndDislikes' => $likesAndDislikes,
             'likesAndDislikesTest' => [ 15 => [1,1], 6 => [1,1], 4 => [1,1]]
         ]);

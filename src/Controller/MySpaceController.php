@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Model\FavoriteManager;
 use App\Model\LanguageManager;
 use App\Model\PostManager;
 use App\Model\UserManager;
+use App\Service\FormValidator;
 
 class MySpaceController extends AbstractController
 {
@@ -20,6 +22,8 @@ class MySpaceController extends AbstractController
      */
     public function main($user)
     {
+        $favoriteManager = new FavoriteManager();
+        $favorites = $favoriteManager->selectAll();
         $theUser = new UserManager();
         $theUser = $theUser->userInfos($user);
         $languageManager = new LanguageManager();
@@ -39,6 +43,7 @@ class MySpaceController extends AbstractController
         $_SESSION['userid'] =  $theUser['id'];
         $this->twig->addGlobal('session', $_SESSION);
         return $this->twig->render('MySpace/myspacepage.html.twig', [
+            'favorite' => $favorites,
             'languages' => $languageManager,
             'favorites' => $allMyFavorites,
             'myposts' => $allMyPosts,
@@ -50,6 +55,10 @@ class MySpaceController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userManager = new UserManager();
+           /* $formValidator = new FormValidator();
+            $formValidator->getFields($_POST);
+            $formValidator->checkFields(); */
+
             if ($newUserData = $userManager->selectOneByName($_POST['name'])) {
                 header('Location: /#registration');
                 //TODO add error message "name already exists" in nav modal

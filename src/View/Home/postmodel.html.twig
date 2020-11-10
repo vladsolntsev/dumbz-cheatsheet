@@ -1,17 +1,41 @@
 {% block postContent %}
     <div class="row d-flex justify-content-between m-3">
+        {% set fav_array = [] %}
+        {% for fav in favorite %}
+            {% set fav_array = fav_array|merge( [fav.post_id] ) %}
+        {% endfor %}
+
+
         {% for one_post in tableToUse|slice(0,6) %}
+
+            {# for index tables #}
+
+            {% if one_post.post_unique_id in fav_array %}
+                {% set startype = "fas fa-star"%}
+            {% else %}
+                {% set startype = "far fa-star"%}
+            {% endif %}
+
+            {% if one_post.post_id in fav_array %}
+                {% set startype = "fas fa-star"%}
+            {% endif %}
+            {# for mayspace table #}
+
+
+
             <div>
-                <div class="card border border-dark rounded m-1" style="width: 18rem;">
+                <div class="card m-1" style="width: 18rem;">
                     <div class="card-body">
-                        <div class="container card-header border border-dark rounded ">
-                            <div class="row d-flex justify-content-between">{{ one_post.title }}
+                        <div class="container card-header ">
+                            <div class="row d-flex ">{{ one_post.title }}
                                 {%  if session.userid %}
                                 <div class="text-warning"><i class="{{ startype }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}"></i></div>
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="card-text border border-dark rounded post-content-short">
+
+                        <div class="card-text post-content-short">
+
                           {{ one_post.content|raw }}
                         </div>
                             <div class="btn btn-info" data-toggle="modal" data-target="#exampleModal{{ one_post.post_unique_id }}"><i class="fas fa-eye"></i></div>
@@ -37,7 +61,7 @@
             <div class="modal fade" id="exampleModal{{ one_post.post_unique_id }}" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content card">
                         <div class="card-body">
                             <div class="container card-header border border-dark rounded ">
                                 <div class="row d-flex justify-content-between">{{ one_post.title }}
