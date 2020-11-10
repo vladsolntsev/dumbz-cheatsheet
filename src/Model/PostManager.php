@@ -100,7 +100,7 @@ class PostManager extends AbstractManager
         $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
         $statement->execute();
         $currentApproval = $statement->fetchAll();
-        if (empty($currentApproval)) {
+        if (empty($currentApproval['up']) || $currentApproval['up'] === true) {
             $currentApproval = false;
         } else {
             $currentApproval = true;
@@ -186,14 +186,14 @@ class PostManager extends AbstractManager
 
     public function selectAllLikesAndDislikesPerUser($userid)
     {
-        $statement = $this->pdo->prepare("SELECT post_id up down FROM approval WHERE user_id = :userid");
+        $statement = $this->pdo->prepare("SELECT post_id, up, down FROM approval WHERE user_id = :userid;");
         $statement->bindValue('userid', $userid, \PDO::PARAM_INT);
         $statement->execute();
         $currentLikesAndDislikes = $statement->fetchAll();
         $CleanCurrentLikesAndDislikes = [];
         foreach ($currentLikesAndDislikes as $currentLikeAndDislike) {
-            $CleanCurrentLikesAndDislikes[$currentLikeAndDislike[0]] =
-            [$currentLikeAndDislike[1], $currentLikeAndDislike[2]];
+            $CleanCurrentLikesAndDislikes[$currentLikeAndDislike['post_id']] =
+            [$currentLikeAndDislike['up'], $currentLikeAndDislike['down']];
         };
         return $CleanCurrentLikesAndDislikes;
     }
