@@ -32,13 +32,14 @@ class UserManager extends AbstractManager
         return (int)$this->pdo->lastInsertId();
     }
 
-    public function selectOneByName(string $name): array
+    public function selectOneByName(string $name)
     {
         $statement = $this->pdo->prepare("SELECT * FROM $this->table WHERE name=:name");
         $statement->bindValue('name', $name, \PDO::PARAM_STR);
         $statement->execute();
         return $statement->fetch();
     }
+
     /*
         public function selectOneByNameAndPassword(string $name,string $password): int
         {
