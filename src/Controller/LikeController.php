@@ -13,7 +13,7 @@ class LikeController extends AbstractController
     {
         $json = file_get_contents('php://input');
         $jsonData = json_decode($json, true);
-        $postId = $jsonData['postid'];
+        $postId = $jsonData['cheatsheet'];
         $userId = $jsonData['userid'];
         $postManager = new PostManager();
         $postManager->changeLike($postId, $userId);
