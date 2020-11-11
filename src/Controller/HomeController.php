@@ -52,7 +52,6 @@ class HomeController extends AbstractController
             $hasResult = true;
         }
 
-
         if (isset($_SESSION['userid'])) {
             $likesAndDislikes = $allPostManager->selectAllLikesAndDislikesPerUser($_SESSION['userid']);
         } else {
@@ -67,8 +66,7 @@ class HomeController extends AbstractController
             'search' => $allPostByKeyword,
             'keyword' => $wordToSearch,
             'search_without_result' => $hasResult,
-            'likesAndDislikes' => $likesAndDislikes,
-            'likesAndDislikesTest' => [ 15 => [1,1], 6 => [1,1], 4 => [1,1]]
+            'likesAndDislikes' => $likesAndDislikes
         ]);
     }
 
