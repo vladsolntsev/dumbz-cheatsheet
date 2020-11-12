@@ -81,8 +81,24 @@
                                 </div>
                             </div>
                             <div class="text-info d-flex justify-content-end"><i class="far fa-comment"></i></div>
-                            <div><textarea name="" id="" cols="23" rows="3"></textarea></div>
-                            <button type="button" class="btn btn-info">Comment</button>
+                            <form action="/home/index" method="post">
+                                <input type="hidden" name="postid" value="{{ one_post.post_unique_id }}">
+                                <textarea name="comment" id="comment" cols="23" rows="3"></textarea>
+                                <button type="submit" class="btn btn-info">Comment</button>
+                            </form>
+                            <ul>
+                                {% for comment in all_comments %}
+                                    {% if comment.post_id == one_post.post_unique_id %}
+                                        
+                                                <li>
+                                                    {{comment.content}}
+                                                </li>
+                                            
+                                    {% endif %}
+                                {% endfor %}
+                            </ul> 
+                            
+
                         </div>
                         <div class="card-footer text-muted">
                             Date de creation : {{ one_post.creation_at }}

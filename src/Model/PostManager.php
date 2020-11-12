@@ -70,7 +70,7 @@ class PostManager extends AbstractManager
 
     public function postByKeyword($keyword): array
     {
-        $statement = $this->pdo->prepare('SELECT up FROM ' . $this->table . ' LEFT JOIN language ON post.language_id = language.id WHERE title LIKE :keyword ;');
+        $statement = $this->pdo->prepare('SELECT * FROM ' . $this->table . ' LEFT JOIN language ON post.language_id = language.id WHERE title LIKE :keyword ;');
         $statement->bindValue(':keyword', '%' . $keyword . '%', \PDO::PARAM_STR);
         $statement->execute();
         $posts = $statement->fetchAll();
