@@ -13,13 +13,21 @@
                 <label for="nameLogin">Pseudo</label>
                 <input type="text" name="name" class="form-control" id="nameLogin"
                        placeholder="Entre ton pseudo">
+                {% if session.nameError is defined %}
                 <small class="text-danger"> {{ session.nameError }} </small>
+                {% endif %}
             </div>
             <div class="form-group">
                 <label for="passwordLogin">Mot de passe</label>
                 <input type="password" name="password" class="form-control"
                        id="passwordLogin" placeholder="Entre ton mot passe">
+                {% if session.passwordError is defined %}
                 <small class="text-danger"> {{ session.passwordError }} </small>
+                {% endif %}
+                {% if session.passwordWrongError is defined %}
+                <small class="text-danger"> {{ session.passwordWrongError }} </small>
+                {% endif %}
+
             </div>
     </div>
     <div>

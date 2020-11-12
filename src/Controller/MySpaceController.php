@@ -90,8 +90,14 @@ class MySpaceController extends AbstractController
     public function check()
     {
         $userManager = new UserManager();
-        if (empty($_POST['name']) || empty($_POST['password'])) {
+        $_POST['name'] = trim($_POST['name']);
+        $_POST['password'] = trim($_POST['password']);
+        if (empty($_POST['name'])) {
             $_SESSION['nameError'] = 'Renseignes ton nom';
+            $errorsQueryString = http_build_query($_SESSION);
+            header('Location: /#login?' . $errorsQueryString);
+        }
+        if (empty($_POST['password'])) {
             $_SESSION['passwordError'] = 'Renseignes ton mot de passe';
             $errorsQueryString = http_build_query($_SESSION);
             header('Location: /#login?' . $errorsQueryString);
@@ -101,7 +107,9 @@ class MySpaceController extends AbstractController
                     $_SESSION['user'] = $userData;
                     header('Location: /MySpace/main/' . $userData['id']);
                 } else {
-                    header('Location: /#login');
+                    $_SESSION['passwordWrongError'] = 'Tu as dû te tromper sur de mot de passe';
+                    $errorsQueryString = http_build_query($_SESSION);
+                    header('Location: /#login?' . $errorsQueryString);
                 }
             } else {
                 header('Location: /#login');
