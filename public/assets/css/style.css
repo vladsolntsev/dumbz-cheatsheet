@@ -26,6 +26,10 @@
 
 }
 
+body {
+    background-color: #FDFFF3;
+}
+
 /* Header */
 
 .header {
@@ -52,6 +56,9 @@
     color: black;
 }
 
+.underline {
+    text-decoration: underline;
+}
 
 #cheat-search {
     /* border-top: none; */
@@ -239,8 +246,6 @@ footer a:hover {
 .post-content-short {
     width: 234px;
 }
-body {
-    background-color: #FDFFF3;
-}
+
 
 
