@@ -22,9 +22,6 @@ class MySpaceController extends AbstractController
      */
     public function main($user)
     {
-        if (empty($_SESSION['userid'])) {
-            header('location: /');
-        } else {
             $favoriteManager = new FavoriteManager();
             $favorites = $favoriteManager->selectAll();
             $theUser = new UserManager();
@@ -35,21 +32,20 @@ class MySpaceController extends AbstractController
             $allMyFavorites = $allMyFavorites->selectAllMyFavorites($user);
             $allMyPosts = new PostManager();
             $allMyPosts = $allMyPosts->selectAllMyPosts($user);
-            if (($_SERVER["REQUEST_METHOD"] === "POST")) {
-                $thePost = new PostManager();
-                $user = $theUser['id'];
-                $title = $_POST['newPostTitle'];
-                $content = $_POST['newPostContent'];
-                $language = $_POST['newPostLanguage'];
-                $thePost->createPost($user, $title, $content, $language);
-            }
-            $_SESSION['userid'] = $theUser['id'];
-            if (isset($_SESSION['userid'])) {
-                $postManager = new PostManager();
-                $likesAndDislikes = $postManager->selectAllLikesAndDislikesPerUser($_SESSION['userid']);
-            } else {
-                $likesAndDislikes = [];
-            }
+        if (($_SERVER["REQUEST_METHOD"] === "POST")) {
+            $thePost = new PostManager();
+            $user = $theUser['id'];
+            $title = $_POST['newPostTitle'];
+            $content = $_POST['newPostContent'];
+            $language = $_POST['newPostLanguage'];
+            $thePost->createPost($user, $title, $content, $language);
+        }
+        $_SESSION['userid'] = $theUser['id'];
+        if (isset($_SESSION['userid'])) {
+            $postManager = new PostManager();
+            $likesAndDislikes = $postManager->selectAllLikesAndDislikesPerUser($_SESSION['userid']);
+        } else {
+            $likesAndDislikes = [];
         }
 
         $_SESSION['userid'] = $theUser['id'];
@@ -99,7 +95,6 @@ class MySpaceController extends AbstractController
             $_SESSION['passwordError'] = 'Renseignes ton mot de passe';
             $errorsQueryString = http_build_query($_SESSION);
             header('Location: /#login?' . $errorsQueryString);
-            session_destroy();
         } else {
             if ($userData = $userManager->selectOneByName($_POST['name'])) {
                 if (password_verify($_POST['password'], $userData['password'])) {
