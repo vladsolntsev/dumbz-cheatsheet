@@ -127,7 +127,7 @@ class PostManager extends AbstractManager
     }
 
     public function newNbOfLikes($postid) {
-        $statement = $this->pdo->query("UPDATE post SET nbOfLikes = 'valeur 1' WHERE id = $postid");
+        $statement = $this->pdo->query("UPDATE post SET nbOfLikes = nbOfLikes + 1 WHERE id = $postid");
     }
 
     public function isDislike($postid, $userid)

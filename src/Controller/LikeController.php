@@ -17,6 +17,7 @@ class LikeController extends AbstractController
         $userId = $jsonData['userid'];
         $postManager = new PostManager();
         $postManager->changeLike($postId, $userId);
+        $postManager->newNbOfLikes($postid);
         $response = [
             'status' => 'success',
             'user' => $userId,
