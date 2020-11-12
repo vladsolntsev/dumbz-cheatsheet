@@ -37,7 +37,7 @@ class MySpaceController extends AbstractController
             $language = $_POST['newPostLanguage'];
             $thePost->createPost($user, $title, $content, $language);
         }
-        $_SESSION['userid'] =  $theUser['id'];
+        $_SESSION['userid'] = $theUser['id'];
         $this->twig->addGlobal('session', $_SESSION);
         return $this->twig->render('MySpace/myspacepage.html.twig', [
             'languages' => $languageManager,
@@ -51,13 +51,13 @@ class MySpaceController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userManager = new UserManager();
-           /* $formValidator = new FormValidator();
-            $formValidator->getFields($_POST);
-            $formValidator->checkFields(); */
-
+            /* $formValidator = new FormValidator();
+             $formValidator->getFields($_POST);
+             $formValidator->checkFields(); */
             if ($newUserData = $userManager->selectOneByName($_POST['name'])) {
+               // $errors = 'Ce nom est déjà utilisé';
                 header('Location: /#registration');
-                //TODO add error message "name already exists" in nav modal
+
             } else {
                 $newUserData = [];
                 $newUserData['name'] = $_POST['name'];
@@ -73,19 +73,29 @@ class MySpaceController extends AbstractController
             //TODO add error messages abt password and email incorrect format
         }
     }
-
     public function check()
     {
         $userManager = new UserManager();
-        if ($userData = $userManager->selectOneByName($_POST['name'])) {
-            if (password_verify($_POST['password'], $userData['password'])) {
-                $_SESSION['user'] = $userData;
-                header('Location: /MySpace/main/' . $userData['id']);
+
+        if (empty($_POST['name']) || empty($_POST['password'])) {
+            $errors = [];
+            $errors['nameError'] = 'Renseignes ton nom';
+            $errors['passwordError'] = 'Renseignes ton mot de passe';
+            //$errors = $this->ajaxErrors();
+            $errorsQueryString = http_build_query($errors);
+            header('Location: /#login?' . $errorsQueryString);
+
+        } else {
+            if ($userData = $userManager->selectOneByName($_POST['name'])) {
+                if (password_verify($_POST['password'], $userData['password'])) {
+                    $_SESSION['user'] = $userData;
+                    header('Location: /MySpace/main/' . $userData['id']);
+                } else {
+                    header('Location: /#login');
+                }
             } else {
                 header('Location: /#login');
             }
-        } else {
-            header('Location: /#login');
         }
     }
 
@@ -95,4 +105,22 @@ class MySpaceController extends AbstractController
         session_unset();
         header('Location: /');
     }
+    /*
+    public function ajaxErrors()
+    {
+        $json = file_get_contents('php://input');
+        $jsonData = json_decode($json, true);
+        $nameError = $jsonData['name'];
+        $passwordError = $jsonData['password'];
+        $checkErrors = new MySpaceController();
+        $checkErrors->check();
+        $response = [
+            'status' => 'success',
+            'nameError' => $nameError,
+            'passwordError' => $passwordError
+        ];
+        return json_encode($response);
+    }
+    */
+
 }
