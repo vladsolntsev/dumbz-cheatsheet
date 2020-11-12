@@ -22,32 +22,45 @@ class MySpaceController extends AbstractController
      */
     public function main($user)
     {
-        $favoriteManager = new FavoriteManager();
-        $favorites = $favoriteManager->selectAll();
-        $theUser = new UserManager();
-        $theUser = $theUser->userInfos($user);
-        $languageManager = new LanguageManager();
-        $languageManager = $languageManager->selectAll();
-        $allMyFavorites = new PostManager();
-        $allMyFavorites = $allMyFavorites->selectAllMyFavorites($user);
-        $allMyPosts = new PostManager();
-        $allMyPosts = $allMyPosts->selectAllMyPosts($user);
-        if (($_SERVER["REQUEST_METHOD"] === "POST")) {
-            $thePost = new PostManager();
-            $user = $theUser['id'];
-            $title = $_POST['newPostTitle'];
-            $content = $_POST['newPostContent'];
-            $language = $_POST['newPostLanguage'];
-            $thePost->createPost($user, $title, $content, $language);
+        if (empty($_SESSION['userid'])) {
+            header('location: /');
+        } else {
+            $favoriteManager = new FavoriteManager();
+            $favorites = $favoriteManager->selectAll();
+            $theUser = new UserManager();
+            $theUser = $theUser->userInfos($user);
+            $languageManager = new LanguageManager();
+            $languageManager = $languageManager->selectAll();
+            $allMyFavorites = new PostManager();
+            $allMyFavorites = $allMyFavorites->selectAllMyFavorites($user);
+            $allMyPosts = new PostManager();
+            $allMyPosts = $allMyPosts->selectAllMyPosts($user);
+            if (($_SERVER["REQUEST_METHOD"] === "POST")) {
+                $thePost = new PostManager();
+                $user = $theUser['id'];
+                $title = $_POST['newPostTitle'];
+                $content = $_POST['newPostContent'];
+                $language = $_POST['newPostLanguage'];
+                $thePost->createPost($user, $title, $content, $language);
+            }
+            $_SESSION['userid'] = $theUser['id'];
+            if (isset($_SESSION['userid'])) {
+                $postManager = new PostManager();
+                $likesAndDislikes = $postManager->selectAllLikesAndDislikesPerUser($_SESSION['userid']);
+            } else {
+                $likesAndDislikes = [];
+            }
         }
-        $_SESSION['userid'] =  $theUser['id'];
+
         $this->twig->addGlobal('session', $_SESSION);
+
         return $this->twig->render('MySpace/myspacepage.html.twig', [
             'favorite' => $favorites,
             'languages' => $languageManager,
             'favorites' => $allMyFavorites,
             'myposts' => $allMyPosts,
             'user' => $theUser,
+            'likesAndDislikes' => $likesAndDislikes
         ]);
     }
 
