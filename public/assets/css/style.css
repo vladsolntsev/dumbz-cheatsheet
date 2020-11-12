@@ -48,12 +48,15 @@
 .loupeandbarre{
     display: flex;
 }
+.button-loupe:hover {
+    color: black;
+}
 
 
 #cheat-search {
-    border-top: none;
-    border-right: none;
-    border-left: none;
+    /* border-top: none; */
+   /* border-right: none; */
+  /*  border-left: none; */
     width: 100%;
 }
 
@@ -200,11 +203,31 @@ footer a:hover {
     width: 245px;
     overflow: hidden;
 }
-
+.search-bar {
+    border: 5px double #648767;
+    margin-top: 13px;
+}
 /* Post and modal */
 
-.card{
-    border: 7px outset #648767;
+.post-index{
+    cursor: pointer;
+    z-index: 0;
+    position: relative;
+    background: #FFF;
+    box-shadow: 0 0 0 1px #E2E9ED;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s ease,
+    transform 0.2s ease,
+    z-index 0s 0.2s ease;
+}
+.post-index:hover {
+    transition: box-shadow 0.2s ease, transform 0.2s ease, z-index 0s 0s ease, -webkit-transform 0.2s ease;
+    transform: scale(1.05);
+    box-shadow: 2px 0px 11px 4px #727272;
+}
+.m-1 {
+    margin: .50rem!important;
 }
 .card-header {
     background-color: white;
@@ -219,4 +242,5 @@ footer a:hover {
 body {
     background-color: #FDFFF3;
 }
+
 
