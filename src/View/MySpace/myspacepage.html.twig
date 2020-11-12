@@ -4,44 +4,49 @@
     <link rel="stylesheet" href="/assets/css/stylemypage.css">{% endblock %}
 {% block content %}
     {% include 'Home/_nav.html.twig' %}
-    {% set startype = "fas fa-star"%}
-
+    {% set startype = "fas fa-star" %}
+    {% if session.user.id == user.id %}
     <div class="welcome-text text-center font-weight-bold font-italic">
-
         Bonjour {{ user.name }},<br>heureux de te retrouver !
     </div>
-    <hr>
-    {% include '/Home/_addPostForm.html.twig' %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6 title">
-                Mes favoris
-            </div>
-            <div class="col-sm-1 title">
-                <span class="font-weight-bold" id="plus-my-favoris">+</span>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row justify-content-sm-center">
-            {% set tableToUse = favorites %}
-            {% include '/Home/postmodel.html.twig' %}
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6 title">
-                Mes fiches
-            </div>
-            <div class="col-sm-1 title">
-                <span class="font-weight-bold" id="font-weight-bold plus-my-posts">+</span>
+        <hr>
+        {% include '/Home/_addPostForm.html.twig' %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6 title">
+                    Mes favoris
+                </div>
+                <div class="col-sm-1 title">
+                    <span class="font-weight-bold" id="plus-my-favoris">+</span>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row justify-content-sm-center">
-            {% set tableToUse = myposts %}
-            {% include '/Home/postmodel.html.twig' %}
+        <div class="container-fluid">
+            <div class="row justify-content-sm-center">
+                {% set tableToUse = favorites %}
+                {% include '/Home/postmodel.html.twig' %}
+            </div>
         </div>
-    </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6 title">
+                    Mes fiches
+                </div>
+                <div class="col-sm-1 title">
+                    <span class="font-weight-bold" id="font-weight-bold plus-my-posts">+</span>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row justify-content-sm-center">
+                {% set tableToUse = myposts %}
+                {% include '/Home/postmodel.html.twig' %}
+            </div>
+        </div>
+    {% else %}
+        <p>
+        <div class="welcome-text text-center font-weight-bold font-italic">
+            Ca arrive à tous de se perdre... N'hésitez pas à revenir sur la page d'accueil pour profiter de notre site.
+        </div></p>
+    {% endif %}
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
-    {% set startype = "far fa-star"%}
+
 <div class="container-fluid">
     <div class="row research-block">
         <div class="col-sm-6 offset-3">
@@ -16,8 +16,6 @@
     </div>
 </div>
 <hr>
-
-
 
     {% if search is empty %}
 <div class="container-fluid">
@@ -52,7 +50,8 @@
             </div>
         </div>
         {% endif %}
-        {% if search is not empty %}
+
+    {% if search is not empty %}
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6 result-title">
@@ -69,8 +68,8 @@
                 </div>
             </div>
         </div>
-    </div>
-            </div>
-            {% endif %}
-            {% endblock %}
+        </div>
+        </div>
+    {% endif %}
 
+{% endblock %}
