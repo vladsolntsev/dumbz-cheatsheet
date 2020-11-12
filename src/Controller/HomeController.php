@@ -24,7 +24,6 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-
         $languageManager = new LanguageManager();
         $categories = $languageManager->selectAll();
 
@@ -56,6 +55,17 @@ class HomeController extends AbstractController
             $likesAndDislikes = [];
         }
 
+        if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['comment'])) {
+            $newComment = new CommentManager();
+            $content = $_POST ['comment'];
+            $userid = $_SESSION['userid'];
+            $postid = $_POST['postid'];
+            $newComment->addComment($userid, $content, $postid);
+        }
+        $allComments = '';
+        $newComment = new CommentManager();
+        $allComments = $newComment->showComments();
+
         return $this->twig->render('Home/index.html.twig', [
             'languages' => $categories,
             'all_posts_by_date' => $allPostsOrderedByDate,
@@ -64,8 +74,9 @@ class HomeController extends AbstractController
             'keyword' => $wordToSearch,
             'search_without_result' => $hasResult,
             'likesAndDislikes' => $likesAndDislikes,
-            'likesAndDislikesTest' => [ 15 => [1,1], 6 => [1,1], 4 => [1,1]]
+            'likesAndDislikesTest' => [ 15 => [1,1], 6 => [1,1], 4 => [1,1]],
         ]);
     }
+
 
 }

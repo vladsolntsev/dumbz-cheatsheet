@@ -12,23 +12,28 @@
                 <input type="text" name="name" class="form-control"
                        id="nameRegistration"
                        placeholder="Choisis bien, tu n'as qu'une seule chance">
+                <small class="text-danger"> {{ session.nameErrorAlreadyExists }} </small>
             </div>
             <div class="form-group">
                 <label for="emailRegistration">E-mail</label>
                 <input type="email" name="email" class="form-control"
                        id="emailRegistration" aria-describedby="emailHelp"
-                       placeholder="Entres ton email">
+                       placeholder="Entre ton email">
             </div>
             <div class="form-group">
                 <label for="passwordRegistration">Mot de passe</label>
                 <input type="password" name="password" class="form-control"
-                       id="passwordRegistration" placeholder="Entres ton mot passe">
+                       id="passwordRegistration" placeholder="Entre ton mot passe">
                 <small class="form-text text-muted">Une lettre capitale, 42
                     chiffres,
                     126 caractères spéciaux et une danse du ventre minimum.</small>
             </div>
     </div>
     <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-toggle="modal"
+                data-target="#login" id="buttonRegistration"
+                data-dismiss="modal">Clique ici pour te connecter !
+        </button>
         <button type="sumbit" class="btn btn-primary">S'inscrire</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal"
                 id="closeRegistration">Fermer
