@@ -41,7 +41,9 @@
     color: var(--link-color);
     text-decoration: none;
 }
-
+.nav-link{
+    cursor: pointer;
+}
 .text-nav {
     color: var(--link-color);
 
