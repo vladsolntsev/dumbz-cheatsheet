@@ -31,13 +31,14 @@
                                 {% endif %}
                             </div>
                         </div>
-                            <div class="card-text post-content-short">
-                              {{ one_post.content|raw }}
-                            </div>
+                        <div class="card-text post-content-short">
+                          {{ one_post.content|raw }}
+                        </div>
                         <div class="container m-3 7 ">
                             <div class="row d-flex justify-content-between">
                                 <div class="border rounded-circle p-1 bg-info"><i class="{{ one_post.icon }}"></i></div>
                                 {% set postid = one_post.post_unique_id %}
+
                                     {%  if session.userid %}
                                         <div>
                                             <i class="far fa-thumbs-up text-success {{  likesAndDislikes[postid][0] == 1 ? 'fas' : '' }}"
@@ -49,6 +50,7 @@
                                         </i>
                                     </div>
                                 {% endif %}
+
                                 <div class="badge badge-warning">{{ one_post.popularity }}</div>
                             </div>
                         </div>
