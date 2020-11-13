@@ -22,9 +22,6 @@ class MySpaceController extends AbstractController
      */
     public function main($user)
     {
-        if (empty($_SESSION['userid'])) {
-            header('location: /');
-        } else {
             $favoriteManager = new FavoriteManager();
             $favorites = $favoriteManager->selectAll();
             $theUser = new UserManager();
@@ -35,21 +32,20 @@ class MySpaceController extends AbstractController
             $allMyFavorites = $allMyFavorites->selectAllMyFavorites($user);
             $allMyPosts = new PostManager();
             $allMyPosts = $allMyPosts->selectAllMyPosts($user);
-            if (($_SERVER["REQUEST_METHOD"] === "POST")) {
-                $thePost = new PostManager();
-                $user = $theUser['id'];
-                $title = $_POST['newPostTitle'];
-                $content = $_POST['newPostContent'];
-                $language = $_POST['newPostLanguage'];
-                $thePost->createPost($user, $title, $content, $language);
-            }
-            $_SESSION['userid'] = $theUser['id'];
-            if (isset($_SESSION['userid'])) {
-                $postManager = new PostManager();
-                $likesAndDislikes = $postManager->selectAllLikesAndDislikesPerUser($_SESSION['userid']);
-            } else {
-                $likesAndDislikes = [];
-            }
+        if (($_SERVER["REQUEST_METHOD"] === "POST")) {
+            $thePost = new PostManager();
+            $user = $theUser['id'];
+            $title = $_POST['newPostTitle'];
+            $content = $_POST['newPostContent'];
+            $language = $_POST['newPostLanguage'];
+            $thePost->createPost($user, $title, $content, $language);
+        }
+        $_SESSION['userid'] = $theUser['id'];
+        if (isset($_SESSION['userid'])) {
+            $postManager = new PostManager();
+            $likesAndDislikes = $postManager->selectAllLikesAndDislikesPerUser($_SESSION['userid']);
+        } else {
+            $likesAndDislikes = [];
         }
 
         $_SESSION['userid'] = $theUser['id'];
@@ -71,17 +67,15 @@ class MySpaceController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userManager = new UserManager();
-            /* $formValidator = new FormValidator();
-             $formValidator->getFields($_POST);
-             $formValidator->checkFields(); */
             if ($newUserData = $userManager->selectOneByName($_POST['name'])) {
-               // $errors = 'Ce nom est déjà utilisé';
-                header('Location: /#registration');
-
+                $_SESSION['nameErrorAlreadyExists'] = 'Ce nom est déjà utilisé, choisis en un autre';
+                $errorsQueryString = http_build_query($_SESSION);
+                header('Location: /#registration?' . $errorsQueryString);
             } else {
                 $newUserData = [];
                 $newUserData['name'] = $_POST['name'];
                 $newUserData['email'] = $_POST['email'];
+                $newUserData['email'] = filter_var($newUserData['email'], FILTER_VALIDATE_EMAIL);
                 $newUserData['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 $userManager->createUser($newUserData);
                 $userData = $userManager->selectOneByName($_POST['name']);
@@ -96,22 +90,26 @@ class MySpaceController extends AbstractController
     public function check()
     {
         $userManager = new UserManager();
-
-        if (empty($_POST['name']) || empty($_POST['password'])) {
-            $errors = [];
-            $errors['nameError'] = 'Renseignes ton nom';
-            $errors['passwordError'] = 'Renseignes ton mot de passe';
-            //$errors = $this->ajaxErrors();
-            $errorsQueryString = http_build_query($errors);
+        $_POST['name'] = trim($_POST['name']);
+        $_POST['password'] = trim($_POST['password']);
+        if (empty($_POST['name'])) {
+            $_SESSION['nameError'] = 'Renseignes ton nom';
+            $errorsQueryString = http_build_query($_SESSION);
             header('Location: /#login?' . $errorsQueryString);
-
+        }
+        if (empty($_POST['password'])) {
+            $_SESSION['passwordError'] = 'Renseignes ton mot de passe';
+            $errorsQueryString = http_build_query($_SESSION);
+            header('Location: /#login?' . $errorsQueryString);
         } else {
             if ($userData = $userManager->selectOneByName($_POST['name'])) {
                 if (password_verify($_POST['password'], $userData['password'])) {
                     $_SESSION['user'] = $userData;
                     header('Location: /MySpace/main/' . $userData['id']);
                 } else {
-                    header('Location: /#login');
+                    $_SESSION['passwordWrongError'] = 'Tu as dû te tromper sur de mot de passe';
+                    $errorsQueryString = http_build_query($_SESSION);
+                    header('Location: /#login?' . $errorsQueryString);
                 }
             } else {
                 header('Location: /#login');

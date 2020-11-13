@@ -1,3 +1,4 @@
+
 <div class="modal-content">
     <div class="modal-header">
         <h4 class="modal-title" id="loginTitle">Bienvenue chez Dumbz</h4>
@@ -11,15 +12,22 @@
             <div class="form-group">
                 <label for="nameLogin">Pseudo</label>
                 <input type="text" name="name" class="form-control" id="nameLogin"
-                       placeholder="Entres ton pseudo">
+                       placeholder="Entre ton pseudo">
+                {% if session.nameError is defined %}
+                <small class="text-danger"> {{ session.nameError }} </small>
+                {% endif %}
             </div>
             <div class="form-group">
                 <label for="passwordLogin">Mot de passe</label>
                 <input type="password" name="password" class="form-control"
-                       id="passwordLogin" placeholder="Entres ton mot passe">
-                <small class="form-text text-muted">Ton mot de passe est protégé par
-                    nos
-                    soins</small>
+                       id="passwordLogin" placeholder="Entre ton mot passe">
+                {% if session.passwordError is defined %}
+                <small class="text-danger"> {{ session.passwordError }} </small>
+                {% endif %}
+                {% if session.passwordWrongError is defined %}
+                <small class="text-danger"> {{ session.passwordWrongError }} </small>
+                {% endif %}
+
             </div>
     </div>
     <div>
@@ -27,7 +35,7 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" data-toggle="modal"
                 data-target="#registration" id="buttonRegistration"
-                data-dismiss="modal">Cliques ici pour t'inscrire !
+                data-dismiss="modal">Clique ici pour t'inscrire !
         </button>
         <button type="submit" id="sendLogin" class="btn btn-primary">Se connecter</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer
