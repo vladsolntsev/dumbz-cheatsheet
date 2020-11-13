@@ -1,22 +1,28 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
+
 <div class="container-fluid">
     <div class="row research-block">
         <div class="col-sm-6 offset-3">
-            <form action="/" method="post">
+            <form action="/" method="post" class="loupeandbarre">
                 <label for="cheat-search"></label>
-                <input type="search" id="cheat-search" name="cheat-search" placeholder="-">
+                <input type="search" class="search-bar" id="cheat-search" name="cheat-search" placeholder="Entrez votre recherche">
+                <button class="btn button-loupe"><i class="fas fa-search"></i></button>
             </form>
+            {% if search_without_result %}
+                Aucun résultat ne correspond à votre recherche, veuillez réessayez un autre mot clé.
+            {% endif %}
         </div>
-        <button class="btn"><i class="fas fa-search"></i></button>
     </div>
 </div>
 <hr>
-{% if search is empty %}
+
+    {% if search is empty %}
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-6 result-title">
             Les plus populaires
+
         </div>
         <div class="col-sm-1 result-title">
             <span class="font-weight-bold" id="plus-most-popular">+</span>
@@ -44,7 +50,8 @@
             </div>
         </div>
         {% endif %}
-        {% if search is not empty %}
+
+    {% if search is not empty %}
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6 result-title">
@@ -60,6 +67,9 @@
                     {% include '/Home/postmodel.html.twig' %}
                 </div>
             </div>
-            {% endif %}
-            {% endblock %}
+        </div>
+        </div>
+        </div>
+    {% endif %}
 
+{% endblock %}

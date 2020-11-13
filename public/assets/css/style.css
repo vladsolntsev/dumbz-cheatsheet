@@ -1,9 +1,32 @@
+@import url("https://use.fontawesome.com/releases/v5.15.1/css/all.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://unpkg.com/@coreui/icons/css/all.min.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css");
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/styles/default.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+@import "stylenav.css";
+@import "stylemypage.css";
+@import "bootstrap-overridden.css";
+@import "../images/favicon.png";
+
 /* Variable */
 :root {
     --primary-color: #141b15;
     --secondary-color: #648767;
     --link-color: white;
+    --logo-image-1: url('/assets/images/logo1.svg');
+    --logo-image-2: url('/assets/images/logo2.svg');
+    --logo-image-3: url('/assets/images/logo3.svg');
+    --logo-image-4: url('/assets/images/logo4.svg');
+    --logo-image-5: url('/assets/images/logo5.svg');
+    --logo-image-6: url('/assets/images/logo6.svg');
 
+}
+
+body {
+    background-color: #FDFFF3;
 }
 
 /* Header */
@@ -25,19 +48,26 @@
 
 /* Main page content */
 
-.research-block {
-    margin: 85px;
+.loupeandbarre{
+    display: flex;
+}
+.button-loupe:hover {
+    color: black;
+}
+
+.underline {
+    text-decoration: underline;
 }
 
 #cheat-search {
-    border-top: none;
-    border-right: none;
-    border-left: none;
+    /* border-top: none; */
+    /* border-right: none; */
+    /*  border-left: none; */
     width: 100%;
 }
 
 .result-title {
-    border-bottom: solid 1px black;
+    border-bottom: solid 2px black;
     margin: 30px 0;
     width: 100%;
 }
@@ -99,84 +129,124 @@ footer a:hover {
 
 @keyframes logo {
     0% {
-        background-image: url('/assets/images/logo1.svg');
+        background-image: var(--logo-image-1);
     }
     10% {
-        background-image: url('/assets/images/logo1.svg');
+        background-image: var(--logo-image-1);
     }
     11% {
-        background-image: url('/assets/images/logo2.svg');
+        background-image: var(--logo-image-2);
     }
     21% {
-        background-image: url('/assets/images/logo2.svg');
+        background-image: var(--logo-image-2);
     }
     22% {
-        background-image: url('/assets/images/logo3.svg');
+        background-image: var(--logo-image-3);
     }
     32% {
-        background-image: url('/assets/images/logo3.svg');
+        background-image: var(--logo-image-3);
     }
     33% {
-        background-image: url('/assets/images/logo4.svg');
+        background-image: var(--logo-image-4);
     }
     43% {
-        background-image: url('/assets/images/logo4.svg');
+        background-image: var(--logo-image-4);
     }
     44% {
-        background-image: url('/assets/images/logo5.svg');
+        background-image: var(--logo-image-5);
     }
     54% {
-        background-image: url('/assets/images/logo5.svg');
+        background-image: var(--logo-image-5);
     }
     55% {
-        background-image: url('/assets/images/logo6.svg');
+        background-image: var(--logo-image-6);
     }
     65% {
-        background-image: url('/assets/images/logo6.svg');
+        background-image: var(--logo-image-6);
     }
     66% {
-        background-image: url('/assets/images/logo1.svg');
+        background-image: var(--logo-image-1);
     }
     70% {
-        background-image: url('/assets/images/logo1.svg');
+        background-image: var(--logo-image-1);
     }
     71% {
-        background-image: url('/assets/images/logo2.svg');
+        background-image: var(--logo-image-2);
     }
     76% {
-        background-image: url('/assets/images/logo2.svg');
-    }
-    77% {background-image: url('/assets/images/logo3.svg');
-
-    }
-    82% {
-        background-image: url('/assets/images/logo3.svg');
+        background-image: var(--logo-image-2);
     }
     77% {
-        background-image: url('/assets/images/logo3.svg');
+        background-image: var(--logo-image-3);
     }
     82% {
-        background-image: url('/assets/images/logo3.svg');
+        background-image: var(--logo-image-3);
     }
     83% {
-        background-image: url('/assets/images/logo4.svg');
+        background-image: var(--logo-image-4);
     }
     89% {
-        background-image: url('/assets/images/logo4.svg');
+        background-image: var(--logo-image-4);
     }
     90% {
-        background-image: url('/assets/images/logo5.svg');
+        background-image: var(--logo-image-5);
     }
     95% {
-        background-image: url('/assets/images/logo5.svg');
+        background-image: var(--logo-image-5);
     }
     96% {
-        background-image: url('/assets/images/logo6.svg');
+        background-image: var(--logo-image-6);
     }
     100% {
-        background-image: url('/assets/images/logo6.svg');
+        background-image: var(--logo-image-6);
     }
 
 }
+
+
+.post-content-short  {
+    height: 50px;
+    width: 245px;
+    overflow: hidden;
+}
+.search-bar {
+    border: 5px double #648767;
+    margin-top: 13px;
+}
+/* Post and modal */
+
+.post-index{
+    cursor: pointer;
+    z-index: 0;
+    position: relative;
+    background: #FFF;
+    box-shadow: 0 0 0 1px #E2E9ED;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s ease,
+    transform 0.2s ease,
+    z-index 0s 0.2s ease;
+}
+.post-index:hover {
+    transition: box-shadow 0.2s ease, transform 0.2s ease, z-index 0s 0s ease, -webkit-transform 0.2s ease;
+    transform: scale(1.05);
+    box-shadow: 2px 0px 11px 4px #727272;
+}
+.m-1 {
+    margin: .50rem!important;
+}
+.card-header {
+    background-color: white;
+    margin-bottom: 10px;
+}
+.d-flex {
+    justify-content: center;
+}
+.post-content-short {
+    width: 234px;
+}
+
+
+
 
 
