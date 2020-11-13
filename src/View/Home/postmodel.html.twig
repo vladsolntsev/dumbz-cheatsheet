@@ -21,8 +21,6 @@
             {% endif %}
             {# for mayspace table #}
 
-
-
             <div>
                 <div class="card m-1 post-index" style="width: 18rem;" data-toggle="modal" data-target="#exampleModal{{ one_post.post_unique_id }}">
                     <div class="card-body">
@@ -33,14 +31,14 @@
                                 {% endif %}
                             </div>
                         </div>
-
-                        <div class="card-text post-content-short">
-                          {{ one_post.content|raw }}
-                        </div>
+                            <div class="card-text post-content-short">
+                              {{ one_post.content|raw }}
+                            </div>
                         <div class="container m-3 7 ">
                             <div class="row d-flex justify-content-between">
                                 <div class="border rounded-circle p-1 bg-info"><i class="{{ one_post.icon }}"></i></div>
                                 {% set postid = one_post.post_unique_id %}
+<<<<<<< HEAD
                                     <div>
                                         <i class="far fa-thumbs-up text-success {{  likesAndDislikes[postid][0] == 1 ? 'fas' : '' }}"
                                             data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
@@ -48,15 +46,29 @@
                                     </div>
                                 <div><i class="far fa-thumbs-down text-danger {{  likesAndDislikes[postid][1] == 1 ? 'fas' : '' }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}"></i></div>
 
+=======
+                                    {%  if session.userid %}
+                                        <div>
+                                            <i class="far fa-thumbs-up text-success {{  likesAndDislikes[postid][0] == 1 ? 'fas' : '' }}"
+                                                data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
+                                            </i>
+                                        </div>
+                                    <div>
+                                        <i class="far fa-thumbs-down text-danger {{  likesAndDislikes[postid][1] == 1 ? 'fas' : '' }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
+                                        </i>
+                                    </div>
+                                {% endif %}
+>>>>>>> 7b2792da50b17102d395c3d3c958209e7412abe6
                                 <div class="badge badge-warning">{{ one_post.popularity }}</div>
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer text-muted">
-                        Date de creation : {{ one_post.creation_at }}
-                    </div>
+                   <div class="card-footer text-muted">
+                       Date de creation : {{ one_post.creation_at }}
+                   </div>
                 </div>
             </div>
+
             <div class="modal fade" id="exampleModal{{ one_post.post_unique_id }}" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -75,38 +87,41 @@
                             <div class="container m-3 7 ">
                                 <div class="row d-flex justify-content-between">
                                     <div class="border rounded-circle p-1 bg-info"><i class="{{ one_post.icon }}"></i></div>
-                                    <div>
-                                        <i class="far fa-thumbs-up text-success {{  likesAndDislikes[postid][0] == 1 ? 'fas' : '' }}"
-                                           data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
-                                        </i>
-                                    </div>
-                                    <div>
-                                        <i class="far fa-thumbs-down text-danger {{  likesAndDislikes[postid][1] == 1 ? 'fas' : '' }}"
-                                           data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
-                                        </i>
-                                    </div>
+                                    {%  if session.userid %}
+                                        <div>
+                                            <i class="far fa-thumbs-up text-success {{  likesAndDislikes[postid][0] == 1 ? 'fas' : '' }}"
+                                               data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
+                                            </i>
+                                        </div>
+                                        <div>
+                                            <i class="far fa-thumbs-down text-danger {{  likesAndDislikes[postid][1] == 1 ? 'fas' : '' }}"
+                                               data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
+                                            </i>
+                                        </div>
+                                    {% endif %}
                                     <div class="badge badge-warning">{{ one_post.popularity }}</div>
                                 </div>
                             </div>
                             <div class="text-info d-flex justify-content-end"><i class="far fa-comment"></i></div>
+                            <div class="underline">Commentaires :</div>
+                            <ul>
+                                {% for comment in all_comments %}
+                                    {% if comment.post_id == one_post.post_unique_id %}
+
+                                        <li>
+                                            {{comment.content}}
+                                        </li>
+
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                            {%  if session.userid %}
                             <form action="/home/index" method="post">
                                 <input type="hidden" name="postid" value="{{ one_post.post_unique_id }}">
                                 <textarea name="comment" id="comment" cols="23" rows="3"></textarea>
                                 <button type="submit" class="btn btn-info">Comment</button>
                             </form>
-                            <ul>
-                                {% for comment in all_comments %}
-                                    {% if comment.post_id == one_post.post_unique_id %}
-                                        
-                                                <li>
-                                                    {{comment.content}}
-                                                </li>
-                                            
-                                    {% endif %}
-                                {% endfor %}
-                            </ul> 
-                            
-
+                            {% endif %}
                         </div>
                         <div class="card-footer text-muted">
                             Date de creation : {{ one_post.creation_at }}

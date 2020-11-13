@@ -26,7 +26,6 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-
         $languageManager = new LanguageManager();
         $categories = $languageManager->selectAll();
         $favoriteManager = new FavoriteManager();
@@ -59,12 +58,7 @@ class HomeController extends AbstractController
             $likesAndDislikes = [];
         }
 
-    
-        $showComment = '';
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            if (isset($_POST['comment'])) {
-                $showComment = $_POST['comment'];
-            }   
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['comment']) ) {
             $newComment = new CommentManager();
             $content = $_POST ['comment'];
             $userid = $_SESSION['userid'];
@@ -87,5 +81,6 @@ class HomeController extends AbstractController
             'all_comments' => $allComments,
         ]);
     }
+
 
 }
