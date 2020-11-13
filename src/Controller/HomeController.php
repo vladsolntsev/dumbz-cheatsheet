@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 
+use App\Model\CommentManager;
 use App\Model\LanguageManager;
 use App\Model\PostManager;
 use App\Model\FavoriteManager;
@@ -52,13 +53,28 @@ class HomeController extends AbstractController
             $hasResult = true;
         }
 
-
         if (isset($_SESSION['userid'])) {
             $likesAndDislikes = $allPostManager->selectAllLikesAndDislikesPerUser($_SESSION['userid']);
         } else {
             $likesAndDislikes = [];
         }
 
+    
+        $showComment = '';
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            if (isset($_POST['comment'])) {
+                $showComment = $_POST['comment'];
+            }   
+            $newComment = new CommentManager();
+            $content = $_POST ['comment'];
+            $userid = $_SESSION['userid'];
+            $postid = $_POST['postid'];
+            $newComment->addComment($userid, $content, $postid);
+        }
+        $allComments = '';
+        $newComment = new CommentManager();
+        $allComments = $newComment->showComments();
+   
         return $this->twig->render('Home/index.html.twig', [
             'favorite' => $favorites,
             'languages' => $categories,
@@ -68,7 +84,7 @@ class HomeController extends AbstractController
             'keyword' => $wordToSearch,
             'search_without_result' => $hasResult,
             'likesAndDislikes' => $likesAndDislikes,
-            'likesAndDislikesTest' => [ 15 => [1,1], 6 => [1,1], 4 => [1,1]]
+            'all_comments' => $allComments,
         ]);
     }
 

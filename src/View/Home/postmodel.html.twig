@@ -35,21 +35,19 @@
                         </div>
 
                         <div class="card-text post-content-short">
-
                           {{ one_post.content|raw }}
                         </div>
                         <div class="container m-3 7 ">
                             <div class="row d-flex justify-content-between">
                                 <div class="border rounded-circle p-1 bg-info"><i class="{{ one_post.icon }}"></i></div>
                                 {% set postid = one_post.post_unique_id %}
-                                        <div>
-                                            <i class="far fa-thumbs-up text-success {% if likesAndDislikes.postid.up == 1 %} {{ 'fas' }} {% endif %}"
-                                                data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
-                                            </i>
-                                        </div>
-                                        <div>
-                                            <i class="far fa-thumbs-down text-danger" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}"></i>
-                                        </div>
+                                    <div>
+                                        <i class="far fa-thumbs-up text-success {{  likesAndDislikes[postid][0] == 1 ? 'fas' : '' }}"
+                                            data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
+                                        </i>
+                                    </div>
+                                <div><i class="far fa-thumbs-down text-danger {{  likesAndDislikes[postid][1] == 1 ? 'fas' : '' }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}"></i></div>
+
                                 <div class="badge badge-warning">{{ one_post.popularity }}</div>
                             </div>
                         </div>
@@ -77,14 +75,38 @@
                             <div class="container m-3 7 ">
                                 <div class="row d-flex justify-content-between">
                                     <div class="border rounded-circle p-1 bg-info"><i class="{{ one_post.icon }}"></i></div>
-                                    <div><i class="far fa-thumbs-up text-success" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}"></i></div>
-                                    <div><i class="far fa-thumbs-down text-danger" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}"></i></div>
+                                    <div>
+                                        <i class="far fa-thumbs-up text-success {{  likesAndDislikes[postid][0] == 1 ? 'fas' : '' }}"
+                                           data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
+                                        </i>
+                                    </div>
+                                    <div>
+                                        <i class="far fa-thumbs-down text-danger {{  likesAndDislikes[postid][1] == 1 ? 'fas' : '' }}"
+                                           data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
+                                        </i>
+                                    </div>
                                     <div class="badge badge-warning">{{ one_post.popularity }}</div>
                                 </div>
                             </div>
                             <div class="text-info d-flex justify-content-end"><i class="far fa-comment"></i></div>
-                            <div><textarea name="" id="" cols="23" rows="3"></textarea></div>
-                            <button type="button" class="btn btn-info">Comment</button>
+                            <form action="/home/index" method="post">
+                                <input type="hidden" name="postid" value="{{ one_post.post_unique_id }}">
+                                <textarea name="comment" id="comment" cols="23" rows="3"></textarea>
+                                <button type="submit" class="btn btn-info">Comment</button>
+                            </form>
+                            <ul>
+                                {% for comment in all_comments %}
+                                    {% if comment.post_id == one_post.post_unique_id %}
+                                        
+                                                <li>
+                                                    {{comment.content}}
+                                                </li>
+                                            
+                                    {% endif %}
+                                {% endfor %}
+                            </ul> 
+                            
+
                         </div>
                         <div class="card-footer text-muted">
                             Date de creation : {{ one_post.creation_at }}
