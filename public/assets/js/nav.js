@@ -50,11 +50,9 @@ for (let i = 0 ; i <like.length; i++) {
         } else {
             event.target.classList.add('fas');
         }
-        for ( let i = 0; i < dislike.length; i++ ) {
-            if (dislike[i].classList.contains('fas')) {
-                dislike[i].classList.remove('fas');
-                dislike[i].classList.add('far');
-            }
+        if (dislike[i].classList.contains('fas')) {
+            dislike[i].classList.remove('fas');
+            dislike[i].classList.add('far');
         }
 
         fetch('/like/addLike', {
@@ -83,13 +81,10 @@ for ( let i = 0; i < dislike.length; i++ ) {
         } else {
             event.target.classList.add('fas');
         }
-        for ( let i = 0; i < like.length; i++ ) {
-            if (like[i].classList.contains('fas')) {
-                like[i].classList.remove('fas');
-                like[i].classList.add('far');
-            }
+        if (like[i].classList.contains('fas')) {
+            like[i].classList.remove('fas');
+            like[i].classList.add('far');
         }
-
         fetch('/like/addDislike', {
 
             method: 'POST',
