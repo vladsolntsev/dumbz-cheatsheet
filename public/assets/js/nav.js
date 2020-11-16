@@ -38,25 +38,31 @@ for (let i = 0 ; i <stars.length; i++) {
 
 /* END JS Favorites */
 
-/* JS Like and dislike */
+/* JS like, dislike and popularity */
 
 const like = document.getElementsByClassName('fa-thumbs-up');
 const dislike = document.getElementsByClassName('fa-thumbs-down');
+const popularity = document.getElementsByClassName('popularity');
 
 for (let i = 0 ; i <like.length; i++) {
     like[i].addEventListener('click', (event) => {
+        let number = parseInt(popularity[i].innerHTML, 10);
         if (event.target.classList.contains('fas')) {
             event.target.classList.replace('fas', 'far');
+            number--;
+            popularity[i].innerHTML = number.toString();
         } else {
             event.target.classList.add('fas');
+            number++;
+            popularity[i].innerHTML = number.toString();
         }
+        console.log(popularity[i]);
         if (dislike[i].classList.contains('fas')) {
             dislike[i].classList.remove('fas');
             dislike[i].classList.add('far');
         }
 
         fetch('/like/addLike', {
-
             method: 'POST',
             headers: {
                 'Accept' : 'application/json',
@@ -76,10 +82,15 @@ for (let i = 0 ; i <like.length; i++) {
 
 for ( let i = 0; i < dislike.length; i++ ) {
     dislike[i].addEventListener('click', (event) => {
+        let number = parseInt(popularity[i].innerHTML, 10);
         if (event.target.classList.contains('fas')) {
             event.target.classList.replace('fas', 'far');
+            number++;
+            popularity[i].innerHTML = number.toString();
         } else {
             event.target.classList.add('fas');
+            number--;
+            popularity[i].innerHTML = number.toString();
         }
         if (like[i].classList.contains('fas')) {
             like[i].classList.remove('fas');
@@ -101,3 +112,5 @@ for ( let i = 0; i < dislike.length; i++ ) {
         .then(data => console.log(data))
     })
 }
+
+/* END JS like, dislike and popularity */

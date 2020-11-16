@@ -4,8 +4,6 @@
         {% for fav in favorite %}
             {% set fav_array = fav_array|merge( [fav.post_id] ) %}
         {% endfor %}
-
-
         {% for one_post in tableToUse|slice(0,6) %}
 
             {# for index tables #}
@@ -51,7 +49,7 @@
                                     </div>
                                 {% endif %}
 
-                                <div class="badge badge-warning">{{ one_post.popularity }}</div>
+                                <div class="popularity badge badge-warning">{{ one_post.popularity }}</div>
                             </div>
                         </div>
                     </div>
