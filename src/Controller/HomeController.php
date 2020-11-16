@@ -58,12 +58,15 @@ class HomeController extends AbstractController
             $likesAndDislikes = [];
         }
 
+
         if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['comment'])) {
                     $newComment = new CommentManager();
                     $content = $_POST ['comment'];
                     $userid = $_SESSION['userid'];
                     $postid = $_POST['postid'];
                     $newComment->addComment($userid, $content, $postid);
+
+
         }
         $allComments = '';
         $newComment = new CommentManager();

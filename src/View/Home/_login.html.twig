@@ -16,6 +16,9 @@
                 {% if session.nameError is defined %}
                 <small class="text-danger"> {{ session.nameError }} </small>
                 {% endif %}
+                {% if session.nameWrongError is defined %}
+                    <small class="text-danger"> {{ session.nameWrongError }} </small>
+                {% endif %}
             </div>
             <div class="form-group">
                 <label for="passwordLogin">Mot de passe</label>
@@ -27,7 +30,6 @@
                 {% if session.passwordWrongError is defined %}
                 <small class="text-danger"> {{ session.passwordWrongError }} </small>
                 {% endif %}
-
             </div>
     </div>
     <div>
