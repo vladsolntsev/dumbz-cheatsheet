@@ -73,8 +73,8 @@ class MySpaceController extends AbstractController
                 header('Location: /#registration?' . $errorsQueryString);
             } else {
                 $newUserData = [];
-                $newUserData['name'] = $_POST['name'];
-                $newUserData['email'] = $_POST['email'];
+                $newUserData['name'] = trim($_POST['name']);
+                $newUserData['email'] = trim($_POST['email']);
                 $newUserData['email'] = filter_var($newUserData['email'], FILTER_VALIDATE_EMAIL);
                 $newUserData['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 $userManager->createUser($newUserData);
@@ -83,8 +83,7 @@ class MySpaceController extends AbstractController
                 header('Location: /MySpace/main/' . $userData['id']);
             }
         } else {
-            echo '404';
-            //TODO add error messages abt password and email incorrect format
+            header('Location: /#registration');
         }
     }
     public function check()
@@ -112,7 +111,9 @@ class MySpaceController extends AbstractController
                     header('Location: /#login?' . $errorsQueryString);
                 }
             } else {
-                header('Location: /#login');
+                $_SESSION['nameWrongError'] = 'Tu as dû te tromper de nom';
+                $errorsQueryString = http_build_query($_SESSION);
+                header('Location: /#login?' . $errorsQueryString);
             }
         }
     }
@@ -123,22 +124,4 @@ class MySpaceController extends AbstractController
         session_unset();
         header('Location: /');
     }
-    /*
-    public function ajaxErrors()
-    {
-        $json = file_get_contents('php://input');
-        $jsonData = json_decode($json, true);
-        $nameError = $jsonData['name'];
-        $passwordError = $jsonData['password'];
-        $checkErrors = new MySpaceController();
-        $checkErrors->check();
-        $response = [
-            'status' => 'success',
-            'nameError' => $nameError,
-            'passwordError' => $passwordError
-        ];
-        return json_encode($response);
-    }
-    */
-
 }
