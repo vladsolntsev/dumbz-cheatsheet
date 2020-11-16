@@ -247,5 +247,31 @@ footer a:hover {
     width: 234px;
 }
 
+.comment-accordion{
+    display: inline-block;
+    margin: 20px 150px 10px 130px;
+}
 
+.btn-comment-toggle {
+    background-color: #141b15;
+    text-align: center;
+    border-radius: 20px;
+    width: 200px;
+    color: white;
+}
+
+.btn-comment-toggle:hover{
+    background-color: grey;
+}
+
+
+.ul-comment {
+    text-align: center;
+    padding-left: 0;
+}
+
+.li-comment {
+    list-style-type: none;
+    width: 200px;
+}
 

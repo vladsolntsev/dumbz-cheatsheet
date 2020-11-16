@@ -58,16 +58,19 @@ class HomeController extends AbstractController
             $likesAndDislikes = [];
         }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['comment']) ) {
-            $newComment = new CommentManager();
-            $content = $_POST ['comment'];
-            $userid = $_SESSION['userid'];
-            $postid = $_POST['postid'];
-            $newComment->addComment($userid, $content, $postid);
+        if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['comment'])) {
+                    $newComment = new CommentManager();
+                    $content = $_POST ['comment'];
+                    $userid = $_SESSION['userid'];
+                    $postid = $_POST['postid'];
+                    $newComment->addComment($userid, $content, $postid);
         }
         $allComments = '';
         $newComment = new CommentManager();
         $allComments = $newComment->showComments();
+
+        $commentManager = new CommentManager();
+        $userNameByComment = $commentManager->showUserNameByComment();
    
         return $this->twig->render('Home/index.html.twig', [
             'favorite' => $favorites,
@@ -79,6 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['comment']) ) {
             'search_without_result' => $hasResult,
             'likesAndDislikes' => $likesAndDislikes,
             'all_comments' => $allComments,
+            'user_name_by_comment' => $userNameByComment,
         ]);
     }
 
