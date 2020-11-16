@@ -126,10 +126,6 @@ class PostManager extends AbstractManager
         return $currentLike['up'];
     }
 
-    public function newNbOfLikes($postid) {
-        $statement = $this->pdo->query("UPDATE post SET nbOfLikes = nbOfLikes + 1 WHERE id = $postid");
-    }
-
     public function isDislike($postid, $userid)
     {
         $statement = $this->pdo->prepare('SELECT down FROM approval where post_id = :postid and user_id = :userid');
@@ -210,5 +206,52 @@ class PostManager extends AbstractManager
         return $CleanCurrentLikesAndDislikes;
     }
 
+    public function updateNbOfLikes($postid, $userid)
+    {
+        if ($this->isLike($postid, $userid) === '0') {
+            $statement = $this->pdo->query("UPDATE post SET nbOfLikes = nbOfLikes + 1 WHERE id = $postid;");
+            $statement->execute();
+            if ($this->isDislike($postid, $userid) === '1') {
+                $statement = $this->pdo->query("UPDATE post SET nbOfDislikes = nbOfDislikes - 1 WHERE id = $postid;");
+                $statement->execute();
+            }
+        } else {
+            $statement = $this->pdo->query("UPDATE post SET nbOfLikes = nbOfLikes - 1 WHERE id = $postid;");
+            $statement->execute();
+        }
+    }
+
+
+    public function updateNbOfDislikes($postid, $userid)
+    {
+        if ($this->isDislike($postid, $userid) === '0') {
+            $statement = $this->pdo->query("UPDATE post SET nbOfDislikes = nbOfDislikes + 1 WHERE id = $postid;");
+            $statement->execute();
+            if ($this->isLike($postid, $userid) === '1') {
+                $statement = $this->pdo->query("UPDATE post SET nbOfLikes = nbOfLikes - 1 WHERE id = $postid;");
+                $statement->execute();
+            }
+        } else {
+            $statement = $this->pdo->query("UPDATE post SET nbOfDislikes = nbOfDislikes - 1 WHERE id = $postid;");
+            $statement->execute();
+        }
+    }
+
+/* Ben
+    public function getAllPopularities()
+    {
+        $statement = $this->pdo->prepare('SELECT post.id, (post.nbOfLikes - post.nbOfDislikes) as popularity 
+        FROM ' . $this->table . ';');
+        $statement->execute();
+        $allPopularities = $statement->fetchAll();
+        $CleanAllPopularities = [];
+        foreach ($allPopularities as $popularity) {
+            $CleanAllPopularities[$popularity['id']] = $popularity['popularity'];
+        };
+        return $CleanAllPopularities;
+    }
+*/
 }
+
+
 

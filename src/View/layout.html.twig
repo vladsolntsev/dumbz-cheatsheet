@@ -8,7 +8,7 @@
     {% block stylesheet %}{% endblock %}
 </head>
 <body>
-{% include 'Home/_header.html.twig' %}
+{% block header %}{% include 'Home/_header.html.twig' %}{% endblock %}
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-1">
