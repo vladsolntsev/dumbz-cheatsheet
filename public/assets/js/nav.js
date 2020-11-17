@@ -107,7 +107,7 @@ for ( let i = 0; i < dislike.length - 1; i++ ) {
             popularity[i].innerHTML = number.toString();
             popularity[i+1].innerHTML = number.toString();
         }
-        
+
         fetch('/like/addDislike', {
 
             method: 'POST',

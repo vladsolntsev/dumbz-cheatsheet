@@ -28,10 +28,10 @@ class HomeController extends AbstractController
     {
         $languageManager = new LanguageManager();
         $categories = $languageManager->selectAll();
-        $postManager = new PostManager();
-        $favorites = $postManager->selectAll();
+
 
         $allPostManager = new PostManager();
+
         $allPostsWithLanguages = $allPostManager->selectAllWithLanguage();
         $allPostsOrderedByDate = $allPostManager->selectPostsOrderedBy('creation_at');
         $allPostsOrderedByPopularity = $allPostManager->selectPostsOrderedBy('popularity');
@@ -54,8 +54,12 @@ class HomeController extends AbstractController
 
         if (isset($_SESSION['userid'])) {
             $likesAndDislikes = $allPostManager->selectAllLikesAndDislikesPerUser($_SESSION['userid']);
+
+            $favoriteManager = new FavoriteManager();
+            $favorites = $favoriteManager->selectAllFavoritePostId($_SESSION['userid']);
         } else {
             $likesAndDislikes = [];
+            $favorites=[];
         }
 
 
@@ -72,8 +76,6 @@ class HomeController extends AbstractController
         $newComment = new CommentManager();
         $allComments = $newComment->showComments();
 
-        $commentManager = new CommentManager();
-        $userNameByComment = $commentManager->showUserNameByComment();
    
         return $this->twig->render('Home/index.html.twig', [
             'favorite' => $favorites,
@@ -85,7 +87,6 @@ class HomeController extends AbstractController
             'search_without_result' => $hasResult,
             'likesAndDislikes' => $likesAndDislikes,
             'all_comments' => $allComments,
-            'user_name_by_comment' => $userNameByComment,
         ]);
     }
 

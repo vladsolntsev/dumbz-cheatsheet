@@ -42,8 +42,12 @@ class MySpaceController extends AbstractController
         if (isset($_SESSION['userid'])) {
             $postManager = new PostManager();
             $likesAndDislikes = $postManager->selectAllLikesAndDislikesPerUser($_SESSION['userid']);
+
+            $favoriteManager = new FavoriteManager();
+            $favorites = $favoriteManager->selectAllFavoritePostId($_SESSION['userid']);
         } else {
             $likesAndDislikes = [];
+            $favorites=[];
         }
 
         $_SESSION['userid'] = $theUser['id'];
@@ -114,6 +118,22 @@ class MySpaceController extends AbstractController
             }
         }
     }
+
+    public function adminAccess()
+    {
+        $userManager = new UserManager();
+        $admins = $userManager->selectAdmins();
+        if (isset($_SESSION['user'])) {
+            foreach ($admins as $admin => $adminData) {
+                if (($_SESSION['user']['id']) === ($adminData['id'])) {
+                    return $this->twig->render('MySpace/admin.html.twig');
+                }
+            }
+        } else {
+            header('Location: /');
+        }
+    }
+
 
     public function logout()
     {

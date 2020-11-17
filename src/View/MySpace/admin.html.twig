@@ -1,0 +1,9 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Page d'Admin{% endblock %}
+
+{% block content %}
+<h1>Bienvenue sur ta page d'admin, {{ session.user.name }} !</h1>
+
+    {% include 'MySpace/_addLanguageFormAdmin.html.twig' %}
+
+{% endblock %}

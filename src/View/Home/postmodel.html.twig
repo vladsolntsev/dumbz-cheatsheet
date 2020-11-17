@@ -1,9 +1,11 @@
 {% block postContent %}
     <div class="row d-flex justify-content-between m-3">
+
         {% set fav_array = [] %}
         {% for fav in favorite %}
-            {% set fav_array = fav_array|merge( [fav.post_id] ) %}
+            {% set fav_array = fav_array|merge( [fav.id] ) %}
         {% endfor %}
+
         {% for one_post in tableToUse|slice(0,6) %}
 
             {# for index tables #}
@@ -34,7 +36,7 @@
                         </div>
                         <div class="container m-3 7 ">
                             <div class="row d-flex justify-content-between">
-                                <div class="border rounded-circle p-1 bg-info"><i class="{{ one_post.icon }}"></i></div>
+                                <div class="border rounded-circle p-2"><i class="{{ one_post.icon }}"></i></div>
                                 {% set postid = one_post.post_unique_id %}
                                     {% if tableToUse == favorites %}
                                     {% elseif tableToUse == myposts %}
@@ -58,7 +60,7 @@
                         </div>
                     </div>
                    <div class="card-footer text-muted">
-                       Date de creation : {{ one_post.creation_at }}
+                       Date de creation : {{ one_post.creation_at|date ("d/m/Y") }}
                    </div>
                 </div>
             </div>
@@ -68,19 +70,19 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content card">
                         <div class="card-body">
-                            <div class="container card-header border border-dark rounded ">
-                                <div class="row d-flex justify-content-between">{{ one_post.title }}
+                            <div class="container card-header rounded ">
+                                <div class="row d-flex">{{ one_post.title }}
                                     {%  if session.userid %}
                                     <div class="text-warning"><i class="{{ startype }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid}}"></i></div>
                                     {% endif %}
                                 </div>
                             </div>
-                            <div class="card-text border border-dark rounded">
+                            <div class="container card-header">
                                 {{ one_post.content|raw }}
                             </div>
                             <div class="container m-3 7 ">
                                 <div class="row d-flex justify-content-between">
-                                    <div class="border rounded-circle p-1 bg-info"><i class="{{ one_post.icon }}"></i></div>
+                                    <div class="border rounded-circle p-2"><i class="{{ one_post.icon }}"></i></div>
                                     {%  if session.userid %}
                                         <div>
                                             <i class="far fa-thumbs-up text-success {{  likesAndDislikes[postid][0] == 1 ? 'fas' : '' }}"
@@ -100,7 +102,7 @@
                                 <form action="/home/index" method="post">
                                     <input type="hidden" name="postid" value="{{ one_post.post_unique_id }}">
                                     <textarea name="comment" id="comment" cols="23" rows="3"></textarea>
-                                    <button type="submit" class="btn btn-info">Comment</button>
+                                    <button type="submit" class="btn btn-info btn-comment">Comment</button>
                                 </form>
                             {% endif %}
 
@@ -115,17 +117,13 @@
                                      data-parent="#accordionExample">
                                     <div class="card-body language-main-list">
                                         <ul class="ul-comment">
+
                                             {% for comment in all_comments %}
                                                 {% if comment.post_id == one_post.post_unique_id %}
 
-
-
-
                                                     <li class="li-comment">
-                                                        Créé le: {{comment.creation_at}} </br> {{comment.content}}
+                                                        Créé par  {{ comment.username }} le {{comment.creation_at|date("d/m/Y")}} :</br> <p>{{comment.content}}</p></br>
                                                     </li>
-
-
                                                 {% endif %}
                                             {% endfor %}
                                         </ul>
@@ -134,7 +132,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-muted">
-                            Date de creation : {{ one_post.creation_at }}
+                            Date de creation : {{ one_post.creation_at|date ("d/m/Y")}}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

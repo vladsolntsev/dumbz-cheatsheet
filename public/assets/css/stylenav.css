@@ -4,7 +4,7 @@
     bottom: 0;
     left: 0;
     z-index: 100;
-    padding: 48px 0 0;
+    padding: 48px 15px 0 0;
     background-color: var(--primary-color);
     padding-top: 15%;
 }
@@ -18,14 +18,16 @@
     padding: 48px 0 0;
     background-color: var(--primary-color);
     padding-top: 15%;
+
 }
 
 .burger-menu {
-    position: absolute;
+    position: fixed;
     cursor: pointer;
     font-size: 30px;
     color: var(--link-color);
     z-index: 1000;
+    bottom: 668px;
 }
 
 .btn.focus, .btn:focus {

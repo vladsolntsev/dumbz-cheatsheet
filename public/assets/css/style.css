@@ -133,6 +133,9 @@ footer a:hover {
     animation-name: logo;
     animation-duration: 10s;
     animation-iteration-count: infinite;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 25px;
 }
 
 @keyframes logo {
@@ -218,9 +221,10 @@ footer a:hover {
     overflow: hidden;
 }
 .search-bar {
-    margin: 5rem;
+    margin: 80px 2px 44px 100px;
     height: 3rem;
     border-radius: 30px;
+    padding-left: 20px;
 }
 /* Post and modal */
 
@@ -254,10 +258,40 @@ footer a:hover {
 .post-content-short {
     width: 234px;
 }
+.button-loupe {
+    margin-top: 33px;
+}
+.nav-icons .fas {
+    font-size: 24px;
+}
+.home-icon a:hover{
+    color: white;
+}
+.badge-warning {
+    margin-bottom: 24px;
+}
+.border {
+    border: 2px solid #dee2e6!important;
+}
+.btn-comment {
+    margin-bottom: 29px;
+}
+
+/* search bar */
+input:focus {
+    outline: none;
+}
+.fa-user, .fa-home, .fa-globe {
+    color: white;
+}
+
+
+
 
 .comment-accordion{
     display: inline-block;
-    margin: 20px 150px 10px 130px;
+    margin: 20px 150px 10px 0px;
+
 }
 
 .btn-comment-toggle {
@@ -274,13 +308,26 @@ footer a:hover {
 
 
 .ul-comment {
-    text-align: center;
     padding-left: 0;
 }
 
 .li-comment {
     list-style-type: none;
-    width: 200px;
+    width: 400px;
 }
+
+input:focus {
+    outline: none;
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .animated-logo {
+        right: -85px;
+    }
+}
+
+
 
 
