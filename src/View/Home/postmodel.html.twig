@@ -54,7 +54,7 @@
                         </div>
                     </div>
                    <div class="card-footer text-muted">
-                       Date de creation : {{ one_post.creation_at }}
+                       Date de creation : {{ one_post.creation_at|date ("d/m/Y") }}
                    </div>
                 </div>
             </div>
@@ -110,11 +110,13 @@
                                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                                      data-parent="#accordionExample">
                                     <div class="card-body language-main-list">
+
                                         <ul class="ul-comment">
 
                                             {% for comment in all_comments %}
                                                 {% if comment.post_id == one_post.post_unique_id %}
                                                             <br class="li-comment">
+
                                             Créé par : {{ comment.username }} le "{{comment.creation_at}}" </br>  </br> {{comment.content}} </br>
                                                     </li>
                                                 {% endif %}
@@ -125,7 +127,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-muted">
-                            Date de creation : {{ one_post.creation_at }}
+                            Date de creation : {{ one_post.creation_at|date ("d/m/Y")}}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

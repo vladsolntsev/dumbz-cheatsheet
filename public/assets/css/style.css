@@ -279,6 +279,7 @@ input:focus {
 .comment-accordion{
     display: inline-block;
     margin: 20px 150px 10px 0px;
+
 }
 
 .btn-comment-toggle {
