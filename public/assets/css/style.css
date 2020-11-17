@@ -221,9 +221,10 @@ footer a:hover {
     overflow: hidden;
 }
 .search-bar {
-    margin: 5rem;
+    margin: 80px 2px 44px 100px;
     height: 3rem;
     border-radius: 30px;
+    padding-left: 20px;
 }
 /* Post and modal */
 
@@ -257,7 +258,35 @@ footer a:hover {
 .post-content-short {
     width: 234px;
 }
+.button-loupe {
+    margin-top: 33px;
+}
+.nav-icons .fas {
+    font-size: 24px;
+}
+.home-icon a:hover{
+    color: white;
+}
+input:focus {
+    outline: none;
+}
+.fa-user, .fa-home, .fa-globe {
+    color: white;
+}
 
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+
+    .animated-logo {
+        right: -85px;
+    }
+}
 
 
 
