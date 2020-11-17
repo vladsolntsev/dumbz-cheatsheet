@@ -28,8 +28,8 @@ class HomeController extends AbstractController
     {
         $languageManager = new LanguageManager();
         $categories = $languageManager->selectAll();
-        $favoriteManager = new FavoriteManager();
-        $favorites = $favoriteManager->selectAll();
+        $postManager = new PostManager();
+        $favorites = $postManager->selectAll();
 
         $allPostManager = new PostManager();
         $allPostsWithLanguages = $allPostManager->selectAllWithLanguage();

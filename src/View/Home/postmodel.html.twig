@@ -36,19 +36,23 @@
                             <div class="row d-flex justify-content-between">
                                 <div class="border rounded-circle p-1 bg-info"><i class="{{ one_post.icon }}"></i></div>
                                 {% set postid = one_post.post_unique_id %}
-
-                                    {%  if session.userid %}
-                                        <div>
-                                            <i class="far fa-thumbs-up text-success {{  likesAndDislikes[postid][0] == 1 ? 'fas' : '' }}"
-                                                data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
-                                            </i>
-                                        </div>
-                                    <div>
-                                        <i class="far fa-thumbs-down text-danger {{  likesAndDislikes[postid][1] == 1 ? 'fas' : '' }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
-                                        </i>
-                                    </div>
-                                {% endif %}
-
+                                    {% if tableToUse == favorites %}
+                                    {% elseif tableToUse == myposts %}
+                                    {% else %}
+                                        {%  if session.userid %}
+                                            <!--
+                                            <div>
+                                                <i class="far fa-thumbs-up text-success {{  likesAndDislikes[postid][0] == 1 ? 'fas' : '' }}"
+                                                    data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
+                                                </i>
+                                            </div>
+                                            <div>
+                                                <i class="far fa-thumbs-down text-danger {{  likesAndDislikes[postid][1] == 1 ? 'fas' : '' }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
+                                                </i>
+                                            </div>
+                                            -->
+                                        {% endif %}
+                                    {% endif %}
                                 <div class="popularity badge badge-warning">{{ one_post.popularity }}</div>
                             </div>
                         </div>
@@ -89,7 +93,7 @@
                                             </i>
                                         </div>
                                     {% endif %}
-                                    <div class="badge badge-warning">{{ one_post.popularity }}</div>
+                                    <div class="badge badge-warning popularity">{{ one_post.popularity }}</div>
                                 </div>
                             </div>
                             {%  if session.userid %}

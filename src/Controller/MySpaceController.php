@@ -22,8 +22,6 @@ class MySpaceController extends AbstractController
      */
     public function main($user)
     {
-            $favoriteManager = new FavoriteManager();
-            $favorites = $favoriteManager->selectAll();
             $theUser = new UserManager();
             $theUser = $theUser->userInfos($user);
             $languageManager = new LanguageManager();
@@ -54,7 +52,6 @@ class MySpaceController extends AbstractController
         $this->twig->addGlobal('session', $_SESSION);
 
         return $this->twig->render('MySpace/myspacepage.html.twig', [
-            'favorite' => $favorites,
             'languages' => $languageManager,
             'favorites' => $allMyFavorites,
             'myposts' => $allMyPosts,
