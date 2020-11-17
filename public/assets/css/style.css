@@ -34,7 +34,6 @@ body {
 .header-index {
     background-image: url(https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
     background-size: cover;
-    opacity:0.75;
     height: 40vh;
     padding: 20px 0;
 }
@@ -284,6 +283,10 @@ footer a:hover {
 .li-comment {
     list-style-type: none;
     width: 200px;
+}
+
+input:focus {
+    outline: none;
 }
 
 
