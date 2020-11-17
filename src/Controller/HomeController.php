@@ -58,25 +58,20 @@ class HomeController extends AbstractController
             $likesAndDislikes = [];
         }
 
-/* Ben
-        if (isset($_SESSION['userid'])) {
-            $popularities = $allPostManager->getAllPopularities();
-        } else {
-            $popularities = [];
-        }
-*/
+
+        if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['comment'])) {
+                    $newComment = new CommentManager();
+                    $content = $_POST ['comment'];
+                    $userid = $_SESSION['userid'];
+                    $postid = $_POST['postid'];
+                    $newComment->addComment($userid, $content, $postid);
 
 
-        if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['comment'])) {
-            $newComment = new CommentManager();
-            $content = $_POST ['comment'];
-            $userid = $_SESSION['userid'];
-            $postid = $_POST['postid'];
-            $newComment->addComment($userid, $content, $postid);
         }
         $allComments = '';
         $newComment = new CommentManager();
         $allComments = $newComment->showComments();
+
    
         return $this->twig->render('Home/index.html.twig', [
             'favorite' => $favorites,
