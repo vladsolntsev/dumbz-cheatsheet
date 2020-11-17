@@ -115,7 +115,7 @@
                                             {% for comment in all_comments %}
                                                 {% if comment.post_id == one_post.post_unique_id %}
                                                             <br class="li-comment">
-                                            Créé par: {{ comment.username }}   </br> {{comment.content}} </br> Date de création :</br> {{comment.creation_at}} </br>
+                                            Créé par : {{ comment.username }} le "{{comment.creation_at}}" </br>  </br> {{comment.content}} </br>
                                                     </li>
                                                 {% endif %}
                                             {% endfor %}
