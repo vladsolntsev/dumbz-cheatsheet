@@ -134,6 +134,9 @@ footer a:hover {
     animation-name: logo;
     animation-duration: 10s;
     animation-iteration-count: infinite;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 25px;
 }
 
 @keyframes logo {
@@ -265,6 +268,17 @@ footer a:hover {
 .home-icon a:hover{
     color: white;
 }
+.badge-warning {
+    margin-bottom: 24px;
+}
+.border {
+    border: 2px solid #dee2e6!important;
+}
+.btn-comment {
+    margin-bottom: 29px;
+}
+
+/* search bar */
 input:focus {
     outline: none;
 }
@@ -300,7 +314,7 @@ input:focus {
 
 .li-comment {
     list-style-type: none;
-    width: 200px;
+    width: 400px;
 }
 
 input:focus {
