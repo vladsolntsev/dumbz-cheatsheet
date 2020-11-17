@@ -36,7 +36,7 @@
                         </div>
                         <div class="container m-3 7 ">
                             <div class="row d-flex justify-content-between">
-                                <div class="border rounded-circle p-1 bg-info"><i class="{{ one_post.icon }}"></i></div>
+                                <div class="border rounded-circle p-2"><i class="{{ one_post.icon }}"></i></div>
                                 {% set postid = one_post.post_unique_id %}
 
                                     {%  if session.userid %}
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                    <div class="card-footer text-muted">
-                       Date de creation : {{ one_post.creation_at }}
+                       Date de creation : {{ one_post.creation_at|date ("d/m/Y") }}
                    </div>
                 </div>
             </div>
@@ -67,8 +67,8 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content card">
                         <div class="card-body">
-                            <div class="container card-header border border-dark rounded ">
-                                <div class="row d-flex justify-content-between">{{ one_post.title }}
+                            <div class="container card-header rounded ">
+                                <div class="row d-flex">{{ one_post.title }}
                                     {%  if session.userid %}
                                     <div class="text-warning"><i class="{{ startype }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid}}"></i></div>
                                     {% endif %}
@@ -113,18 +113,15 @@
                                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                                      data-parent="#accordionExample">
                                     <div class="card-body language-main-list">
+
                                         <ul class="ul-comment">
+
                                             {% for comment in all_comments %}
                                                 {% if comment.post_id == one_post.post_unique_id %}
+                                                            <br class="li-comment">
 
-
-
-
-                                                    <li class="li-comment">
-                                                        Créé le: {{comment.creation_at}} </br> {{comment.content}}
+                                            Créé par : {{ comment.username }} le "{{comment.creation_at}}" </br>  </br> {{comment.content}} </br>
                                                     </li>
-
-
                                                 {% endif %}
                                             {% endfor %}
                                         </ul>
@@ -133,7 +130,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-muted">
-                            Date de creation : {{ one_post.creation_at }}
+                            Date de creation : {{ one_post.creation_at|date ("d/m/Y")}}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

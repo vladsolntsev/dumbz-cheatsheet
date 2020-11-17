@@ -74,8 +74,6 @@ class HomeController extends AbstractController
         $newComment = new CommentManager();
         $allComments = $newComment->showComments();
 
-        $commentManager = new CommentManager();
-        $userNameByComment = $commentManager->showUserNameByComment();
    
         return $this->twig->render('Home/index.html.twig', [
             'favorite' => $favorites,
@@ -87,7 +85,6 @@ class HomeController extends AbstractController
             'search_without_result' => $hasResult,
             'likesAndDislikes' => $likesAndDislikes,
             'all_comments' => $allComments,
-            'user_name_by_comment' => $userNameByComment,
         ]);
     }
 

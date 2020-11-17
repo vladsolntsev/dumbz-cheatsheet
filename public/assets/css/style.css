@@ -34,7 +34,6 @@ body {
 .header-index {
     background-image: url(https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
     background-size: cover;
-
     height: 40vh;
     padding: 20px 0;
 }
@@ -42,7 +41,6 @@ body {
 .header {
     background-image: url(https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
     background-size: cover;
-    opacity:0.75;
     height: 10vh;
     padding: 20px 0;
 }
@@ -221,9 +219,10 @@ footer a:hover {
     overflow: hidden;
 }
 .search-bar {
-    margin: 5rem;
+    margin: 80px 2px 44px 100px;
     height: 3rem;
     border-radius: 30px;
+    padding-left: 20px;
 }
 /* Post and modal */
 
@@ -257,10 +256,29 @@ footer a:hover {
 .post-content-short {
     width: 234px;
 }
+.button-loupe {
+    margin-top: 33px;
+}
+.nav-icons .fas {
+    font-size: 24px;
+}
+.home-icon a:hover{
+    color: white;
+}
+input:focus {
+    outline: none;
+}
+.fa-user, .fa-home, .fa-globe {
+    color: white;
+}
+
+
+
 
 .comment-accordion{
     display: inline-block;
-    margin: 20px 150px 10px 130px;
+    margin: 20px 150px 10px 0px;
+
 }
 
 .btn-comment-toggle {
@@ -277,7 +295,6 @@ footer a:hover {
 
 
 .ul-comment {
-    text-align: center;
     padding-left: 0;
 }
 
@@ -285,5 +302,19 @@ footer a:hover {
     list-style-type: none;
     width: 200px;
 }
+
+input:focus {
+    outline: none;
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .animated-logo {
+        right: -85px;
+    }
+}
+
+
 
 
