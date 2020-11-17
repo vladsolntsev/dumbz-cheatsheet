@@ -4,6 +4,8 @@
 namespace App\Model;
 
 
+use PDO;
+
 class UserManager extends AbstractManager
 {
     const TABLE = 'user';
@@ -40,15 +42,10 @@ class UserManager extends AbstractManager
         return $statement->fetch();
     }
 
-    /*
-        public function selectOneByNameAndPassword(string $name,string $password): int
-        {
-            $statement = $this->pdo->prepare("SELECT id FROM $this->table WHERE name=:name AND password=:password");
-            $statement->bindValue('name', $name, \PDO::PARAM_STR);
-            $statement->bindValue('password', $password, \PDO::PARAM_STR);
-            $statement->execute();
-            return $statement->fetch();
-        }
-    */
+    public function selectAdmins() : array
+    {
+        return $this->pdo->query("SELECT id FROM " . self::TABLE . " WHERE admin = 1;")->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
 }
