@@ -22,11 +22,12 @@
 }
 
 .burger-menu {
-    position: absolute;
+    position: fixed;
     cursor: pointer;
     font-size: 30px;
     color: var(--link-color);
     z-index: 1000;
+    bottom: 668px;
 }
 
 .btn.focus, .btn:focus {

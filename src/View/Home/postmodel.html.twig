@@ -34,7 +34,7 @@
                         </div>
                         <div class="container m-3 7 ">
                             <div class="row d-flex justify-content-between">
-                                <div class="border rounded-circle p-1 bg-info"><i class="{{ one_post.icon }}"></i></div>
+                                <div class="border rounded-circle p-2"><i class="{{ one_post.icon }}"></i></div>
                                 {% set postid = one_post.post_unique_id %}
 
                                     {%  if session.userid %}
@@ -64,8 +64,8 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content card">
                         <div class="card-body">
-                            <div class="container card-header border border-dark rounded ">
-                                <div class="row d-flex justify-content-between">{{ one_post.title }}
+                            <div class="container card-header rounded ">
+                                <div class="row d-flex">{{ one_post.title }}
                                     {%  if session.userid %}
                                     <div class="text-warning"><i class="{{ startype }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid}}"></i></div>
                                     {% endif %}
