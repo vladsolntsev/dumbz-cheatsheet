@@ -17,19 +17,19 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" class="newLanguageForm">
+                <form action="/MySpace/addLanguage" method="post" class="newLanguageForm">
                     <div class="form-group mw-100">
                         <label for="newLanguageName">Nom</label>
                         <input type="text" class="form-control" id="newLanguageName" name="newLanguageName"
-                               placeholder="Nom">
+                               placeholder="Nom" required>
                     </div>
                     <div class="form-group mw-100">
                         <label for="newLanguageIdentifier">Identifier</label>
                         <input type="text" class="form-control" id="newLanguageIdentifier" name="newLanguageIdentifier"
-                               placeholder="Identifier">
+                               placeholder="Identifier" required>
                     </div>
                     <div class="form-group mw-100">
-                        <label for="newLanguageIcon">Identifier</label>
+                        <label for="newLanguageIcon">Icone</label>
                         <input type="text" class="form-control" id="newLanguageIcon" name="newLanguageIcon"
                                placeholder="Exemple de format: 'fab fa-css3'">
                     </div>

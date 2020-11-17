@@ -237,6 +237,7 @@ class PostManager extends AbstractManager
         }
     }
 
+
 /* Ben
     public function getAllPopularities()
     {
