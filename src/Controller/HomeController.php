@@ -57,18 +57,16 @@ class HomeController extends AbstractController
             $favorites = $favoriteManager->selectAllFavoritePostId($_SESSION['userid']);
         } else {
             $likesAndDislikes = [];
-            $favorites=[];
+            $favorites = [];
         }
 
 
-        if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['comment'])) {
+        if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['comment'])) {
                     $newComment = new CommentManager();
                     $content = $_POST ['comment'];
                     $userid = $_SESSION['userid'];
                     $postid = $_POST['postid'];
                     $newComment->addComment($userid, $content, $postid);
-
-
         }
         $allComments = '';
         $newComment = new CommentManager();
@@ -88,5 +86,13 @@ class HomeController extends AbstractController
         ]);
     }
 
-
+    public function deletepost($id)
+    {
+        if ($_SESSION['user']['admin'] === '1') {
+            $postManager = new PostManager();
+            $postManager->delete($id);
+            header('Location: /');
+        }
+        header('Location: /');
+    }
 }
