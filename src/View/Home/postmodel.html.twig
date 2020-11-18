@@ -116,7 +116,7 @@
                         </div>
                         <div class="modal-footer">
                             {% if session.userid == one_post.user_id %}
-                                <form action='MySpace/deleteUserPost/{{ one_post.post_unique_id }}' method='post'><input class="btn btn-danger" type='submit' value='Supprimer'></form>
+                                <form action='./MySpace/deleteUserPost/{{ one_post.post_unique_id }}' method='post'><input class="btn btn-danger" type='submit' value='Supprimer'></form>
                             {% endif %}
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                         </div>
