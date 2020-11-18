@@ -143,4 +143,19 @@ class MySpaceController extends AbstractController
         session_unset();
         header('Location: /');
     }
+
+    public function addLanguage()
+    {
+        if (($_SERVER["REQUEST_METHOD"] === "POST")) {
+            $languageManager = new LanguageManager();
+            $name = trim($_POST['newLanguageName']);
+            $identifier = trim($_POST['newLanguageIdentifier']);
+            $icon = trim($_POST['newLanguageIcon']);
+            $languageManager->createLanguage($name, $identifier, $icon);
+            $successMessage = 'La nouvelle catégorie a bien été ajoutée';
+            return $this->twig->render('MySpace/admin.html.twig', [
+                'successMessage' => $successMessage
+            ]);
+        }
+    }
 }

@@ -2,8 +2,17 @@
 {% block title %}Page d'Admin{% endblock %}
 
 {% block content %}
-<h1>Bienvenue sur ta page d'admin, {{ session.user.name }} !</h1>
-
+    <h1>Bienvenue sur ta page d'admin, {{ session.user.name }} !</h1>
+    {% if successMessage is defined %}
+        {{ successMessage }}
+    {% endif %}
     {% include 'MySpace/_addLanguageFormAdmin.html.twig' %}
+    <br>
+
+    <img src="https://media.giphy.com/media/11shDO8NnZDYpa/giphy.gif" alt="funnies" width="300" height="200">
+    <br>
+    <br>
+
+    <img src="https://media.giphy.com/media/S9oecmLUi26zYzrTZt/giphy.gif" alt="funnies2" width="300" height="200">
 
 {% endblock %}
