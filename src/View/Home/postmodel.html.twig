@@ -8,7 +8,6 @@
         {% for one_post in tableToUse|slice(0,6) %}
 
             {# for index tables #}
-
             {% if one_post.post_unique_id in fav_array %}
                 {% set startype = "fas fa-star"%}
             {% else %}
