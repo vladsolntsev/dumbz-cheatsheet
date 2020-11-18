@@ -28,8 +28,6 @@ class HomeController extends AbstractController
     {
         $languageManager = new LanguageManager();
         $categories = $languageManager->selectAll();
-
-
         $allPostManager = new PostManager();
 
         $allPostsWithLanguages = $allPostManager->selectAllWithLanguage();

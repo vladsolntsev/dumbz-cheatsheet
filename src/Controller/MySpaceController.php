@@ -42,9 +42,11 @@ class MySpaceController extends AbstractController
         if (isset($_SESSION['userid'])) {
             $postManager = new PostManager();
             $likesAndDislikes = $postManager->selectAllLikesAndDislikesPerUser($_SESSION['userid']);
+            $favoriteManager = new FavoriteManager();
+            $favorites = $favoriteManager->selectAllFavoritePostId($_SESSION['userid']);
         } else {
             $likesAndDislikes = [];
-
+            $favorites = [];
         }
 
         $_SESSION['userid'] = $theUser['id'];
@@ -53,6 +55,7 @@ class MySpaceController extends AbstractController
         $this->twig->addGlobal('session', $_SESSION);
 
         return $this->twig->render('MySpace/myspacepage.html.twig', [
+            'favorite' => $favorites,
             'languages' => $languageManager,
             'favorites' => $allMyFavorites,
             'myposts' => $allMyPosts,

@@ -45,19 +45,17 @@ const dislike = document.getElementsByClassName('fa-thumbs-down');
 const popularity = document.getElementsByClassName('popularity');
 
 /* Ben : Function to create */
-for (let i = 0 ; i <like.length - 1; i++) {
+for (let i = 0 ; i <like.length; i++) {
     like[i].addEventListener('click', (event) => {
         let number = parseInt(popularity[i].innerHTML, 10);
         if (event.target.classList.contains('fas')) {
             event.target.classList.replace('fas', 'far');
             number--;
             popularity[i].innerHTML = number.toString();
-            popularity[i+1].innerHTML = number.toString();
         } else {
             event.target.classList.add('fas');
             number++;
             popularity[i].innerHTML = number.toString();
-            popularity[i+1].innerHTML = number.toString();
         }
 
         if (dislike[i].classList.contains('fas')) {
@@ -65,7 +63,6 @@ for (let i = 0 ; i <like.length - 1; i++) {
             dislike[i].classList.add('far');
             number++;
             popularity[i].innerHTML = number.toString();
-            popularity[i+1].innerHTML = number.toString();
         }
 
         fetch('/like/addLike', {
@@ -86,26 +83,23 @@ for (let i = 0 ; i <like.length - 1; i++) {
 
 
 
-for ( let i = 0; i < dislike.length - 1; i++ ) {
+for ( let i = 0; i < dislike.length; i++ ) {
     dislike[i].addEventListener('click', (event) => {
         let number = parseInt(popularity[i].innerHTML, 10);
         if (event.target.classList.contains('fas')) {
             event.target.classList.replace('fas', 'far');
             number++;
             popularity[i].innerHTML = number.toString();
-            popularity[i+1].innerHTML = number.toString();
         } else {
             event.target.classList.add('fas');
             number--;
             popularity[i].innerHTML = number.toString();
-            popularity[i+1].innerHTML = number.toString();
         }
         if (like[i].classList.contains('fas')) {
             like[i].classList.remove('fas');
             like[i].classList.add('far');
             number--;
             popularity[i].innerHTML = number.toString();
-            popularity[i+1].innerHTML = number.toString();
         }
 
         fetch('/like/addDislike', {
