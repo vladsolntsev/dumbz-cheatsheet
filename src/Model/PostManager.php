@@ -208,51 +208,29 @@ class PostManager extends AbstractManager
         return $CleanCurrentLikesAndDislikes;
     }
 
-    public function updateNbOfLikes($postid, $userid)
+    public function sumOfLikesperId()
     {
-            if ($this->isLike($postid, $userid) === '0') {
-                $statement = $this->pdo->query("UPDATE post SET nbOfLikes = nbOfLikes + 1 WHERE id = $postid;");
-                $statement->execute();
-                if ($this->isDislike($postid, $userid) === '1') {
-                    $statement = $this->pdo->query("UPDATE post SET nbOfDislikes = nbOfDislikes + 1 WHERE id = $postid;");
-                    $statement->execute();
-                }
-            } else {
-                $statement = $this->pdo->query("UPDATE post SET nbOfLikes = nbOfLikes - 1 WHERE id = $postid;");
-                $statement->execute();
-            }
+        $statement = $this->pdo->query("SELECT post_id, SUM(up) FROM approval GROUP BY post_id;");
+        $sumOfLikesPerId = $statement->fetchAll();
+        return $sumOfLikesPerId;
     }
 
-
-    public function updateNbOfDislikes($postid, $userid)
+    public function sumOfDislikesPerId()
     {
-        if ($this->isDislike($postid, $userid) === '0') {
-            $statement = $this->pdo->query("UPDATE post SET nbOfDislikes = nbOfDislikes + 1 WHERE id = $postid;");
-            $statement->execute();
-            if ($this->isLike($postid, $userid) === '1') {
-                $statement = $this->pdo->query("UPDATE post SET nbOfLikes = nbOfLikes - 1 WHERE id = $postid;");
-                $statement->execute();
-            }
-        } else {
-            $statement = $this->pdo->query("UPDATE post SET nbOfDislikes = nbOfDislikes - 1 WHERE id = $postid;");
-            $statement->execute();
+        $statement = $this->pdo->query("SELECT post_id, SUM(down) FROM approval GROUP BY post_id;");
+        $sumOfDislikesPerId = $statement->fetchAll();
+        return $sumOfDislikesPerId;
+    }
+
+    public function popularityPerId()
+    {   $allPopularities = [];
+        $allLikes = $this->sumOfLikesperId();
+        $allDislikes = $this->sumOfDislikesPerId();
+        foreach($allLikes as $key => $likes) {
+            $allPopularities[$likes["post_id"]] = $likes["SUM(up)"] - $allDislikes[$key]["SUM(down)"];
         }
+        return $allPopularities;
     }
-
-/* Ben
-    public function getAllPopularities()
-    {
-        $statement = $this->pdo->prepare('SELECT post.id, (post.nbOfLikes - post.nbOfDislikes) as popularity 
-        FROM ' . $this->table . ';');
-        $statement->execute();
-        $allPopularities = $statement->fetchAll();
-        $CleanAllPopularities = [];
-        foreach ($allPopularities as $popularity) {
-            $CleanAllPopularities[$popularity['id']] = $popularity['popularity'];
-        };
-        return $CleanAllPopularities;
-    }
-*/
 }
 
 

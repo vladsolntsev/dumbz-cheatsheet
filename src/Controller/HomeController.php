@@ -60,20 +60,20 @@ class HomeController extends AbstractController
             $favorites=[];
         }
 
-
         if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['comment'])) {
                     $newComment = new CommentManager();
                     $content = $_POST ['comment'];
                     $userid = $_SESSION['userid'];
                     $postid = $_POST['postid'];
                     $newComment->addComment($userid, $content, $postid);
-
-
         }
         $allComments = '';
         $newComment = new CommentManager();
         $allComments = $newComment->showComments();
 
+        $colors = ['#EE908A','#EEAE8A', '#EEDC8A', '#B5E1EE', '#D7B0EE' ];
+
+        $allPopularities = $allPostManager->popularityPerId();
    
         return $this->twig->render('Home/index.html.twig', [
             'favorite' => $favorites,
@@ -85,6 +85,8 @@ class HomeController extends AbstractController
             'search_without_result' => $hasResult,
             'likesAndDislikes' => $likesAndDislikes,
             'all_comments' => $allComments,
+            'all_popularities' => $allPopularities,
+            'colors' => $colors
         ]);
     }
 
