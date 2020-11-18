@@ -48,13 +48,15 @@ class PostManager extends AbstractManager
 
     public function selectAllMyFavorites($user): array
     {
-        $posts = $this->pdo->query('SELECT *, (post.nbOfLikes - post.nbOfDislikes) as popularity FROM ' . $this->table . ' LEFT JOIN favorite ON post.id = favorite.post_id WHERE favorite.user_id=' . $user . ';')->fetchAll();
+        $posts = $this->pdo->query('SELECT *, (post.nbOfLikes - post.nbOfDislikes) as popularity, language.icon as icon FROM ' . $this->table .
+        ' LEFT JOIN favorite ON post.id = favorite.post_id LEFT JOIN language ON post.language_id = language.id WHERE favorite.user_id=' . $user . ';')->fetchAll();
         return $this->cleanPosts($posts);
     }
 
     public function selectAllMyPosts($user): array
     {
-        $posts = $this->pdo->query('SELECT *, (post.nbOflikes - post. nbOfdislikes) as popularity FROM ' . $this->table . ' WHERE post.user_id=' . $user . ';')->fetchAll();
+        $posts = $this->pdo->query('SELECT *, (post.nbOflikes - post. nbOfdislikes) as popularity, language.icon as icon FROM ' . $this->table .
+            ' LEFT JOIN favorite ON post.id = favorite.post_id LEFT JOIN language ON post.language_id = language.id WHERE favorite.user_id=' . $user . ';')->fetchAll();
         return $this->cleanPosts($posts);
     }
 
@@ -208,17 +210,17 @@ class PostManager extends AbstractManager
 
     public function updateNbOfLikes($postid, $userid)
     {
-        if ($this->isLike($postid, $userid) === '0') {
-            $statement = $this->pdo->query("UPDATE post SET nbOfLikes = nbOfLikes + 1 WHERE id = $postid;");
-            $statement->execute();
-            if ($this->isDislike($postid, $userid) === '1') {
-                $statement = $this->pdo->query("UPDATE post SET nbOfDislikes = nbOfDislikes - 1 WHERE id = $postid;");
+            if ($this->isLike($postid, $userid) === '0') {
+                $statement = $this->pdo->query("UPDATE post SET nbOfLikes = nbOfLikes + 1 WHERE id = $postid;");
+                $statement->execute();
+                if ($this->isDislike($postid, $userid) === '1') {
+                    $statement = $this->pdo->query("UPDATE post SET nbOfDislikes = nbOfDislikes + 1 WHERE id = $postid;");
+                    $statement->execute();
+                }
+            } else {
+                $statement = $this->pdo->query("UPDATE post SET nbOfLikes = nbOfLikes - 1 WHERE id = $postid;");
                 $statement->execute();
             }
-        } else {
-            $statement = $this->pdo->query("UPDATE post SET nbOfLikes = nbOfLikes - 1 WHERE id = $postid;");
-            $statement->execute();
-        }
     }
 
 

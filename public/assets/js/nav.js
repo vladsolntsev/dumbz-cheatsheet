@@ -44,6 +44,7 @@ const like = document.getElementsByClassName('fa-thumbs-up');
 const dislike = document.getElementsByClassName('fa-thumbs-down');
 const popularity = document.getElementsByClassName('popularity');
 
+/* Ben : Function to create */
 for (let i = 0 ; i <like.length; i++) {
     like[i].addEventListener('click', (event) => {
         let number = parseInt(popularity[i].innerHTML, 10);
@@ -56,10 +57,12 @@ for (let i = 0 ; i <like.length; i++) {
             number++;
             popularity[i].innerHTML = number.toString();
         }
-        console.log(popularity[i]);
+
         if (dislike[i].classList.contains('fas')) {
             dislike[i].classList.remove('fas');
             dislike[i].classList.add('far');
+            number++;
+            popularity[i].innerHTML = number.toString();
         }
 
         fetch('/like/addLike', {
@@ -95,7 +98,10 @@ for ( let i = 0; i < dislike.length; i++ ) {
         if (like[i].classList.contains('fas')) {
             like[i].classList.remove('fas');
             like[i].classList.add('far');
+            number--;
+            popularity[i].innerHTML = number.toString();
         }
+
         fetch('/like/addDislike', {
 
             method: 'POST',

@@ -26,9 +26,6 @@
                     <div class="card-body">
                         <div class="container card-header ">
                             <div class="row d-flex ">{{ one_post.title }}
-                                {%  if session.userid %}
-                                <div class="text-warning"><i class="{{ startype }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}"></i></div>
-                                {% endif %}
                             </div>
                         </div>
                         <div class="card-text post-content-short">
@@ -38,20 +35,6 @@
                             <div class="row d-flex justify-content-between">
                                 <div class="border rounded-circle p-2"><i class="{{ one_post.icon }}"></i></div>
                                 {% set postid = one_post.post_unique_id %}
-
-                                    {%  if session.userid %}
-                                        <div>
-
-                                            <i class="far fa-thumbs-up text-success {{  likesAndDislikes[postid][0] == 1 ? 'fas' : '' }}"
-                                                data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
-                                            </i>
-                                        </div>
-                                    <div>
-                                        <i class="far fa-thumbs-down text-danger {{  likesAndDislikes[postid][1] == 1 ? 'fas' : '' }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
-                                        </i>
-                                    </div>
-                                {% endif %}
-
                                 <div class="popularity badge badge-warning">{{ one_post.popularity }}</div>
                             </div>
                         </div>
@@ -92,7 +75,7 @@
                                             </i>
                                         </div>
                                     {% endif %}
-                                    <div class="badge badge-warning">{{ one_post.popularity }}</div>
+                                    <div class="badge badge-warning popularity">{{ one_post.popularity }}</div>
                                 </div>
                             </div>
                             {%  if session.userid %}
