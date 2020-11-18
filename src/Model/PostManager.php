@@ -231,6 +231,7 @@ class PostManager extends AbstractManager
             $allPopularities[$likes["post_id"]] = $likes["SUM(up)"] - $allDislikes[$key]["SUM(down)"];
         }
         return $allPopularities;
+    }
 
       public function delete($id): void
     {
