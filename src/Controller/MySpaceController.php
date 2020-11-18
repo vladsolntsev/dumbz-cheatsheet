@@ -163,11 +163,4 @@ class MySpaceController extends AbstractController
         }
     }
 
-    public function deleteUserPost($id)
-    {
-        $postManager = new PostManager();
-        $postManager->deleteUserPost($id);
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-
-    }
 }
