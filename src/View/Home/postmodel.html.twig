@@ -41,6 +41,7 @@
                     </div>
                    <div class="card-footer text-muted">
                        Date de creation : {{ one_post.creation_at|date ("d/m/Y") }}
+
                    </div>
                 </div>
             </div>
@@ -113,6 +114,9 @@
                         </div>
                         <div class="card-footer text-muted">
                             Date de creation : {{ one_post.creation_at|date ("d/m/Y")}}
+                            {%  if session.user["admin"] %}
+                            <a href="/home/deletepost/{{ one_post.post_unique_id }}"><i class="fa fa-trash" aria-hidden="true"></i> </a>
+                            {% endif %}
                         </div>
                         <div class="modal-footer">
                             {% if session.userid == one_post.user_id %}
