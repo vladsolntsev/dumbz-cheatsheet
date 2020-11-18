@@ -40,6 +40,7 @@
                     </div>
                    <div class="card-footer text-muted">
                        Date de creation : {{ one_post.creation_at|date ("d/m/Y") }}
+
                    </div>
                 </div>
             </div>
@@ -101,17 +102,16 @@
                                         <i class="fa fa-comment" aria-hidden="true"></i>
                                            Commentaires
                                     </a>
-                                </li>
                                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                                      data-parent="#accordionExample">
                                     <div class="card-body language-main-list">
                                         <ul class="ul-comment">
 
-                                            {% for comment in all_comments %}
+                                            {% for comment in all_comments%}
                                                 {% if comment.post_id == one_post.post_unique_id %}
 
                                                     <li class="li-comment">
-                                                        Créé par  {{ comment.username }} le {{comment.creation_at|date("d/m/Y")}} :</br> <p>{{comment.content}}</p></br>
+                                                        <i> Créé par  {{ comment.username }} le {{comment.creation_at|date("d/m/Y")}} :</i></br> <p class="bubble">{{comment.content}}</p></br>
                                                     </li>
                                                 {% endif %}
                                             {% endfor %}
@@ -122,9 +122,16 @@
                         </div>
                         <div class="card-footer text-muted" style="background-color: {{ random }}">
                             Date de creation : {{ one_post.creation_at|date ("d/m/Y")}}
+                            {%  if session.user["admin"] %}
+                            <a href="/home/deletepost/{{ one_post.post_unique_id }}"><i class="fa fa-trash" aria-hidden="true"></i> </a>
+                            {% endif %}
                         </div>
-                        <div class="modal-footer" style="background-color: {{ random }}">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                        <div class="modal-footer">
+                            {% if session.userid == one_post.user_id %}
+                                <form action='MySpace/deleteUserPost/{{ one_post.post_unique_id }}' method='post'><input class="btn btn-danger" type='submit' value='Supprimer'></form>
+                            {% endif %}
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                         </div>
                     </div>
                 </div>

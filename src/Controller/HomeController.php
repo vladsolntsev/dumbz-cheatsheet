@@ -57,7 +57,7 @@ class HomeController extends AbstractController
             $favorites = $favoriteManager->selectAllFavoritePostId($_SESSION['userid']);
         } else {
             $likesAndDislikes = [];
-            $favorites=[];
+            $favorites = [];
         }
 
         if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['comment'])) {
@@ -90,5 +90,13 @@ class HomeController extends AbstractController
         ]);
     }
 
-
+    public function deletepost($id)
+    {
+        if ($_SESSION['user']['admin'] === '1') {
+            $postManager = new PostManager();
+            $postManager->delete($id);
+            header('Location: /');
+        }
+        header('Location: /');
+    }
 }
