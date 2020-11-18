@@ -109,17 +109,16 @@
                                         <i class="fa fa-comment" aria-hidden="true"></i>
                                            Commentaires
                                     </a>
-                                </li>
                                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                                      data-parent="#accordionExample">
                                     <div class="card-body language-main-list">
                                         <ul class="ul-comment">
 
-                                            {% for comment in all_comments %}
+                                            {% for comment in all_comments%}
                                                 {% if comment.post_id == one_post.post_unique_id %}
 
                                                     <li class="li-comment">
-                                                        Créé par  {{ comment.username }} le {{comment.creation_at|date("d/m/Y")}} :</br> <p>{{comment.content}}</p></br>
+                                                        <i> Créé par  {{ comment.username }} le {{comment.creation_at|date("d/m/Y")}} :</i></br> <p class="bubble">{{comment.content}}</p></br>
                                                     </li>
                                                 {% endif %}
                                             {% endfor %}
