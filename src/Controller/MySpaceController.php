@@ -22,7 +22,6 @@ class MySpaceController extends AbstractController
      */
     public function main($user)
     {
-
             $theUser = new UserManager();
             $theUser = $theUser->userInfos($user);
             $languageManager = new LanguageManager();
@@ -43,12 +42,11 @@ class MySpaceController extends AbstractController
         if (isset($_SESSION['userid'])) {
             $postManager = new PostManager();
             $likesAndDislikes = $postManager->selectAllLikesAndDislikesPerUser($_SESSION['userid']);
-
             $favoriteManager = new FavoriteManager();
             $favorites = $favoriteManager->selectAllFavoritePostId($_SESSION['userid']);
         } else {
             $likesAndDislikes = [];
-            $favorites=[];
+            $favorites = [];
         }
 
         $_SESSION['userid'] = $theUser['id'];
@@ -142,5 +140,28 @@ class MySpaceController extends AbstractController
         session_destroy();
         session_unset();
         header('Location: /');
+    }
+
+    public function addLanguage()
+    {
+        if (($_SERVER["REQUEST_METHOD"] === "POST")) {
+            $languageManager = new LanguageManager();
+            $name = trim($_POST['newLanguageName']);
+            $identifier = trim($_POST['newLanguageIdentifier']);
+            $icon = trim($_POST['newLanguageIcon']);
+            $languageManager->createLanguage($name, $identifier, $icon);
+            $successMessage = 'La nouvelle catégorie a bien été ajoutée';
+            return $this->twig->render('MySpace/admin.html.twig', [
+                'successMessage' => $successMessage
+            ]);
+        }
+    }
+
+    public function deleteUserPost($id)
+    {
+        $postManager = new PostManager();
+        $postManager->deleteUserPost($id);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+
     }
 }

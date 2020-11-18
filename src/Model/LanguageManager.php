@@ -35,6 +35,14 @@ class LanguageManager extends AbstractManager
         return $this->cleanPosts($posts);
     }
 
+    public function createLanguage($name, $identifier, $icon): void
+    {
+        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (name, identifier, icon) VALUES (:user, :identifier, :icon)");
+        $statement->bindValue('user', $name, \PDO::PARAM_STR);
+        $statement->bindValue('identifier', $identifier, \PDO::PARAM_STR);
+        $statement->bindValue('icon', $icon, \PDO::PARAM_STR);
+        $statement->execute();
+    }
 
 }
 
