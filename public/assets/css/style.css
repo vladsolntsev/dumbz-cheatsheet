@@ -271,12 +271,44 @@ footer a:hover {
 .home-icon a:hover{
     color: white;
 }
-.badge-warning {
-    margin-bottom: 24px;
-}
+
+
 .border {
     border: 2px solid #dee2e6!important;
 }
+
+.icons-post {
+    border-radius: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.icon-like {
+    border: solid 3px #3BA745;
+    width: 2em;
+    height: 2em;
+}
+
+.icon-dislike {
+    border: solid 3px #DC3945;
+    width: 2em;
+    height: 2em;
+}
+
+.icon-language {
+    width: 3.2em;
+    height: 3.2em;
+}
+
+.popularity {
+    border-radius: 500px;
+    width: 3em;
+    height: 3em;
+    line-height: 2.8em;
+}
+
 .btn-comment {
     margin-bottom: 29px;
 }
