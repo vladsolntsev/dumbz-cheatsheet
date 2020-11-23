@@ -56,7 +56,7 @@ class PostManager extends AbstractManager
     public function selectAllMyPosts($user): array
     {
         $posts = $this->pdo->query('SELECT *, post.id as post_unique_id, (post.nbOflikes - post. nbOfdislikes) as popularity, language.icon as icon FROM ' . $this->table .
-            ' LEFT JOIN favorite ON post.id = favorite.post_id LEFT JOIN language ON post.language_id = language.id WHERE favorite.user_id=' . $user . ';')->fetchAll();
+            ' LEFT JOIN language on post.language_id = language.id WHERE post.user_id=' . $user . ';')->fetchAll();
         return $this->cleanPosts($posts);
     }
 
