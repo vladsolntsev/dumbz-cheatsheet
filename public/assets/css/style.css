@@ -41,7 +41,7 @@ body {
 .header {
     background-image: url('/assets/images/main-picture.png');
     background-size: cover;
-    height: 10vh;
+    height: 15vh;
     padding: 20px 0;
 }
 
@@ -68,9 +68,6 @@ body {
 }
 
 #cheat-search {
-    /* border-top: none; */
-    /* border-right: none; */
-    /*  border-left: none; */
     width: 100%;
 }
 
@@ -225,11 +222,26 @@ footer a:hover {
     overflow: hidden;
 }
 .search-bar {
-    margin: 80px 2px 44px 100px;
     height: 3rem;
     border-radius: 30px;
+    /*
+    margin: 80px 2px 44px 100px;
     padding-left: 20px;
+     */
 }
+
+.research-container {
+    margin: 10vh 0;
+}
+
+.add-post-container {
+    margin: 3vh 0 8vh 0;
+}
+
+.add-post-button {
+    height: 5em;
+}
+
 /* Post and modal */
 
 .post-index{
@@ -263,7 +275,7 @@ footer a:hover {
     width: 234px;
 }
 .button-loupe {
-    margin-top: 33px;
+    padding-right: 0;
 }
 .nav-icons .fas {
     font-size: 24px;
@@ -425,12 +437,38 @@ body {
 }
 
 
+
+@media screen and (max-width: 576px) {
+
+}
+
 @media screen and (max-width: 768px) {
 
     .animated-logo {
-        right: -85px;
+    /*   right: -85px; */
+    display: none;
     }
 }
+
+@media screen and (max-width: 992px) {
+
+    .animated-logo {
+        /*   right: -85px; */
+        display: none;
+    }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
 
 
 

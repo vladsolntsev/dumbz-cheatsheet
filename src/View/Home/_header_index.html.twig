@@ -56,14 +56,16 @@
             <div class="animated-logo"></div>
         </a>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid research-container">
         <div class="row research-block">
-            <div class="col-sm-6 offset-3">
-                <form action="/" method="post" class="loupeandbarre">
-                    <label for="cheat-search"></label>
-                    <input type="search" class="search-bar" id="cheat-search" name="cheat-search" placeholder="Entrez votre recherche">
-                    <button class="btn button-loupe"><i class="fas fa-search"></i></button>
-                </form>
+            <div class="col-8 offset-2 col-md-6 offset-md-3">
+                <div>
+                    <form action="/" method="post" class="loupeandbarre">
+                        <label for="cheat-search"></label>
+                        <input type="search" class="search-bar" id="cheat-search" name="cheat-search" placeholder="Entrez votre recherche">
+                        <button class="btn button-loupe"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
                 {% if search_without_result %}
                     Aucun résultat ne correspond à votre recherche, veuillez réessayez un autre mot clé.
                 {% endif %}
