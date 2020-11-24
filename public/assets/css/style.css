@@ -483,6 +483,10 @@ body {
     background-color: var(--button-add-color);
 }
 
+.btn-change-login {
+    background-color: #EEDC8A;
+}
+
 .modal-content {
     background-color:transparent;
 }
