@@ -14,7 +14,7 @@
                 <input type="text" name="name" class="form-control" id="nameLogin"
                        placeholder="Entre ton pseudo">
                 {% if session.nameError is defined %}
-                <small class="text-danger"> {{ session.nameError }} </small>
+                <small class="text-danger error-msg-text"> {{ session.nameError }} </small>
                 {% endif %}
                 {% if session.nameWrongError is defined %}
                     <small class="text-danger"> {{ session.nameWrongError }} </small>
