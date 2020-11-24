@@ -8,7 +8,6 @@
         {% for one_post in tableToUse|slice(0,6) %}
 
             {# for index tables #}
-
             {% if one_post.post_unique_id in fav_array %}
                 {% set startype = "fas fa-star"%}
             {% else %}
@@ -50,10 +49,11 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content card">
                         <div class="card-body" style="background-color: {{ random }}">
-                            <div class="container card-header rounded " style="background-color: {{ random }}">
-                                <div class="row d-flex">{{ one_post.title }}
+                            <div class="container pr-0 pl-0 card-header rounded " style="background-color: {{ random }}">
+                                <div class="row d-flex">
+                                    <div class="col-4 offset-4 text-center">{{ one_post.title }}</div>
                                     {%  if session.userid %}
-                                    <div class="text-warning"><i class="{{ startype }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid}}"></i></div>
+                                    <div class="text-warning col-2 offset-2 text-right"><i class="{{ startype }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid}}"></i></div>
                                     {% endif %}
                                 </div>
                             </div>
