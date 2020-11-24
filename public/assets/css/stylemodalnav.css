@@ -14,8 +14,12 @@
     overflow-y: auto;
 }
 
+.modal-body {
+    background-color: var(--body-color);
+}
+
 .modal.left .modal-body {
-    padding: 15px 15px 80px;
+    padding: 75px 15px 80px;
 }
 
 /*Left*/
@@ -39,12 +43,13 @@
 
 .modal-header {
     border-bottom-color: #EEEEEE;
-    background-color: #FAFAFA;
+    background-color: var(--secondary-color);
+    color: white;
 }
 
-
 .modal-nav {
-    margin-top: 50px;
+    background-color: var(--body-color);
+
 }
 .modal-header h4 {
     font-size: 2em;
@@ -117,3 +122,4 @@
 .sidebar-nav {
     display: block;
 }
+

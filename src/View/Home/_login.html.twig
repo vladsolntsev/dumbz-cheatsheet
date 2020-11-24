@@ -14,7 +14,7 @@
                 <input type="text" name="name" class="form-control" id="nameLogin"
                        placeholder="Entre ton pseudo">
                 {% if session.nameError is defined %}
-                <small class="text-danger"> {{ session.nameError }} </small>
+                <small class="text-danger error-msg-text"> {{ session.nameError }} </small>
                 {% endif %}
                 {% if session.nameWrongError is defined %}
                     <small class="text-danger"> {{ session.nameWrongError }} </small>
@@ -35,12 +35,12 @@
     <div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" data-toggle="modal"
+        <button type="button" class="btn btn-change-login" data-toggle="modal"
                 data-target="#registration" id="buttonRegistration"
                 data-dismiss="modal">Clique ici pour t'inscrire !
         </button>
 
-        <button type="submit" id="sendLogin" class="btn btn-success">Se connecter<i class="fas fa-sign-in-alt send-icon"></i></button>
+        <button type="submit" id="sendLogin" class="btn btn-login-modal">Se connecter<i class="fas fa-sign-in-alt send-icon"></i></button>
     </div>
     </form>
 </div>
