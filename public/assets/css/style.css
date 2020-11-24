@@ -9,7 +9,6 @@
 @import "stylemodalnav.css";
 @import "stylemypage.css";
 @import "bootstrap-overridden.css";
-@import "../images/favicon.png";
 
 /* Variable */
 :root {
@@ -460,6 +459,22 @@ body {
     border-color:lightslategrey;
 
 }
+
+#sendLogin {
+    text-align: center;
+}
+
+
+#sendLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.send-icon {
+    margin-left:7px;
+}
+
+
 
 
 

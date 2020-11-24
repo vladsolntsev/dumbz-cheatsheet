@@ -108,28 +108,22 @@
                                     </div>
                                 </form>
                             {% endif %}
-
                             <div class="comment-accordion" id="accordionExample">
-                                    <a class="btn btn-link btn-block btn-comment-toggle" type="button" data-toggle="collapse"
-                                       data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" href="#">
-                                        <i class="fa fa-comment" aria-hidden="true"></i>
-                                           Commentaires
-                                    </a>
-                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                                     data-parent="#accordionExample">
-                                    <div class="card-body language-main-list">
-                                        <ul class="ul-comment">
+                                Commentaires
+                                <i class="fa fa-comment" aria-hidden="true"></i>
+                                <div class="card-body language-main-list">
+                                    <ul class="ul-comment">
+                                        {% for comment in all_comments %}
+                                            {% if comment.post_id == one_post.post_unique_id %}
 
-                                            {% for comment in all_comments%}
-                                                {% if comment.post_id == one_post.post_unique_id %}
-
-                                                    <li class="li-comment">
-                                                        <i> Créé par  {{ comment.username }} le {{comment.creation_at|date("d/m/Y")}} :</i></br> <p class="bubble">{{comment.content}}</p></br>
-                                                    </li>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
+                                                <li class="li-comment">
+                                                    <i> Créé par {{ comment.username }}
+                                                        le {{ comment.creation_at|date("d/m/Y") }} :</i></br> <p
+                                                            class="bubble">{{ comment.content }}</p></br>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
                                 </div>
                             </div>
                         </div>
