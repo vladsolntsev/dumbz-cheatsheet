@@ -1,0 +1,144 @@
+{% block postContent %}
+    <div class="row d-flex justify-content-between m-3">
+        {% set fav_array = [] %}
+        {% for fav in favorite %}
+            {% set fav_array = fav_array|merge( [fav.id] ) %}
+        {% endfor %}
+
+        {% for one_post in tableToUse|slice(6,6) %}
+
+            {# for index tables #}
+            {% if one_post.post_unique_id in fav_array %}
+                {% set startype = "fas fa-star"%}
+            {% else %}
+                {% set startype = "far fa-star"%}
+            {% endif %}
+
+            {% if one_post.post_id in fav_array %}
+                {% set startype = "fas fa-star"%}
+            {% endif %}
+            {# for myspace table #}
+            {% set random = random(colors) %}
+            <div>
+                <div class="card m-1 post-index" style="width: 18rem; background-color: {{ random }}" data-toggle="modal" data-target="#exampleModal{{ one_post.post_unique_id }}">
+                    <div class="card-body">
+                        <div class="container card-header" style="background-color: {{ random }}">
+                            <div class="row d-flex ">{{ one_post.title }}
+                            </div>
+                        </div>
+                        <div class="card-text post-content-short">
+                          {{ one_post.content|raw }}
+                        </div>
+                        <div class="container m-3 7 ">
+                            <div class="row d-flex justify-content-between align-items-center">
+                                <div class="icons-post icon-language"><i class="{{ one_post.icon }} fa-2x"></i></div>
+                                {% set postid = one_post.post_unique_id %}
+                                <div class="popularity badge badge-warning">{{ all_popularities [postid] }}</div>
+                            </div>
+                        </div>
+                    </div>
+                   <div class="card-footer text-muted">
+                       Date de creation : {{ one_post.creation_at|date ("d/m/Y") }}
+
+                   </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="exampleModal{{ one_post.post_unique_id }}" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content card">
+                        <div class="card-body" style="background-color: {{ random }}">
+                            <div class="container pr-0 pl-0 card-header rounded " style="background-color: {{ random }}">
+                                <div class="row d-flex">
+                                    {%  if session.userid %}
+                                        <div class="text-warning col-2 text-left"><i class="{{ startype }}" data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid}}"></i></div>
+                                    {% endif %}
+                                    <div class="col-4 offset-2 text-center">{{ one_post.title }}</div>
+                                    <div class="text-warning col-2 offset-2 text-right">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container card-header ">
+                                {{ one_post.content|raw }}
+                            </div>
+                            <div class="container m-0 7 ">
+                                <div class="row d-flex align-items-center justify-content-between">
+                                    <div class="justify-content-start">
+                                        <div class="icons-post icon-language col-8">
+                                            <i class="{{ one_post.icon }} fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="justify-content-end">
+                                        {%  if session.userid %}
+                                            <div class="d-inline-block pr-2">
+                                                <div>
+                                                    <i class="far fa-thumbs-up fa-2x text-success {{  likesAndDislikes[postid][0] == 1 ? 'fas' : '' }}"
+                                                       data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
+                                                    </i>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <div>
+                                                    <i class="far fa-thumbs-down fa-2x text-danger {{  likesAndDislikes[postid][1] == 1 ? 'fas' : '' }}"
+                                                       data-postid="{{ one_post.post_unique_id }}" data-userid="{{ session.userid }}">
+                                                    </i>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <!-- <div class="badge badge-warning popularity">{{ all_popularities.postid }}</div> -->
+                                </div>
+                            </div>
+                            {%  if session.userid %}
+                                <form class = "mt-5" action="/home/index" method="post">
+                                    <input type="hidden" name="postid" value="{{ one_post.post_unique_id }}">
+                                    <div class="container">
+                                        <div class="row align-items-baseline" >
+                                            <div class="col-8 pl-0">
+                                                <textarea name="comment" id="comment" cols="32" rows="3"></textarea>
+                                            </div>
+                                            <div class="col-4 pr-0 text-right">
+                                                <button type="submit" class="btn btn-info btn-comment">Commenter</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            {% endif %}
+                            <div class="comment-accordion" id="accordionExample">
+                                Commentaires
+                                <i class="fa fa-comment" aria-hidden="true"></i>
+                                <div class="card-body language-main-list">
+                                    <ul class="ul-comment">
+                                        {% for comment in all_comments %}
+                                            {% if comment.post_id == one_post.post_unique_id %}
+
+                                                <li class="li-comment">
+                                                    <i> Créé par {{ comment.username }}
+                                                        le {{ comment.creation_at|date("d/m/Y") }} :</i></br> <p
+                                                            class="bubble">{{ comment.content }}</p></br>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted" style="background-color: {{ random }}">
+                            Date de creation : {{ one_post.creation_at|date ("d/m/Y")}}
+                            {%  if session.user["admin"] %}
+                            <a href="/home/deletepost/{{ one_post.post_unique_id }}"><i class="fa fa-trash" aria-hidden="true"></i> </a>
+                            {% elseif session.userid == one_post.user_id %}
+                            <a href="/home/deleteUserPost/{{ one_post.post_unique_id }}"><i class="fa fa-trash" aria-hidden="true"></i> </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <!-- end of card container -->
+    </div>
+{% endblock %}
