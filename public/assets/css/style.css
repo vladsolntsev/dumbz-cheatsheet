@@ -250,10 +250,7 @@ footer a:hover {
 .search-bar {
     height: 3rem;
     border-radius: 30px;
-    /*
-    margin: 80px 2px 44px 100px;
     padding-left: 20px;
-     */
 }
 
 .research-container {
@@ -476,8 +473,14 @@ body {
     margin-left:7px;
 }
 
+.btn-add {
+    background-color: #B5E1EE;
+}
 
-
+.btn-add-inside-modal {
+    background-color: #EEAE8A;
+    width:100%;
+}
 
 
 @media screen and (max-width: 576px) {
