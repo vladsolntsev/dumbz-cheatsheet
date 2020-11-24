@@ -22,6 +22,8 @@
     --logo-image-5: url('/assets/images/logo5.svg');
     --logo-image-6: url('/assets/images/logo6.svg');
     --body-color: #FDFFF3;
+    --button-add-color: #EEAE8A;
+    --button-inside-modal: #B5E1EE;
 
 }
 
@@ -469,16 +471,24 @@ body {
 }
 
 .btn-add {
-    background-color: #B5E1EE;
+    background-color: var(--button-inside-modal);
 }
 
 .btn-add-inside-modal {
-    background-color: #EEAE8A;
+    background-color: var(--button-add-color);
     width:100%;
 }
 
 .btn-login-modal {
-    background-color: #EEAE8A;
+    background-color: var(--button-add-color);
+}
+
+.modal-content {
+    background-color:transparent;
+}
+
+.modal-footer {
+    background-color: var(--body-color);
 }
 
 .admin-gif {
