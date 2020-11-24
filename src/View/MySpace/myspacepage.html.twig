@@ -3,7 +3,6 @@
 {% block stylesheet %}
     <link rel="stylesheet" href="/assets/css/stylemypage.css">{% endblock %}
 {% block content %}
-    {% include 'Home/_nav.html.twig' %}
     {% set startype = "fas fa-star" %}
     {% if session.user.id == user.id %}
     <div class="welcome-text text-center font-weight-bold font-italic">
