@@ -20,15 +20,13 @@
     --primary-color: #141b15;
     --secondary-color: lightslategrey;
     --link-color: white;
-    --logo-image-1: url('/assets/images/logo1.svg');
-    --logo-image-2: url('/assets/images/logo2.svg');
-    --logo-image-3: url('/assets/images/logo3.svg');
-    --logo-image-4: url('/assets/images/logo4.svg');
-    --logo-image-5: url('/assets/images/logo5.svg');
-    --logo-image-6: url('/assets/images/logo6.svg');
-    --body-color: #FDFFF3;
-    --button-add-color: #EEAE8A;
-    --button-inside-modal: #B5E1EE;
+    --logo-image-1: url('/assets/images/logosBen/logo1.svg');
+    --logo-image-2: url('/assets/images/logosBen/logo2.svg');
+    --logo-image-3: url('/assets/images/logosBen/logo3.svg');
+    --logo-image-4: url('/assets/images/logosBen/logo4.svg');
+    --logo-image-5: url('/assets/images/logosBen/logo5.svg');
+    --logo-image-6: url('/assets/images/logosBen/logo6.svg');
+
 
 }
 
@@ -72,6 +70,9 @@ body {
     margin-left: 12px;
 }
 .btn-burger:hover {
+    color: black;
+}
+.btn-post:hover {
     color: black;
 }
 
@@ -168,8 +169,9 @@ footer a:hover {
     animation-duration: 10s;
     animation-iteration-count: infinite;
     background-color: white;
-    border: 1px solid white;
-    border-radius: 25px;
+    /*border: 1px solid white;*/
+    /*border-radius: 25px;*/
+    border-radius: 15px;
 }
 
 @keyframes logo {
@@ -483,6 +485,7 @@ body {
     background-color: var(--button-inside-modal);
 }
 
+
 .btn-add-inside-modal {
     background-color: var(--button-add-color);
     width:100%;
@@ -490,6 +493,10 @@ body {
 
 .btn-login-modal {
     background-color: var(--button-add-color);
+
+.small_footer{
+    margin-top: 1em;
+
 }
 
 .btn-change-login {
@@ -516,7 +523,9 @@ body {
     display: block;
 }
 @media screen and (max-width: 576px) {
-
+    .large_footer {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -535,8 +544,12 @@ body {
     }
 }
 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) { ... }
+@media screen and (min-width: 577px) {
+    .small_footer{
+        display: none;
+    }
+}
+
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) { ... }
