@@ -1,3 +1,4 @@
+/*Online CSS*/
 @import url("https://use.fontawesome.com/releases/v5.15.1/css/all.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 @import url("https://unpkg.com/@coreui/icons/css/all.min.css");
@@ -6,6 +7,10 @@
 @import url("//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/styles/default.min.css");
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
+/* Font families */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+/*Local CSS*/
 @import "stylemodalnav.css";
 @import "stylemypage.css";
 @import "bootstrap-overridden.css";
@@ -29,8 +34,12 @@
 
 body {
     background-color: var(--body-color);
+    font-family: 'Montserrat', sans-serif;
 }
 
+.post-style {
+    font-family: 'Caveat', cursive;
+}
 
 /* Header */
 
@@ -495,6 +504,12 @@ body {
     background-color: var(--body-color);
 }
 
+.post-footer {
+    display:flex;
+}
+.delete-button {
+    margin-left:200px;
+}
 .admin-gif {
     margin-left: auto;
     margin-right: auto;
