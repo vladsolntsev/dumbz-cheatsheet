@@ -14,6 +14,10 @@
     overflow-y: auto;
 }
 
+.modal-body {
+    background-color: var(--body-color);
+}
+
 .modal.left .modal-body {
     padding: 15px 15px 80px;
 }
@@ -39,12 +43,12 @@
 
 .modal-header {
     border-bottom-color: #EEEEEE;
-    background-color: #FAFAFA;
+    background-color: var(--secondary-color);
 }
-
 
 .modal-nav {
     margin-top: 50px;
+
 }
 .modal-header h4 {
     font-size: 2em;

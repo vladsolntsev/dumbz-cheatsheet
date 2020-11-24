@@ -21,12 +21,14 @@
     --logo-image-4: url('/assets/images/logo4.svg');
     --logo-image-5: url('/assets/images/logo5.svg');
     --logo-image-6: url('/assets/images/logo6.svg');
+    --body-color: #FDFFF3;
 
 }
 
 body {
-    background-color: #FDFFF3;
+    background-color: var(--body-color);
 }
+
 
 /* Header */
 
