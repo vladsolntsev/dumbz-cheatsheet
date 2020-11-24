@@ -1,13 +1,3 @@
-/*  JS Navigation */
-const burger = document.getElementById('burger');
-const menuBurger = document.getElementById('menu-burger')
-burger.addEventListener('click', event => {
-    menuBurger.classList.toggle('sidebar-nav')
-    burger.classList.toggle('burger-menu-white')
-    document.getElementById('menu-burger').classList.toggle('display-block-nav');
-})
-
-/* End JS Navigation */
 
 /* JS Favorites */
 const stars = document.getElementsByClassName('fa-star');
@@ -55,7 +45,7 @@ for (let i = 0 ; i <like.length; i++) {
         } else {
             event.target.classList.add('fas');
             number++;
-            popularity[i].innerHTML = number.toString();
+            popularity[i].innerHTML === "" ? popularity[i].innerHTML = 1 : popularity[i].innerHTML = number.toString();
         }
 
         if (dislike[i].classList.contains('fas')) {
@@ -79,6 +69,7 @@ for (let i = 0 ; i <like.length; i++) {
         .then(response => response.json())
         .then(data => console.log(data))
     })
+    console.log(like.length);
 }
 
 
@@ -93,7 +84,7 @@ for ( let i = 0; i < dislike.length; i++ ) {
         } else {
             event.target.classList.add('fas');
             number--;
-            popularity[i].innerHTML = number.toString();
+            popularity[i].innerHTML === "" ? popularity[i].innerHTML = -1 : popularity[i].innerHTML = number.toString();
         }
         if (like[i].classList.contains('fas')) {
             like[i].classList.remove('fas');
