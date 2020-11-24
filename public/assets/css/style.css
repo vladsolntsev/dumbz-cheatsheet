@@ -100,10 +100,6 @@ body {
     background-color: transparent;
 
 }
-.container-fluid{
-    padding-left: 0px;
-}
-
 
 /* footer */
 
@@ -463,7 +459,6 @@ body {
     text-align: center;
 }
 
-
 #sendLogin {
     display: flex;
     justify-content: center;
@@ -482,6 +477,9 @@ body {
     width:100%;
 }
 
+.btn-login-modal {
+    background-color: #EEAE8A;
+}
 
 @media screen and (max-width: 576px) {
 

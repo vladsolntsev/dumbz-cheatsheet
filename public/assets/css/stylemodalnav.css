@@ -48,6 +48,7 @@
 
 .modal-nav {
     margin-top: 50px;
+    background-color: var(--body-color);
 
 }
 .modal-header h4 {
