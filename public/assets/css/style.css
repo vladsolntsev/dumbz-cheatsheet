@@ -6,7 +6,7 @@
 @import url("//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/styles/default.min.css");
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
-@import "stylenav.css";
+@import "stylemodalnav.css";
 @import "stylemypage.css";
 @import "bootstrap-overridden.css";
 @import "../images/favicon.png";
@@ -41,7 +41,7 @@ body {
 .header {
     background-image: url('/assets/images/main-picture.png');
     background-size: cover;
-    height: 15vh;
+    height: 25vh;
     padding: 20px 0;
 }
 
@@ -50,8 +50,17 @@ body {
 }
 
 .header-icons {
-    margin-right: 15px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 80px;
 
+}
+.btn-burger {
+    font-size: 40px;
+    margin-left: 12px;
+}
+.btn-burger:hover {
+    color: black;
 }
 
 /* Main page content */
@@ -76,6 +85,24 @@ body {
     margin: 30px 0;
     width: 100%;
 }
+
+.result-title-button{
+    padding-left: 0px;
+    margin: 30px 0;
+    width: 100%;
+    border-bottom: none;
+}
+
+
+.btn-recent {
+    border-color: lightslategrey;
+    background-color: transparent;
+
+}
+.container-fluid{
+    padding-left: 0px;
+}
+
 
 /* footer */
 
@@ -129,8 +156,6 @@ footer a:hover {
     height: 50px;
     width:170px;
     position: absolute;
-    top:-40px;
-    right: 100px;
     animation-name: logo;
     animation-duration: 10s;
     animation-iteration-count: infinite;
@@ -469,7 +494,6 @@ body {
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) { ... }
-
 
 
 

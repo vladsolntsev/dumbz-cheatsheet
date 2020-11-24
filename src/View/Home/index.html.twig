@@ -11,29 +11,30 @@
             Les plus populaires
 
         </div>
-        <div class="col-1 result-title">
-            <span class="font-weight-bold" id="plus-most-popular">+</span>
+        <div class="col-sm-1 result-title-button">
+            <button type="button" class="btn-recent active" data-toggle="collapse" data-target="#all-post-by-pop" aria-pressed="true" autocomplete="off"><span class="font-weight-bold" id="plus-most-popular">+</span></button>
+
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row justify-content-sm-center">
+        <div class="row justify-content-sm-center" id="all-post-by-pop">
             {% set tableToUse = all_posts_by_pop %}
             {% include '/Home/postmodel.html.twig' %}
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-6 result-title">
+        <div class="row " >
+            <div class="col-sm-6 result-title">
                 Les plus récents
             </div>
-            <div class="col-1 result-title">
-                <span class="font-weight-bold" id="plus-most-popular">+</span>
+            <div class="col-sm-1 result-title-button">
+                <button type="button" class="btn-recent active" data-toggle="collapse" data-target="#all-post-by-date" aria-pressed="true" autocomplete="off"><span class="font-weight-bold" id="plus-most-popular">+</span></button>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row justify-content-sm-center">
-                {% set tableToUse = all_posts_by_date %}
-                {% include '/Home/postmodel.html.twig' %}
+            <div class="container-fluid" >
+                <div class="row justify-content-sm-center" id="all-post-by-date">
+                    {% set tableToUse = all_posts_by_date %}
+                    {% include '/Home/postmodel.html.twig' %}
+                </div>
             </div>
         </div>
         {% endif %}
