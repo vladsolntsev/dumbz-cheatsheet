@@ -19,7 +19,7 @@
 }
 
 .modal.left .modal-body {
-    padding: 15px 15px 80px;
+    padding: 80px 15px 80px;
 }
 
 /*Left*/
@@ -47,7 +47,6 @@
 }
 
 .modal-nav {
-    margin-top: 50px;
     background-color: var(--body-color);
 
 }
