@@ -26,7 +26,9 @@
     --logo-image-4: url('/assets/images/logosBen/logo4.svg');
     --logo-image-5: url('/assets/images/logosBen/logo5.svg');
     --logo-image-6: url('/assets/images/logosBen/logo6.svg');
-
+    --body-color: #FDFFF3;
+    --button-add-color: #EEAE8A;
+    --button-inside-modal: #B5E1EE;
 
 }
 
@@ -493,6 +495,7 @@ body {
 
 .btn-login-modal {
     background-color: var(--button-add-color);
+}
 
 .small_footer{
     margin-top: 1em;
