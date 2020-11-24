@@ -481,6 +481,11 @@ body {
     background-color: #EEAE8A;
 }
 
+.admin-gif {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
 @media screen and (max-width: 576px) {
 
 }

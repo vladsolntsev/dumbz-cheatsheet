@@ -5,6 +5,7 @@
     <div class="welcome-text text-center font-weight-bold font-italic">
         Bienvenue sur ta page d'admin, {{ session.user.name }}!<br>
     </div>
+    <hr>
     {% if successMessage is defined %}
         {{ successMessage }}
     {% endif %}
@@ -14,6 +15,6 @@
     <br>
     <br>
 
-    <img src="https://media.giphy.com/media/S9oecmLUi26zYzrTZt/giphy.gif" alt="funnies2" width="300" height="200">
+    <img src="https://media.giphy.com/media/S9oecmLUi26zYzrTZt/giphy.gif" class="admin-gif" alt="funnies2" width="300" height="200">
 
 {% endblock %}
