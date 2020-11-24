@@ -95,21 +95,23 @@
                                     <button type="submit" class="btn btn-info btn-comment">Comment</button>
                                 </form>
                             {% endif %}
-
                             <div class="comment-accordion" id="accordionExample">
-                                           Commentaires
+                                Commentaires
                                 <i class="fa fa-comment" aria-hidden="true"></i>
                                 <div class="card-body language-main-list">
-                                        <ul class="ul-comment">
-                                            {% for comment in all_comments %}
-                                                {% if comment.post_id == one_post.post_unique_id %}
-                                                    <li class="li-comment">
-                                                        <i> Créé par  {{ comment.username }} le {{comment.creation_at|date("d/m/Y")}} :</i></br> <p class="bubble">{{comment.content}}</p></br>
-                                                    </li>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
+                                    <ul class="ul-comment">
+                                        {% for comment in all_comments %}
+                                            {% if comment.post_id == one_post.post_unique_id %}
+
+                                                <li class="li-comment">
+                                                    <i> Créé par {{ comment.username }}
+                                                        le {{ comment.creation_at|date("d/m/Y") }} :</i></br> <p
+                                                            class="bubble">{{ comment.content }}</p></br>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer text-muted" style="background-color: {{ random }}">

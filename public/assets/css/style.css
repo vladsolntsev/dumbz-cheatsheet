@@ -424,6 +424,22 @@ body {
 
 }
 
+#sendLogin {
+    text-align: center;
+}
+
+
+#sendLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.send-icon {
+    margin-left:7px;
+}
+
+
+
 
 @media screen and (max-width: 768px) {
 
