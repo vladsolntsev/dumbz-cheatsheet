@@ -80,6 +80,24 @@ body {
     width: 100%;
 }
 
+.result-title-button{
+    padding-left: 0px;
+    margin: 30px 0;
+    width: 100%;
+    border-bottom: none;
+}
+
+
+.btn-recent {
+    border-color: lightslategrey;
+    background-color: transparent;
+
+}
+.container-fluid{
+    padding-left: 0px;
+}
+
+
 /* footer */
 
 .footer {
