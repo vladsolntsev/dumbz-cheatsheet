@@ -222,7 +222,6 @@ class PostManager extends AbstractManager
         return $sumOfDislikesPerId;
     }
 
-
     public function popularityPerId()
     {
         $allPopularities = [];
