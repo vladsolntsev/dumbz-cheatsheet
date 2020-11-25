@@ -40,7 +40,9 @@ body {
 .post-style {
     font-family: 'Caveat', cursive;
 }
-
+.research-container .error-message {
+    /* Todo mettre le css ici pour le message d'erreur de la bar de recherche */
+}
 /* Header */
 
 .header-index{
