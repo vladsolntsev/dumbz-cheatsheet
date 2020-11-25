@@ -357,6 +357,8 @@ footer a:hover {
 
 .btn-comment {
     margin-bottom: 29px;
+    background-color: var(--secondary-color);
+
 }
 
 /* search bar */
@@ -404,6 +406,11 @@ input:focus {
 .card-footer {
     padding: 0.75rem 1rem;
 }
+
+.comment-section {
+
+}
+
 
 /* test bubble comment */
 .bubble{
