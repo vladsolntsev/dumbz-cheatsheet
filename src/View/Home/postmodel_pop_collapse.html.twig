@@ -1,5 +1,5 @@
 {% block postContent %}
-    <div class="row d-flex justify-content-between m-3">
+    <div class="row d-flex align-posts m-3">
         {% set fav_array = [] %}
         {% for fav in favorite %}
             {% set fav_array = fav_array|merge( [fav.id] ) %}
