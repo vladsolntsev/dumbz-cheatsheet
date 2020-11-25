@@ -562,9 +562,21 @@ body {
     }
 }
 
+@media screen and (max-width: 1049px) {
+    .align-posts {
+        justify-content: center;
+    }
+}
+
 @media screen and (min-width: 577px) {
     .small_footer{
         display: none;
+    }
+}
+
+@media screen and (min-width: 1050px) {
+    .align-posts {
+        justify-content: space-between;
     }
 }
 
