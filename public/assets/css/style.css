@@ -571,6 +571,9 @@ body {
     /*   right: -85px; */
     display: none;
     }
+    .header-icons {
+        padding-right: 5px;
+    }
 }
 
 @media screen and (max-width: 992px) {
