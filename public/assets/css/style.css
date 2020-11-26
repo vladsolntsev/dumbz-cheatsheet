@@ -188,6 +188,12 @@ footer a:hover {
 .contact{
     color: white;
 }
+
+.large_footer{
+    display:flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
 @keyframes logo {
     0% {
         background-image: var(--logo-image-1);
