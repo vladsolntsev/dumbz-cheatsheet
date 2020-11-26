@@ -185,7 +185,9 @@ footer a:hover {
     /*border-radius: 25px;*/
     border-radius: 15px;
 }
-
+.contact{
+    color: white;
+}
 @keyframes logo {
     0% {
         background-image: var(--logo-image-1);
