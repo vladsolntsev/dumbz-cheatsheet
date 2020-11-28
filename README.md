@@ -16,10 +16,9 @@ It was very interesting working with agile methods and combining our efforts to 
 - MYSQL
 
 #### Front :
-- TWIG
-- JavaScript
-- HTML 5
 - CSS
+- Twig
+- JavaScript
 - Font Awesome Icons
 - highlight.js
 - [Markdown by Michelf](https://github.com/michelf/php-markdown)
