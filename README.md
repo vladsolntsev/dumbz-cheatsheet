@@ -12,10 +12,10 @@ It was very interesting working with agile methods and combining our efforts to 
 
 ## With
 
-[Benjamin](https://github.com/FromBenj)
-[Claire](https://github.com/Claire812)
-[Guillaume](https://github.com/Blustery33)
-[Marta](https://github.com/kozmarti)
+[Benjamin](https://github.com/FromBenj),
+[Claire](https://github.com/Claire812),
+[Guillaume](https://github.com/Blustery33),
+[Marta](https://github.com/kozmarti).
 
 Special thanks to [Guillaume Harari](https://github.com/guillaumebdx) for guiding us!
 
