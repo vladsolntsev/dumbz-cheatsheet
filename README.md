@@ -25,6 +25,7 @@ Special thanks to [Guillaume Harari](https://github.com/guillaumebdx) for guidin
 
 #### Front :
 - CSS
+- Bootstrap
 - Twig
 - JavaScript
 - Font Awesome Icons
