@@ -1,4 +1,4 @@
-# Projet 2 Wild Code School
+# Project 2 - Dumbz
 
 ## Description
 
